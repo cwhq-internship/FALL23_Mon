@@ -1,0 +1,35 @@
+<!doctype html>
+<!--
+  ### Important ###
+  This file is the parent template for the entire application.
+  Do not make changes to this file unless you intend for those 
+  changes to apply to every template that inherits this template.
+-->
+<html>
+    <head>
+        <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0 shrink-to-fit=no">
+        <link rel ="stylesheet" href="{{url_for('static', filename='stylesheets/layout.css')}}">
+        <title>
+          {% if title %}
+            {{ title }}
+          {% else %}
+          <!-- Update the default title of the project -->
+            Flask Starter Template
+          {% endif %}
+        </title>
+        <!-- For adding any additional stylesheets to a template -->
+        {% block styles %}
+        {% endblock %}
+    </head>
+    <body>
+
+        <!-- Displays the main content of a template -->
+        {% block content %}
+        {% endblock %}
+
+        <!-- For adding additional scripts for a template -->
+        {% block scripts %}
+        {% endblock %}
+    </body>
+</html>

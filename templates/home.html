@@ -1,0 +1,17 @@
+{% extends 'layout.html' %}
+
+{% block styles %}
+    <link href='{{url_for("static", filename="stylesheets/home.css")}}' rel='stylesheet'/>
+{% endblock %}
+
+{% block content %}
+<!-- Update this block to update what html content is rendered -->
+<div>
+  <h1>Hello Flask</h1>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<!-- Delete the scripts block if not needed -->
+    <script src="{{ url_for('static', filename='javascript/home.js') }}"></script>
+{% endblock %}
