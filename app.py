@@ -74,8 +74,8 @@ def import_models():
                     Check the naming of your file and model
                 """)
 
-
-# Do not alter this if statement below unless instructed to do so
+# THIS IS A NOTE RAAAAAAAAAAAAAAA
+# Do not alter this if statement below unless instructed to do so RAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 # This should stay towards the bottom of this file
 if __name__ == "__main__":
     flask_env = getenv('FLASK_ENV')
@@ -85,3 +85,4 @@ if __name__ == "__main__":
         app.debug = True
         app.asset_debug = True
     app.run()
+#NOTES
