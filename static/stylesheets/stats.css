@@ -1,0 +1,6 @@
+.pie {
+    width: 400px;
+    height: 400px;
+    background-image: conic-gradient(orange 64%, blue 64%, blue 81%, black 81%);
+    border-radius: 50%
+  }
