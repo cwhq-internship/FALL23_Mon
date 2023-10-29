@@ -22,6 +22,21 @@ app.register_blueprint(api_bp, url_prefix="/api")
 def index():
     return render_template('home.html')
 
+@app.route('/404')
+def error():
+    return render_template('404.html')
+
+@app.route('/cwhq')
+def wizard():
+    return render_template('cwhq.html')
+
+@app.route('/stats')
+def stats():
+    return render_template('stats.html')
+
+@app.route('/typing')
+def typing():
+    return render_template('typing.html')
 
 # Custom CLI Commands
 # Do not update these commands without direction from your instructor
