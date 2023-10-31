@@ -2,34 +2,15 @@ html, body {
     height: 100%;
 }
 
-.text_2{
+div{
+    text-align: justify;
+}
+
+.subtitle {
+    float:left
     
-}
+  }
 
-.blog-heading{
-  font-family: 'Poppins', sans-serif;
-  padding-top:40px;
-  color:white;
-}
-
-.form-container {
-    width: 100%;
-    max-width: 330px;
-    margin: auto;
-}
-
-.contact-container{
-    width: 100%;
-    max-width: 520px;
-    margin: auto;
-  
-}
-
-#cover{
-    height: 500px;
-    background: url('cover.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: bottom;
-    background-attachment: fixed;
-}
+.right-text {
+    float: right;
+} 
