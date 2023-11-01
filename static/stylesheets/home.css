@@ -1,7 +1,7 @@
 #keyboard {
     width: 30vh;
     position: absolute;
-    top: 20%;
+    top: 25%;
     left: 50%;
     transform: translate(-50%, -50%);
     margin: 10px;
@@ -10,7 +10,7 @@
 .title {
     width: 40vh;
     position: absolute;
-    top: 35%;
+    top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
     margin: 10px;
@@ -22,12 +22,14 @@
     height: 37vh;
     text-align: center;
     margin: 10px;
+    border-style: solid;
+    border-color: black;
+    border-radius: 20px;
 }
 
 .bottom {
-    color:aqua;
-    background-color: lightgray;
-    height: 70vh;
+    background-color: white;
+    height: 60vh;
 }
 
 .description {
@@ -38,4 +40,28 @@
     transform: translate(-50%, -50%);
     margin: 10px;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+.class {
+    background-color: #CAE3EC;
+    height: 50vh;
+    text-align: center;
+    margin: 0 auto;
+    top: 70px;
+    width: 50vh;
+    display: flex;
+    justify-content: center;
+    border-style: solid;
+    border-color: black;
+    border-radius: 10px;
+    
+}
+
+.difficulty {
+    height: 10vh;
+    background-color: aliceblue;
+}
+
+.form {
+    height: 30vh;
 }
