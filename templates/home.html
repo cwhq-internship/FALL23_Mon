@@ -14,52 +14,60 @@
 </div>
 
 <div class="bottom">
-  <div class="class">
-    <form class="form" action="https://formsubmit.co/a032a96105a1c07632b456b9a61f36df" method="post">
-      <fieldset class="form-group">
-                <legend>Create test</legend>
-      
+  <div class="widget">
+    <h3> widget 1</h3>
+    <div class="class">
+      <form class="form" action="https://formsubmit.co/a032a96105a1c07632b456b9a61f36df" method="post">
+        <fieldset class="form-group">
+                  <legend>Create test</legend>
+        
+          <div class="mb-1">
+                    <label for="name">Number of words:</label>
+                    <input value="50" type="number" id="typeNumber" class="form-control" />
+                  </div>
+        
         <div class="mb-1">
-                  <label for="name">Number of words:</label>
-                  <input value="50" type="number" id="typeNumber" class="form-control" />
-                </div>
+                    <label for="name">Amount of time:</label>
+                    <input value="50" type="number" id="typeNumber" class="form-control" />
+              <input value="50" type="number" id="typeNumber" class="form-control" />
+                  </div>
       
-      <div class="mb-1">
-                  <label for="name">Amount of time:</label>
-                  <input value="50" type="number" id="typeNumber" class="form-control" />
-            <input value="50" type="number" id="typeNumber" class="form-control" />
-                </div>
-    
-      <label for="name">Difficulty level:</label>
-      <div class="difficulty">
-      <div class="form-check">
-        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
-      <label class="form-check-label" for="exampleRadios1">
-          Easy (3 - 6 letter word)
-        </label>
+        <label for="name">Difficulty level:</label>
+        <div class="difficulty">
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+        <label class="form-check-label" for="exampleRadios1">
+            Easy (3 - 6 letter word)
+          </label>
+        </div>
+        
+        <div class="form-check">
+        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option1" checked>
+        <label class="form-check-label" for="exampleRadios2">
+            Medium (3 - 9 letter word)
+          </label>
+        </div>
+        
+        <div class="form-check">
+        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="option1" checked>
+        <label class="form-check-label" for="exampleRadios3">
+            Hard (any word length)
+          </label>
+        </div>
       </div>
-      
-      <div class="form-check">
-      <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option1" checked>
-      <label class="form-check-label" for="exampleRadios2">
-          Medium (3 - 9 letter word)
-        </label>
+        
+        </div>
+        </form>
       </div>
-      
-      <div class="form-check">
-      <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="option1" checked>
-      <label class="form-check-label" for="exampleRadios3">
-          Hard (any word length)
-        </label>
-      </div>
-    </div>
-      
-      </div>
-      </form>
-    </div>
+
+<div class="widget">
+    <h3> widget 2</h3>
 </div>
-<!--trickster - my attempt at the form -->
-<!-- josh - what is this i cant understand it -->
+<div class="widget">
+    <h3> widget 3</h3>
+</div>
+</div>
+</div>
 
 
 {% endblock %}
