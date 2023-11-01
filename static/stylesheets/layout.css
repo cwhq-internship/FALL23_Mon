@@ -3,15 +3,14 @@
   Only update this css file if intending to apply universal styling to all templates
  */
 
- .switch {
+.switch {
   margin: 5px;
   position: absolute;
   width: 30px;
   height: 17px;
-  
 }
 
-.switch input { 
+.switch input {
   opacity: 0;
   width: 0;
   height: 0;
@@ -50,7 +49,7 @@ input:checked + .slider:before {
 }
 
 input:focus + .slider {
-  box-shadow: 0 0 1px #2196F3;
+  box-shadow: 0 0 1px #2196f3;
 }
 
 input:checked + .slider:before {
@@ -60,7 +59,23 @@ input:checked + .slider:before {
 }
 
 .active-bar {
-  background-color: #B0D7E5;
+  background-color: #b0d7e5;
   border-radius: 10px;
 }
 
+h1 {
+  font-family: "Suez One", serif;
+  text-align: center;
+}
+
+p {
+  font-family: "Oxygen", sans-serif;
+  text-align: center;
+}
+
+img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 172px;
+}
