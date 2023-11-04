@@ -1,5 +1,5 @@
 {% extends 'layout.html' %}
-
+{% set title="Home" %}
 {% block styles %}
     <link href='{{url_for("static", filename="stylesheets/home.css")}}' rel='stylesheet'/>
     <link href='{{url_for("static", filename="stylesheets/layout.css")}}' rel='stylesheet'/>
@@ -9,13 +9,13 @@
 <!-- Update this block to update what html content is rendered -->
 <div class="top">
   <div class="image-container">
-    <img id="WizFont1" src="/static/stylesheets/WizFont1.png">
+    <img id="WizFont1" src="/static/img/WizFont1.png">
     </div>
   <div class="image-container">
-  <img id="WizType" src="/static/stylesheets/WizType.png">
+  <img id="WizType" src="/static/img/WizType.png">
   </div>
   <div class="image-container">
-  <img id="WizFont" src="/static/stylesheets/WizFont.png">
+  <img id="WizFont" src="/static/img/WizFont.png">
   </div>
 
   <!-- <h2 class="description"> Made by cool people now</h2> ILL FIX THIS LATER PLEASE-->

@@ -1,6 +1,9 @@
 {% extends "layout.html" %}
-
+{% set title="About Us" %}
 {% block d %} active-bar {% endblock %}
+{% block content %}
+
+
 <html>
   <head>
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -10,33 +13,39 @@
     <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@500&family=Lato&display=swap" rel="stylesheet">
   
   </head>
+  
   <body>
-
-
-    <div class="container">
-        
-      <div class='navbar'>
-        <p class="title">WizardType</p>
-        <a href="home.html"><p class='nav-button'>Home</p></a>
-        <a href="about.html"><p class='nav-button selected'>About us</p></a>
+    <div class="outer">
+      <div class="inner">
+        <div class="left">
+          <h1 class="titles">Who are we?</h1>
+          <p class="description">Welcome to our CodeWizards Internship project: WizardType. 
+            WizardType is a typing game similar to another I will not name *cough cough* Typeracer. 
+            Over the course of 12 weeks, we created every aspect of this website, from the background image
+            to the typing test itself. Working with JavaScript, HTML, CSS, JQuery, and several databases, this
+            fully functioning typing application represents years of hard work and learning at CodeWizardsHQ.
+            Our team includes: Aberrash, Daniel, Joshua, Juliania, Kathleen, and Medhin. Our Boss, Nick,
+            is a wonderful and malevolent being who deserves much praise and respect (Josh wrote this). 
+            We hope you enjoy our site and have loads of fun with it :D</p>
+        </div>
+        <img class="right" src='/static/img/Logo1.png'>
       </div>
-
-    
-      <div class='main'>
-        <h1>About us</h1>
-
-          <div class="subtitle">
-            <p>Welcome to our CodeWizards Internship project: WizardType. WizardType is a typing game similar to another I will not name *cough cough* Typeracer. We're building this website over the course of 12 weeks during our internship. Our team includes: Aberrash, Daniel, Joshua, Juliania, Kathleen, Medhin, and Nick. We hope you enjoy our site and have loads of fun with it :D</p>
+      <div class="inner">
+        <div class="AltR"></div>
+        <div class="AltL">
+          <h1 class="titles">What have we done?</h1>
+          <p class="description">nothing lol</p>
+        </div>
       </div>
-
-        <div class="container">         
-        <p class="right-text">Students learn skills necessary to become successful back end developers, such as Python, Flask, and databases. They also spend several courses learning and applying front end concepts such as design frameworks, interactive webpages, and more. As a culmination of all of their CodeWizardsHQ coursework, students apply for and are selected to participate in a months-long group project.
-
-          Teaching kids to type on the keyboard is crucial in the modern world dominated by digital communication. Proficient typing skills empower children to effectively express their thoughts and ideas, fostering communication and self-expression. Additionally, typing proficiency enhances productivity and efficiency, allowing children to complete tasks more quickly and accurately. As technology continues to evolve, strong keyboarding skills become increasingly vital for academic and professional success. By starting early, children can develop a valuable skill set that will benefit them throughout their lives in an increasingly digital society.
-          
-          Wizard-Type is an invaluable tool for teaching kids to typo on the keyboard. With its endless, free typing practice, students can refine their skills at their own pace. The ability to customize difficulty levels and duration of practice sessions ensures that each student’s needs and abilities are catered to. Moreover, Wizard-Type offers encouraging progress updates, serving as a constant source of motivation for students as they strive to master the keyboard. By incorporating this engaging and interactive platform into their learning, students are inspired to develop strong typing skills that will benefit them in various aspects of their lives. - filler for the time being as i get to know our team and what to include.</p>
-        <div>
+      <div class="inner">
+        <div class="left">
+          <h1 class="titles">What is CodeWizards?</h1>
+          <p class="description">idk go check their website at www.codewizardshq.com</p>
+        </div>
+        <img class="right" src='/static/img/CWHQIcon.png'>
       </div>
     </div>
   </body>
 </html>
+
+{% endblock %}
