@@ -39,7 +39,7 @@ def typing():
     return render_template('typing.html')
 
 @app.route('/about')
-def typing():
+def about():
     return render_template('about.html')
 
 # Custom CLI Commands
