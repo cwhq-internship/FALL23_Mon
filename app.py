@@ -38,6 +38,10 @@ def stats():
 def typing():
     return render_template('typing.html')
 
+@app.route('/about')
+def typing():
+    return render_template('about.html')
+
 # Custom CLI Commands
 # Do not update these commands without direction from your instructor
 # https://flask.palletsprojects.com/en/2.1.x/cli/#custom-commands
