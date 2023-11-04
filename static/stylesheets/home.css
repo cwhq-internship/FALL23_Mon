@@ -1,16 +1,9 @@
-#keyboard {
-    width: 30vh;
-    position: absolute;
-    top: 25%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    margin: 10px;
-   }
+
 
 .title {
     width: 40vh;
     position: absolute;
-    top: 40%;
+    top: 35%;
     left: 50%;
     transform: translate(-50%, -50%);
     margin: 10px;
@@ -18,20 +11,24 @@
 }
 
 .top {
-    background-color: #CAE3EC;
+    background-color: transparent;
     height: 37vh;
     text-align: center;
-    margin: 10px;
     border-style: solid;
-    border-color: black;
+    border-color: transparent;
     border-radius: 20px;
+    display: flex;
+}
+
+.top img {
+    width: 50%;
+    height: auto;
 }
 
 .bottom {
-    background-color: white;
-    height: 60vh;
+    background-color: transparent;
     display: flex;
-    height: 65vh; 
+    height: 55vh; 
     max-width: 98vw;
     margin: auto;
 }
@@ -45,6 +42,7 @@
     margin: 10px;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
+
 
 .class {
     background-color: #CAE3EC;
@@ -71,8 +69,8 @@
 }
 
 .widget{
-    height: 60vh;
-    background-color: rgba(0,0,0,0.4); 
+    height: 50vh;
+    background-color: #4A8CA2;
     margin: 15px;
     padding: 5px;
     padding-top: 0px;
@@ -80,4 +78,7 @@
     min-width: 300px;
     text-align: center;
     border-radius: 15px;
+    justify-content: center;
+    opacity: 0.9;
 }
+

@@ -8,15 +8,21 @@
 {% block content %}
 <!-- Update this block to update what html content is rendered -->
 <div class="top">
-  <img id="keyboard" src="/static/stylesheets/typewriter.png">
-  <h1 class="title"> Wizard Typer </h1>
+  <div class="image-container">
+    <img id="WizFont1" src="/static/stylesheets/WizFont1.png">
+    </div>
+  <div class="image-container">
+  <img id="WizType" src="/static/stylesheets/WizType.png">
+  </div>
+  <div class="image-container">
+  <img id="WizFont" src="/static/stylesheets/WizFont.png">
+  </div>
+
   <!-- <h2 class="description"> Made by cool people now</h2> ILL FIX THIS LATER PLEASE-->
 </div>
 
 <div class="bottom">
-  <div class="widget">
-    <h3> widget 1</h3>
-    <div class="class">
+    <div class="widget">
       <form class="form" action="https://formsubmit.co/a032a96105a1c07632b456b9a61f36df" method="post">
         <fieldset class="form-group">
                   <legend>Create test</legend>
@@ -54,7 +60,6 @@
             Hard (any word length)
           </label>
         </div>
-      </div>
         
         </div>
         </form>
@@ -74,5 +79,7 @@
 {% block brand %} active-bar {% endblock %}
 {% block scripts %}
 <!-- Delete the scripts block if not needed -->
-    <script src="{{ url_for('static', filename='javascript/home.js') }}"></script>
+    <script src="{{ url_for('static', filename='javascript/home.js') }}">
+      
+    </script>
 {% endblock %}

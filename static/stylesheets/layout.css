@@ -73,9 +73,51 @@ p {
   text-align: center;
 }
 
-img {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 172px;
+.logo {
+  width: 14vh;
+  height: 8vh;
+  margin-left: 85vh;
+  overflow: visible;
+  position: absolute;
+  z-index: 1;
+  margin-top: -4.5vh;
+}
+
+.image-container {
+  display: inline-block;
+}
+
+#WizType {
+  height: 36vh;
+  width: auto;
+  margin-left: 3vh;
+}
+
+#WizFont {
+  height: 5vh;
+  width: auto;
+  margin-top: 15vh;
+  margin-left: 5vh;
+}
+
+#WizFont1 {
+  height: 5vh;
+  width: auto;
+  margin-top: 15vh;
+  margin-left: 5vh;
+}
+
+.cwhq {
+  background-color: white;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-image: url('/static/stylesheets/background.jpg'); /* Initial background image for light mode */
+  transition: background 0.3s;
+}
+
+#dark-mode-toggle:before ~ body {
+  background-image: url("/static/stylesheets/darkbackground.jpg");
 }
