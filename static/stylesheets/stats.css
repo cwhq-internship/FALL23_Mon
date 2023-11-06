@@ -13,6 +13,55 @@
 
     color: #000000;
 }
+.words_typed {
+    position: absolute;
+    width: 145px;
+    height: 71px;
+    left: 513px;
+    top: 231px;
+
+    font-family: 'Oxygen';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 51px;
+
+    color: #000000;
+}
+.wpm {
+    position: absolute;
+    width: 145px;
+    height: 71px;
+    left: 712px;
+    top: 231px;
+
+    font-family: 'Oxygen';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 51px;
+
+    color: #000000;
+    
+}
+.nine{
+    position: absolute;
+    width: 145px;
+    height: 71px;
+    left: 911px;
+    top: 232px;
+
+    font-family: 'Oxygen';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 51px;
+
+    color: #000000;
+
+    
+}
+    
 
 
 
