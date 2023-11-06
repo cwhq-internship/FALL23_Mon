@@ -4,3 +4,773 @@
     background-image: conic-gradient(orange 64%, blue 64%, blue 81%, black 81%);
     border-radius: 50%
   }
+/* Light theme - Statistics page */
+
+position: relative;
+width: 1512px;
+height: 925px;
+
+background: #FFFFFF;
+
+
+/* Footer */
+
+position: absolute;
+width: 1512px;
+height: 98px;
+left: 0px;
+top: 827px;
+
+
+
+/* Footer bg */
+
+position: absolute;
+width: 1512px;
+height: 98px;
+left: 0px;
+top: 0px;
+
+/* Gray 1 */
+background: #333333;
+
+
+/* CodewizardsHQ provies the most fun and engaging online, live coding experience for kids and teens ages 8-18. */
+
+position: absolute;
+width: 442px;
+height: 40px;
+left: 150px;
+top: 29px;
+
+font-family: 'Oxygen';
+font-style: normal;
+font-weight: 300;
+font-size: 16px;
+line-height: 20px;
+
+/* Gray 5 */
+color: #E0E0E0;
+
+
+
+/* Start Coding button */
+
+position: absolute;
+height: 48px;
+left: 64.62%;
+right: 12.37%;
+top: 25px;
+
+
+
+/* ⏹ Button Types */
+
+position: absolute;
+left: 0%;
+right: 0%;
+top: 0%;
+bottom: 0%;
+
+
+
+/* Background Color */
+
+position: absolute;
+left: 0px;
+right: 0px;
+top: 0%;
+bottom: 0%;
+
+background: #000000;
+border-radius: 5px;
+
+
+/* ⭐️ Button State */
+
+position: absolute;
+left: 0px;
+right: 0px;
+top: 0px;
+bottom: 0px;
+
+/* Button State/Default */
+
+
+/* ✏️ Value */
+
+position: absolute;
+height: 24px;
+left: 25px;
+right: 26px;
+top: 12px;
+
+font-family: 'Oxygen';
+font-style: normal;
+font-weight: 700;
+font-size: 16px;
+line-height: 20px;
+text-align: center;
+letter-spacing: 0.5px;
+
+/* Gray 5 */
+color: #E0E0E0;
+
+
+
+/* Content */
+
+position: absolute;
+width: 963px;
+height: 435px;
+left: 301px;
+top: 157px;
+
+
+
+/* card/card-img-top */
+
+box-sizing: border-box;
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+
+position: absolute;
+width: 271px;
+height: 192px;
+left: 993px;
+top: 400px;
+
+/* 2) Color Outline/ Card Border */
+border: 1px solid rgba(0, 0, 0, 0.13);
+border-radius: 4px;
+
+
+/* image */
+
+width: 271px;
+height: 157px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* image 1 */
+
+position: absolute;
+width: 280px;
+height: 200px;
+left: -4px;
+top: -21px;
+
+background: url(image.png);
+
+
+/* card-text */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 2px 16px 10px;
+
+width: 271px;
+height: 35px;
+
+background: #E4E4E4;
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Ran out of time */
+
+width: 239px;
+height: 23px;
+
+font-family: 'Source Sans Pro';
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+line-height: 23px;
+/* identical to box height, or 144% */
+text-align: center;
+
+/* Gray 1 */
+color: #333333;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 1;
+
+
+/* card/card-img-top */
+
+box-sizing: border-box;
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+
+position: absolute;
+width: 271px;
+height: 192px;
+left: 307px;
+top: 400px;
+
+/* 2) Color Outline/ Card Border */
+border: 1px solid rgba(0, 0, 0, 0.13);
+border-radius: 4px;
+
+
+/* image */
+
+width: 271px;
+height: 157px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* image 1 */
+
+position: absolute;
+width: 280px;
+height: 200px;
+left: -4px;
+top: -21px;
+
+background: url(image.png);
+
+
+/* card-text */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 2px 16px 10px;
+
+width: 271px;
+height: 35px;
+
+background: #E4E4E4;
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Word Difficulty */
+
+width: 239px;
+height: 23px;
+
+font-family: 'Source Sans Pro';
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+line-height: 23px;
+/* identical to box height, or 144% */
+text-align: center;
+
+/* Gray 1 */
+color: #333333;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 1;
+
+
+/* card/card-img-top */
+
+box-sizing: border-box;
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+
+position: absolute;
+width: 271px;
+height: 192px;
+left: 650px;
+top: 400px;
+
+/* 2) Color Outline/ Card Border */
+border: 1px solid rgba(0, 0, 0, 0.13);
+border-radius: 4px;
+
+
+/* image */
+
+width: 271px;
+height: 157px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* image 1 */
+
+position: absolute;
+width: 280px;
+height: 200px;
+left: -4px;
+top: -21px;
+
+background: url(image.png);
+
+
+/* card-text */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 2px 16px 10px;
+
+width: 271px;
+height: 35px;
+
+background: #E4E4E4;
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Use of Passes */
+
+width: 239px;
+height: 23px;
+
+font-family: 'Source Sans Pro';
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+line-height: 23px;
+/* identical to box height, or 144% */
+text-align: center;
+
+/* Gray 1 */
+color: #333333;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 1;
+
+
+/* Line 1 */
+
+position: absolute;
+width: 950px;
+height: 0px;
+left: 314px;
+top: 346px;
+
+border: 1px solid #333333;
+
+
+/* 387 tests generated */
+
+position: absolute;
+width: 145px;
+height: 71px;
+left: 314px;
+top: 232px;
+
+font-family: 'Oxygen';
+font-style: normal;
+font-weight: 700;
+font-size: 40px;
+line-height: 51px;
+
+color: #000000;
+
+
+
+/* 3690 words typed correctly */
+
+position: absolute;
+width: 145px;
+height: 71px;
+left: 513px;
+top: 231px;
+
+font-family: 'Oxygen';
+font-style: normal;
+font-weight: 700;
+font-size: 40px;
+line-height: 51px;
+
+color: #000000;
+
+
+
+/* 34 words per minute */
+
+position: absolute;
+width: 145px;
+height: 71px;
+left: 712px;
+top: 231px;
+
+font-family: 'Oxygen';
+font-style: normal;
+font-weight: 700;
+font-size: 40px;
+line-height: 51px;
+
+color: #000000;
+
+
+
+/* 94% average completion */
+
+position: absolute;
+width: 145px;
+height: 71px;
+left: 911px;
+top: 232px;
+
+font-family: 'Oxygen';
+font-style: normal;
+font-weight: 700;
+font-size: 40px;
+line-height: 51px;
+
+color: #000000;
+
+
+
+/* Statistics */
+
+position: absolute;
+width: 170px;
+height: 55px;
+left: 301px;
+top: 157px;
+
+font-family: 'Suez One';
+font-style: normal;
+font-weight: 400;
+font-size: 32px;
+line-height: 42px;
+text-align: center;
+
+color: #000000;
+
+
+
+/* Branding */
+
+position: absolute;
+width: 1512px;
+height: 86px;
+left: 0px;
+top: 0px;
+
+
+
+/* top section bg */
+
+position: absolute;
+width: 1512px;
+height: 86px;
+left: 0px;
+top: 0px;
+
+background: #CAE3EC;
+
+
+/* Wizard Type */
+
+position: absolute;
+width: 233px;
+height: 55px;
+left: 669px;
+top: 24px;
+
+font-family: 'Suez One';
+font-style: normal;
+font-weight: 400;
+font-size: 32px;
+line-height: 42px;
+text-align: center;
+
+color: #000000;
+
+
+
+/* typewriter image */
+
+position: absolute;
+width: 68px;
+height: 65px;
+left: 610px;
+top: 6px;
+
+background: url(Asset 1@3x);
+
+
+/* Header */
+
+position: absolute;
+width: 1419px;
+height: 30px;
+left: 46px;
+top: 28px;
+
+
+
+/* active nav highlighter */
+
+position: absolute;
+width: 78px;
+height: 25px;
+left: 1347px;
+top: 2px;
+
+background: #B0D7E5;
+border-radius: 4px;
+
+
+/* nav/nav */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: flex-start;
+padding: 0px;
+gap: 20px;
+
+position: absolute;
+width: 331px;
+height: 23px;
+left: 1088px;
+top: 2px;
+
+
+
+/* Home */
+
+width: 44px;
+height: 23px;
+
+font-family: 'Oxygen';
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+line-height: 23px;
+/* identical to box height, or 144% */
+
+color: #333333;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Link */
+
+width: 44px;
+height: 23px;
+
+font-family: 'Oxygen';
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+line-height: 23px;
+/* identical to box height, or 144% */
+
+color: #333333;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Link */
+
+width: 117px;
+height: 23px;
+
+font-family: 'Oxygen';
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+line-height: 23px;
+/* identical to box height, or 144% */
+
+color: #333333;
+
+
+/* Inside auto layout */
+flex: none;
+order: 2;
+flex-grow: 0;
+
+
+/* Link */
+
+width: 66px;
+height: 23px;
+
+font-family: 'Oxygen';
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+line-height: 23px;
+/* identical to box height, or 144% */
+
+color: #333333;
+
+
+/* Inside auto layout */
+flex: none;
+order: 3;
+flex-grow: 0;
+
+
+/* Dark mode */
+
+position: absolute;
+width: 83px;
+height: 25px;
+left: 2px;
+top: 2px;
+
+font-family: 'Oxygen';
+font-style: normal;
+font-weight: 400;
+font-size: 14px;
+line-height: 23px;
+/* or 164% */
+text-align: right;
+
+color: #4A4A4A;
+
+
+
+/* dark mode - off */
+
+position: absolute;
+width: 29px;
+height: 16px;
+left: calc(50% - 29px/2 - 600px);
+top: calc(50% - 16px/2);
+
+
+
+/* Switch */
+
+position: absolute;
+width: 29px;
+height: 16px;
+left: 0px;
+top: 0px;
+
+
+
+/* ⏹ Switch Type */
+
+position: absolute;
+left: 0%;
+right: 0%;
+top: 0%;
+bottom: 0%;
+
+
+
+/* Background Color / States */
+
+position: absolute;
+left: 0%;
+right: 0%;
+top: 0%;
+bottom: 0%;
+
+/* Gray 1 */
+border: 1px solid #333333;
+border-radius: 45px;
+
+
+/* Round */
+
+position: absolute;
+width: 12px;
+height: 12px;
+left: calc(50% - 12px/2 - 6.5px);
+top: calc(50% - 12px/2);
+
+
+
+/* Switch */
+
+position: absolute;
+left: 0%;
+right: 0%;
+top: 0%;
+bottom: 0%;
+
+/* Gray 1 */
+background: #333333;
+border-radius: 9px;
+
+
+/* round */
+
+position: absolute;
+left: 10%;
+right: 55%;
+top: 18.18%;
+bottom: 18.18%;
+
+
+
+/* Background Color */
+
+position: absolute;
+left: 0%;
+right: 0%;
+top: 0%;
+bottom: 0%;
+
+background: rgba(0, 0, 0, 0.25);
+border-radius: 45px;
