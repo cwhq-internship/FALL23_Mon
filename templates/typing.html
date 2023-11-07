@@ -2,8 +2,28 @@
 {% block c %} active-bar {% endblock %}
 {% set title="How To Type" %}
 {% block content %}
-<iframe width="80%" height="500" src="https://www.youtube.com/embed/vXsutlz0GIQ?si=BdxfL8ddX7Guvl5V" title="YouTube video player" frameborder="10"></iframe>
+
+<style>
+    .iframe-container {
+        border-style: solid;
+        display: flex;
+        justify-content: center; 
+        align-items: center;
+        height: 100vh; 
+    }
+    .iframe-container iframe {
+        border-width: 25px;
+        border-color: #4A8CA2;
+        width: 1000px;
+        height: 600px;
+    }
+</style>
+
+<div class="iframe-container">
+<iframe src="https://www.youtube.com/embed/vXsutlz0GIQ?si=BdxfL8ddX7Guvl5V" title="YouTube video player" frameborder="10"></iframe>
+</div>
+>
 {% endblock %}
 <!-- just in case -->
 
-<!--<iframe width="500%" height="500" src="https://www.youtube.com/embed/vXsutlz0GIQ?si=BdxfL8ddX7Guvl5V" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>-->
+<!--<iframe width="500%" height="500" src="https://www.youtube.com/embed/vXsutlz0GIQ?si=BdxfL8ddX7Guvl5V" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>-->g

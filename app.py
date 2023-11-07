@@ -42,10 +42,6 @@ def typing():
 def about():
     return render_template('about.html')
 
-@app.route('/test')
-def test():
-    return render_template('test.html')
-
 # Custom CLI Commands
 # Do not update these commands without direction from your instructor
 # https://flask.palletsprojects.com/en/2.1.x/cli/#custom-commands
