@@ -80,6 +80,11 @@
     border-style: solid;
 }
 
+button {
+    top: 15%;
+    left:30%;
+}
+
 .test {
     height: 50vh;
     background-color: #4A8CA2;
