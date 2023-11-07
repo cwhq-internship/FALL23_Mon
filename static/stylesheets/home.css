@@ -82,3 +82,73 @@
     opacity: 0.9;
 }
 
+.test {
+    height: 50vh;
+    background-color: #4A8CA2;
+    margin: 15px;
+    padding: 5px;
+    padding-top: 0px;
+    width: 66%;
+    min-width: 300px;
+    text-align: center;
+    border-radius: 15px;
+    justify-content: center;
+    opacity: 0.9;
+    display: flex;
+}
+
+.typing {
+    height: 78%;
+    background-color: lightblue;
+    margin: 14px;
+    padding: 5px;
+    padding-top: 0px;
+    width: 66%;
+    text-align: center;
+    border-radius: 15px;
+    justify-content: center;
+    opacity: 0.9;
+}
+
+.bank {
+    height: 78%;
+    background-color: lightblue;
+    margin: 14px;
+    padding: 5px;
+    padding-top: 0px;
+    width: 32%;
+    text-align: center;
+    border-radius: 15px;
+    justify-content: center;
+    opacity: 0.9;
+    float: right;
+
+}
+
+.toptest {
+    background-color: lightblue;
+    height: 9%;
+    text-align: center;
+    border-style: solid;
+    border-color: transparent;
+    position: absolute;
+    display: flex;
+    margin-top: 0.7%;
+    border-radius: 15px;
+    width: 61%
+}
+
+.bottomtest {
+    background-color: transparent;
+    display: flex;
+    height: 46%; 
+    width: 63%;
+    margin: auto;
+    position: absolute;
+    margin-top: 4.9%;
+}
+
+.testlabel {
+    margin-left: 33%;
+    margin-top: 0.7%;
+}
