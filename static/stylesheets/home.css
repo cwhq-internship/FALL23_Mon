@@ -70,16 +70,18 @@
 
 .widget{
     height: 50vh;
-    background-color: #4A8CA2;
+    background-color: rgb(255, 255, 255);
     margin: 15px;
     padding: 5px;
     padding-top: 0px;
     width: 32%;
     min-width: 300px;
-    text-align: center;
-    border-radius: 15px;
+    border-radius: 15px 50px;
+    border-style: solid;
+}
+
+button {
     justify-content: center;
-    opacity: 0.9;
 }
 
 .test {
