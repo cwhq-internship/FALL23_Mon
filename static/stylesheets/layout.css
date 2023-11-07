@@ -23,7 +23,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: black;
+  background-color: white;
   outline: 2px solid black;
   border-radius: 34px;
   transition: 0.3s;
@@ -37,17 +37,17 @@
   width: 13px;
   left: 2px;
   bottom: 2px;
-  background-color: white;
+  background-color: black;
   border-radius: 50%;
 }
 
 input:checked + .slider {
-  background-color: white;
-  outline: 2px solid black;
+  background-color: black;
+  outline: 2px solid white;
 }
 
 input:checked + .slider:before {
-  background-color: black;
+  background-color: white;
 }
 
 input:focus + .slider {
@@ -119,10 +119,23 @@ p {
 body {
   margin: 0;
   padding: 0;
-  background-image: url('/static/img/background.jpg'); /* Initial background image for light mode */
+  background-image: url('/static/img/background.png'); /* Initial background image for light mode */
   transition: background 0.3s;
+  background-position: center center;
+  background-repeat: no-repeat;
 }
 
-#dark-mode-toggle:checked ~ body {
-  background-image: url("/static/img/darkbackground.jpg");
+.input:checked + .slider ~ body {
+  background-image: url("/static/img/darkbackground.png");
+}
+
+@font-face {
+  font-family: WizFont;
+  src: url(/static/img/QuiteMagicalRegular-8VA2.ttf);
+}
+
+.wizfont {
+  font-family: WizFont;
+  font-size: 350%;
+  margin-top: 18%;
 }

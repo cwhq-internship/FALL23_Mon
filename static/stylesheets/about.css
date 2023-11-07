@@ -66,12 +66,9 @@ div{
 .AltR {
     float: right;
     width: 51vh;
-    height: 45vh;
-    background-color: #4A8CA2;
     margin: 15px;
     padding: 5px;
     padding-top: 0px;
-    opacity: 1;
     border-radius: 15px;
 }
 
