@@ -70,7 +70,7 @@
 
 .widget{
     height: 50vh;
-    background-color: rgba(176, 242, 255, 0.537);
+    background-color: rgb(255, 255, 255);
     margin: 15px;
     padding: 5px;
     padding-top: 0px;
@@ -79,7 +79,8 @@
     text-align: center;
     border-radius: 15px;
     justify-content: center;
-    opacity: 0.9;
+    opacity: 0.12;
+    border-style: solid;
 }
 
 .test {
