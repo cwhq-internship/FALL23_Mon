@@ -76,9 +76,7 @@
     padding-top: 0px;
     width: 32%;
     min-width: 300px;
-    text-align: center;
-    border-radius: 50px 0px;
-    justify-content: center;
+    border-radius: 15px 50px;
     border-style: solid;
 }
 
