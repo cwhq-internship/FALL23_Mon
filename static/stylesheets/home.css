@@ -77,7 +77,7 @@
     width: 32%;
     min-width: 300px;
     text-align: center;
-    border-radius: 15px;
+    border-radius: 50px 0px;
     justify-content: center;
     border-style: solid;
 }
