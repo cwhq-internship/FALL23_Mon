@@ -3,3 +3,14 @@ form {
     margin: auto;
 }
 
+
+
+#stats {
+    width: 90%;
+    margin: auto;
+    background-color: #4A8CA2;
+    padding: 20px;
+    border-radius: 15px;
+    height: 30vh;
+}
+
