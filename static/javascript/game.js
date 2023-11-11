@@ -94,7 +94,7 @@ function countdown() {
 // game status
 function checkStatus() {
     if(!isPlaying && time === 0) {
-        message.innerHTML = 'gamer over!!';
+        message.innerHTML = 'Test complete';
         score = -1;
     }
 }
