@@ -67,6 +67,12 @@
     height: 200px;
     left: -4px;
     top: -21px;
+    display: flex;
+    height: 157px;
+    justify-content: center;
+    align-items: center;
+    align-self: stretch;
+
 }
 .dos {
     position: absolute;
@@ -74,6 +80,11 @@
     height: 200px;
     left: -4px;
     top: -21px;
+    display: flex;
+    height: 157px;
+    justify-content: center;
+    align-items: center;
+    align-self: stretch;
 }
 .in_naming_we_pray {
     
@@ -83,6 +94,11 @@
     height: 200px;
     left: -4px;
     top: -21px;
+    display: flex;
+    height: 157px;
+    justify-content: center;
+    align-items: center;
+    align-self: stretch;
 
 
 
