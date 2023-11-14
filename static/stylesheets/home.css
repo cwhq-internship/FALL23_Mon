@@ -61,7 +61,6 @@
 
 .difficulty {
     height: 10vh;
-    background-color: aliceblue;
 }
 
 .form {
@@ -70,14 +69,14 @@
 
 .widget{
     height: 50vh;
-    background-color: rgb(255, 255, 255);
+    background-color: #4A8CA2;
     margin: 15px;
     padding: 5px;
-    padding-top: 0px;
+    padding: 20px;
+    padding-top: 1vh;
     width: 32%;
     min-width: 300px;
-    border-radius: 15px 50px;
-    border-style: solid;
+    border-radius: 15px;
 }
 
 button {
@@ -88,23 +87,29 @@ button {
     height: 50vh;
     background-color: #4A8CA2;
     margin: 15px;
-    padding: 5px;
-    padding-top: 0px;
+    padding: 20px;
+    padding-top: 1vh;
     width: 66%;
     min-width: 300px;
     text-align: center;
     border-radius: 15px;
     justify-content: center;
-    opacity: 0.9;
     display: flex;
 }
+
+#start {
+    width: 90%;
+    height: 10vh;
+    margin-top: 5vh;
+}
+  
 
 .typing {
     height: 78%;
     background-color: lightblue;
     margin: 14px;
-    padding: 5px;
-    padding-top: 0px;
+    padding: 20px;
+    padding-top: 1vh;
     width: 66%;
     text-align: center;
     border-radius: 15px;

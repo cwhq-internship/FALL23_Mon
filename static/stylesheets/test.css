@@ -3,3 +3,21 @@ form {
     margin: auto;
 }
 
+textarea {
+    width: 90%;
+    margin: auto;
+    margin-bottom: 10px;
+    border-radius: 15px;
+    border: 5px solid white;
+}
+
+#stats {
+    width: 90%;
+    margin: auto;
+    background-color: #4A8CA2;
+    padding: 20px;
+    border-radius: 15px;
+    border: 5px solid #4A8CA2;
+    height: 30vh;
+}
+

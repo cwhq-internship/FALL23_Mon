@@ -1,3 +1,4 @@
+import flask
 from os import environ, getenv, scandir
 from flask import render_template
 from db import create_app, db
@@ -41,6 +42,10 @@ def typing():
 @app.route('/about')
 def about():
     return render_template('about.html')
+
+@app.route('/test')
+def test():
+    return render_template('test.html')
 
 # Custom CLI Commands
 # Do not update these commands without direction from your instructor
