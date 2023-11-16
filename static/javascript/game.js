@@ -17,25 +17,51 @@ let isPlaying;
 
 // dom elements
 const wordInput = document.querySelector('#word-input');
-const currentWord = document.querySelector('#current-word');
+
 const scoreDisplay = document.querySelector('#score');
 const timeDisplay = document.querySelector('#time');
 const message = document.querySelector('#message');
 const seconds = document.querySelector('#seconds');
 
 const words = [
-    'crazy? i was crazy once locked me into a room i jumped out the window And landed on the grass grass makes me crazy',
-    'nincompoop',
-    'poppycock',
-    'astronomical',
-    'tame impala',
-    'bjork'
-];
+    'hat',
+    'river',
+    'lucky',
+    'statue',
+    'generate',
+    'stubborn',
+    'cocktail',
+    'runaway',
+    'joke',
+    'developer',
+    'establishment',
+    'hero',
+    'javascript',
+    'nutrition',
+    'revolver',
+    'echo',
+    'siblings',
+    'investigate',
+    'horrendous',
+    'symptom',
+    'laughter',
+    'magic',
+    'master',
+    'space',
+    'definition'
+  ];
 
+
+function getRandomWord() {
+    return words[Math.floor(Math.random() * words.length)];
+}
+ 
+let firstWord = getRandomWord();
+let newWord = getRandomWord();
 // init
 function init() {
     seconds.innerHTML = currentLevel;
-    showWord(words);
+    updateWords;
     wordInput.addEventListener('input', startMatch);
     setInterval(countdown, 1000);
     setInterval(checkStatus, 50);
@@ -43,12 +69,16 @@ function init() {
 
 //start match
 function startMatch() {
-    if(matchWords()) {
-       isPlaying = true;
-       time = currentLevel + 1;
-       showWord(words);
-       wordInput.value = '';
-       score++;
+    
+    const inputField = document.getElementById('inputField');
+  inputField.addEventListener('input', function(event) {
+    const typedWord = event.target.value.trim().toLowerCase();
+
+    if (typedWord === currentWord.toLowerCase()) {
+      currentWord = nextWord;
+      nextWord = getRandomWord();
+      updateWords();
+      inputField.value = ''; // Clear the input field
     }
 
     if(score === -1) {
@@ -56,9 +86,9 @@ function startMatch() {
     } else {
       scoreDisplay.innerHTML = score;  
     }   
+});
 }
 
-// match current werd
 function matchWords() {
     if(wordInput.value === currentWord.innerHTML) {
         message.innerHTML = 'correct';
@@ -69,12 +99,13 @@ function matchWords() {
     }
 }
 
-// pick and show rand word
-function showWord(words) {
-    //generate random array
-    const randIndex = Math.floor(Math.random() * words.length);
-    //output random word
-    currentWord.innerHTML = words[randIndex];
+// this gets the words and then updates them
+function updateWords() {
+    const currentWord = document.querySelector('#current-word');
+    currentWord.textContent = firstWord;
+
+    const nextWord = document.querySelector('#next-word');
+    nextWord.textContent = nextWord;
 }
 
 //countdown timer
@@ -94,11 +125,7 @@ function countdown() {
 // game status
 function checkStatus() {
     if(!isPlaying && time === 0) {
-<<<<<<< HEAD
         message.innerHTML = 'game over!!';
-=======
-        message.innerHTML = 'Test complete';
->>>>>>> dccd0211f5eb2c247fa8b5435dcd7b9fb5d4df95
         score = -1;
     }
 }

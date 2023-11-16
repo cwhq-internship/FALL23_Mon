@@ -21,3 +21,130 @@ textarea {
     height: 30vh;
 }
 
+.game-container {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 24px;
+  }
+
+  .word-display {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .current-word {
+    margin-right: 20px;
+  }
+
+  .outer {
+    width: 90%;
+    height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+.inner {
+    height: 28vh;
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    align-items: center;
+}
+
+.inputs {
+    width: 16%;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    align-items: center;
+}
+
+
+.keyboard {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 0 auto;
+    width: 620px;
+    position: relative;
+    background-color: #4A8CA2;
+    opacity: 0.7;
+    border-radius: 15px;
+  }
+
+.row {
+    margin: 10px;
+}
+.key {
+    width: 50px;
+    height: 50px;
+    border: 1px solid #000;
+    margin: 5px;
+    text-align: center;
+    line-height: 50px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    background-color: gray;
+}
+
+.lit {
+background-color: white;
+}
+
+.rowboard {
+    display: flex;
+    justify-content: space-between;
+    width: 200px;
+    margin: 10px auto;
+}
+.scoreboard {
+    width: 100px;
+    height: 100px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: Arial, sans-serif;
+}
+.scorelabel {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+#score {
+    font-size: 24px;
+    font-weight: bold;
+    margin-left: 33%;
+}
+
+#timer {
+    font-size: 24px;
+    font-weight: bold;
+    margin-left: 40%;
+}
+
+.timer {
+    width: 100px;
+    height: 100px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: Arial, sans-serif;
+}
+
+#gameOver {
+    font-size: 100px;
+    font-weight: bold;
+}
+
+#retry {
+    font-size: 20px;
+    font-weight: bold;
+}

@@ -29,7 +29,12 @@
   transition: 0.3s;
   -webkit-transition: 0.3s;
 }
-
+.darkmodetext {
+  margin: auto
+}
+.darkmodetext2 {
+  color: white;
+}
 .slider:before {
   position: absolute;
   content: "";
@@ -88,28 +93,7 @@ p {
 
 .image-container {
   display: inline-block;
-  width: 34%
-}
-
-#WizType {
-  height: 36vh;
-  width: auto;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-#WizFont {
-  height: 5vh;
-  width: auto;
-  margin-top: 15vh;
-  margin-right: 2%;
-}
-
-#WizFont1 {
-  height: 5vh;
-  width: auto;
-  margin-top: 15vh;
-  margin-left: 2%;
+  width: 34%;
 }
 
 .cwhq {
@@ -125,8 +109,31 @@ body {
   background-repeat: no-repeat;
 }
 
+.image-container-center {
+  display: inline-block;
+  width: 34%;
+  background-image: url("/static/img/WizType.png");
+  transition: background 0.3s;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.dark-image-container-center {
+  display: inline-block;
+  width: 34%;
+  background-image: url("/static/img/darkWizType.png");
+  transition: background 0.3s;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
 .input:checked + .slider ~ body {
   background-image: url("/static/img/darkbackground.png");
+}
+
+.input:checked + .slider ~ .image-container-center {
+  background-image: url("/static/img/darkWizType.png");
 }
 
 @font-face {
@@ -138,4 +145,28 @@ body {
   font-family: WizFont;
   font-size: 350%;
   margin-top: 18%;
+  transition: 0.3s;
 }
+
+.wizfontdark {
+  font-family: WizFont;
+  font-size: 350%;
+  margin-top: 18%;
+  color: white;
+}
+
+.wizfont2 {
+  font-family: WizFont;
+  font-size: 350%;
+  margin-top: 18%;
+  transition: 0.3s;
+  
+}
+
+.wizfontdark2 {
+  font-family: WizFont;
+  font-size: 350%;
+  margin-top: 18%;
+  color: white;
+}
+

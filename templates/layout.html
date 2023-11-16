@@ -40,9 +40,9 @@
     </head>
 
       <!-- my crappy lil navbar, copy pasted from navbar website and modified -->
-      <nav class="navbar navbar-expand-lg navbar-light" style="background-color: transparent;">
+      <nav class="navbar navbar-expand-lg navbar-light" id="navbar" style="background-color: transparent;">
         <a class="navbar-brand mb-0 h1">
-          <img src="/static/img/NavSmall.png" class="logo d-inline-block align-top" alt="">
+          <!-- <img src="/static/img/NavSmall.png" class="logo d-inline-block align-top" alt=""> NAVBAR LOGO MY BELOVED ;( )-->
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -52,7 +52,7 @@
           
           <ul class = "nav navbar-nav">
             <li class="nav-item">
-              <span>Dark Mode 
+              <span> <text class="darkmodetext"> Dark Mode </text>
               <label class="switch">
                 <input type="checkbox" id="dark-mode-toggle">
                 <span class="slider"></span>
@@ -92,17 +92,51 @@
         <script>
           document.addEventListener("DOMContentLoaded", function() {
             const darkModeToggle = document.getElementById("dark-mode-toggle");
-
+            const imageContainer = document.querySelector(".image-container-center");
+            const wizFont = document.querySelector(".wizfont");
+            const wizFont2 = document.querySelector(".wizfont2");
+            const darkmodetext = document.querySelector(".darkmodetext");
+            const navbar = document.getElementById("navbar");
+      
             darkModeToggle.addEventListener("change", () => {
-             if (darkModeToggle.checked) {
-      // Dark mode is enabled; you can save this preference to local storage
-             document.body.style.backgroundImage = "url('/static/img/darkbackground.png')"; // Set dark mode background immediately
-             } else {
-          // Light mode is enabled; you can save this preference to local storage
-             document.body.style.backgroundImage = "url('/static/img/background.png')"; // Set light mode background immediately
+              if (darkModeToggle.checked) {
+                // Dark mode is enabled
+                document.body.style.backgroundImage = "url('/static/img/darkbackground.png')";
+                imageContainer.classList.add("dark-image-container-center");
+                wizFont.classList.add("wizfontdark");
+                wizFont2.classList.add("wizfontdark2");
+                navbar.classList.remove("navbar-light");
+                navbar.classList.add("navbar-dark");
+                darkmodetext.classList.add("darkmodetext2");
+                // Save dark mode preference to localStorage if needed
+                localStorage.setItem("darkModeEnabled", "true");
+              } else {
+                // Light mode is enabled
+                document.body.style.backgroundImage = "url('/static/img/background.png')";
+                imageContainer.classList.remove("dark-image-container-center");
+                wizFont.classList.remove("wizfontdark");
+                wizFont2.classList.remove("wizfontdark2");
+                navbar.classList.remove("navbar-dark");
+                navbar.classList.add("navbar-light");
+                darkmodetext.classList.remove("darkmodetext2");
+                // Save light mode preference to localStorage if needed
+                localStorage.setItem("darkModeEnabled", "false");
+              }
+            });
+      
+            // Check and apply dark mode setting from localStorage on page load
+            const isDarkModeEnabled = localStorage.getItem("darkModeEnabled") === "true";
+            if (isDarkModeEnabled) {
+              darkModeToggle.checked = true;
+              document.body.style.backgroundImage = "url('/static/img/darkbackground.png')";
+              imageContainer.classList.add("dark-image-container-center");
+              wizFont.classList.add("wizfontdark");
+              wizFont2.classList.add("wizfontdark2");
+              navbar.classList.remove("navbar-light");
+              navbar.classList.add("navbar-dark");
+              darkmodetext.classList.add("darkmodetext2");
             }
-         });
-       });
+          });
         </script>
     </body>
 </html>
