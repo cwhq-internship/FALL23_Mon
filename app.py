@@ -47,6 +47,14 @@ def about():
 def test():
     return render_template('test.html')
 
+@app.route('/testmedium')
+def testmedium():
+    return render_template('testmedium.html')
+
+@app.route('/testhard')
+def testhard():
+    return render_template('testhard.html')
+
 # Custom CLI Commands
 # Do not update these commands without direction from your instructor
 # https://flask.palletsprojects.com/en/2.1.x/cli/#custom-commands
