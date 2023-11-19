@@ -3,3 +3,15 @@
     height: 500%;
     object-fit: cover;
 }
+
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
