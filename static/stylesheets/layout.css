@@ -30,7 +30,7 @@
   -webkit-transition: 0.3s;
 }
 .darkmodetext {
-  margin: auto
+  margin: auto;
 }
 .darkmodetext2 {
   color: white;
@@ -93,7 +93,7 @@ p {
 
 .image-container {
   display: inline-block;
-  width: 34%;
+  width: 100%;
 }
 
 .cwhq {
@@ -103,15 +103,15 @@ p {
 body {
   margin: 0;
   padding: 0;
-  background-image: url('/static/img/background.png'); /* Initial background image for light mode */
+  background-image: url("/static/img/background.png"); /* Initial background image for light mode */
   transition: background 0.3s;
-  background-position: center center;
   background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .image-container-center {
   display: inline-block;
-  width: 34%;
+  width: 100%;
   background-image: url("/static/img/WizType.png");
   transition: background 0.3s;
   background-size: contain;
@@ -121,7 +121,7 @@ body {
 
 .dark-image-container-center {
   display: inline-block;
-  width: 34%;
+  width: 100%;
   background-image: url("/static/img/darkWizType.png");
   transition: background 0.3s;
   background-size: contain;
@@ -143,30 +143,58 @@ body {
 
 .wizfont {
   font-family: WizFont;
-  font-size: 350%;
+  font-size: 4vw;
   margin-top: 18%;
   transition: 0.3s;
 }
 
 .wizfontdark {
   font-family: WizFont;
-  font-size: 350%;
+  font-size: 4vw;
   margin-top: 18%;
   color: white;
 }
 
 .wizfont2 {
   font-family: WizFont;
-  font-size: 350%;
+  font-size: 4vw;
   margin-top: 18%;
   transition: 0.3s;
-  
 }
 
 .wizfontdark2 {
   font-family: WizFont;
-  font-size: 350%;
+  font-size: 4vw;
   margin-top: 18%;
   color: white;
 }
 
+@media only screen and (max-width: 1020px) {
+  .image-container,
+  .widget {
+    display: none;
+  }
+  .testlist,
+  .test,
+  .explanation {
+    width: 100%;
+  }
+  .test {
+    display: inline-block;
+    overflow: auto;
+    padding: 3px;
+    -ms-overflow-style: none;
+  }
+  .test::-webkit-scrollbar {
+    display: none;
+  }
+  .bottom {
+    justify-content: center;
+  }
+  .testname {
+    font-size: 2em;
+  }
+  .instruction {
+    font-size: 1em;
+  }
+}

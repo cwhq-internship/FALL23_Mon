@@ -1,13 +1,189 @@
-{% extends "layout.html" %}
-{% block styles %}
-    <link href='{{url_for("static", filename="stylesheets/stats.css")}}' rel='stylesheet'/>
-    <link href='{{url_for("static", filename="stylesheets/layout.css")}}' rel='stylesheet'/>
-{% endblock %}
-{% set title="Statistics" %}
-
-{% block b %} active-bar {% endblock %}
+{% extends "layout.html" %} {% block styles %}
+<link
+  href='{{url_for("static", filename="stylesheets/stats.css")}}'
+  rel="stylesheet"
+/>
+<link
+  href='{{url_for("static", filename="stylesheets/layout.css")}}'
+  rel="stylesheet"
+/>
+{% endblock %} {% set title="Statistics" %} 
+{% block b %} active-bar {% endblock%} 
 {% block content %}
-<h1>
+<body>
+  <h1>Typing Statistics</h1>
+  <div class="stats-container">
+    <!-- Stats section -->
+    <div class="stats-section">
+      <div class="stat">
+        <strong>Words per Minute (WPM):</strong> <span id="wpm">65</span>
+      </div>
+      <div class="stat">
+        <strong>Accuracy Rate:</strong> <span id="accuracy">92%</span>
+      </div>
+      <div class="stat">
+        <strong>Best WPM:</strong> <span id="bestWPM">75</span>
+      </div>
+      <div class="stat">
+        <strong>Session Duration:</strong>
+        <span id="sessionDuration">10 minutes</span>
+      </div>
+      <div class="stat">
+        <strong>Total Tests:</strong> <span id="totalTests">30 tests</span>
+      </div>
+      <!-- Add more stats if neeeeded -->
+    </div>
+
+    <!-- Recent Tests section -->
+    <div class="recent-tests">
+      <h2>Recent Tests</h2>
+      <div class="test">
+        <span class="difficulty">Difficulty: Easy</span>
+        <div class="score-date">
+          <div class="date">Date: 2023-11-15</div>
+          <div class="score">Score: 80 WPM</div>
+        </div>
+        <a href="test"><button class="try-again-btn">Try Again</button></a>
+      </div>
+      <div class="test">
+        <span class="difficulty">Difficulty: Medium</span>
+        <div class="score-date">
+          <div class="date">Date: 2023-11-12</div>
+          <div class="score">Score: 70 WPM</div>
+        </div>
+        <a href="testmedium"
+          ><button class="try-again-btn">Try Again</button></a
+        >
+      </div>
+      <div class="test">
+        <span class="difficulty">Difficulty: Medium</span>
+        <div class="score-date">
+          <div class="date">Date: 2023-12-9</div>
+          <div class="score">Score: 12 WPM</div>
+        </div>
+        <a href="testmedium"
+          ><button class="try-again-btn">Try Again</button></a
+        >
+      </div>
+      <div class="test">
+        <span class="difficulty">Difficulty: Hard</span>
+        <div class="score-date">
+          <div class="date">Date: 2023-11-10</div>
+          <div class="score">Score: 60 WPM</div>
+        </div>
+        <a href="testhard"><button class="try-again-btn">Try Again</button></a>
+      </div>
+    </div>
+    <!-- End Recent Tests -->
+
+    <!-- Google Charts section -->
+    <div class="charts-section">
+      <div class="chart">
+        <div id="chart1">Words</div>
+      </div>
+      <div class="chart">
+        <div id="chart2"></div>
+      </div>
+      <div class="chart">
+        <div id="chart3"></div>
+      </div>
+    </div>
+    <!-- Charts end -->
+  </div>
+
+  <script>
+    google.charts.load("current", { packages: ["corechart"] });
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+      var data1 = google.visualization.arrayToDataTable([
+        ["Accuracy Type", "Percentage"],
+        ["Correct", 70],
+        ["Typos", 20],
+        ["Incorrect Words", 10],
+      ]);
+
+      var options1 = {
+        pieHole: 0.4,
+        pieSliceText: "percentage",
+        slices: {
+          0: { color: "#87CEEB" },
+          1: { color: "#ADD8E6" },
+          2: { color: "#B0E0E6" },
+        },
+      };
+
+      var data2 = google.visualization.arrayToDataTable([
+        ["Difficulty", "Percentage"],
+        ["Easy", 40],
+        ["Medium", 30],
+        ["Hard", 30],
+      ]);
+
+      var options2 = {
+        pieHole: 0.4,
+        pieSliceText: "percentage",
+        slices: {
+          0: { color: "#87CEEB" },
+          1: { color: "#ADD8E6" },
+          2: { color: "#B0E0E6" },
+        },
+      };
+
+      var data3 = google.visualization.arrayToDataTable([
+        ["Test", "WPM"],
+        ["Test 1", 60],
+        ["Test 2", 65],
+        ["Test 3", 70],
+        ["Test 4", 68],
+        ["Test 5", 72],
+      ]);
+
+      var options3 = {
+        curveType: "function",
+        legend: { position: "bottom" },
+        colors: ["#87CEEB"],
+        backgroundColor: "#ffffff",
+        hAxis: {
+          textStyle: { color: "#19547b" },
+          gridlines: { color: "transparent" },
+        },
+        vAxis: {
+          textStyle: { color: "#19547b" },
+          gridlines: { color: "transparent" },
+        },
+      };
+
+      var chart1 = new google.visualization.PieChart(
+        document.getElementById("chart1")
+      );
+      chart1.draw(data1, options1);
+      addTitleAboveChart("Accuracy Chart", "chart1");
+      var chart2 = new google.visualization.PieChart(
+        document.getElementById("chart2")
+      );
+      chart2.draw(data2, options2);
+      addTitleAboveChart("Accuracy Chart", "chart2");
+      var chart3 = new google.visualization.LineChart(
+        document.getElementById("chart3")
+      );
+      chart3.draw(data3, options3);
+      addTitleAboveChart("Accuracy Chart", "chart3");
+    }
+    function addTitleAboveChart(title, elementId) {
+      var chartElement = document.getElementById(elementId);
+      var titleDiv = document.createElement("div");
+      titleDiv.innerText = title;
+      titleDiv.style.textAlign = "center";
+      titleDiv.style.marginBottom = "10px";
+      titleDiv.style.fontSize = "18px";
+      chartElement.parentElement.insertBefore(titleDiv, chartElement);
+    }
+  </script>
+</body>
+{% endblock %} {% block scripts %} {% endblock %}
+
+<!--<div class="stats">
     <div class="tests_gen">387 tests generated</div>
     <div class="words_typed">3690 words typed correctly</div>
     <div class="wpm">34 words per minute</div>
@@ -16,8 +192,4 @@
     <img class="dos" src='/static/img/pie2.png'>
     <img class="one" src='/static/img/pie1.png'>
     <img class="in_naming_we_pray" src='/static/img/pie3.png'>
-        
-</h1>
-{% endblock %}
-{% block scripts %}
-{% endblock %}
+    </div>-->
