@@ -1,38 +1,55 @@
-{% extends 'layout.html' %}
-{% set title="Test" %}
-{% block styles %}
-    <link href='{{url_for("static", filename="stylesheets/test.css")}}' rel='stylesheet'/>
-    <link href='{{url_for("static", filename="stylesheets/layout.css")}}' rel='stylesheet'/>
-{% endblock %}
-{% block e %} active-bar {% endblock %}
-{% block content %}
+{% extends 'layout.html' %} {% set title="Test" %} {% block styles %}
+<link
+  href='{{url_for("static", filename="stylesheets/test.css")}}'
+  rel="stylesheet"
+/>
+<link
+  href='{{url_for("static", filename="stylesheets/layout.css")}}'
+  rel="stylesheet"
+/>
+{% endblock %} {% block e %} active-bar {% endblock %} {% block content %}
 
 <div class="outer">
-
-    <div class="inner">
-      <div id="gameOver" style="display: none;">Game Over!</div>
-      <a href="test" id="retry" style="display: none;">Retry?</a>
-      <div class="words text-center h1 current-word" id="currentWord">Loading...</div>
-      <div class="words text-center text-muted next-word" id="nextWord">Loading...</div>
+  <div class="inner">
+    <div id="gameOver" style="display: none">Game Over!</div>
+    <a href="test" id="retry" style="display: none">Retry?</a>
+    <div class="words text-center h1 current-word" id="currentWord">
+      Loading...
     </div>
-    <div class="inputs">
-        <div class="row">
-        <input class="type" type="text" id="inputField" placeholder="Type here" autofocus>
+    <div class="words text-center text-muted next-word" id="nextWord">
+      Loading...
+    </div>
+  </div>
+  <div class="inputs">
+    <div class="row">
+      <input
+        class="type"
+        type="text"
+        id="inputField"
+        placeholder="Type here"
+        autofocus
+      />
     </div>
     <div class="rowboard">
-        <div class="scoreboard">
-        <div class="scorelabel"><p>Score:</p> <span id="score" class="h3 text-center">0</span></div>
+      <div class="scoreboard">
+        <div class="scorelabel">
+          <p>Score:</p>
+          <span id="score" class="h3 text-center">0</span>
+        </div>
+      </div>
+      <div class="timer">
+        <div class="scorelabel">
+          <p>Time Left:</p>
+          <span id="timer">5</span>
+        </div>
+      </div>
     </div>
-        <div class="timer">
-        <div class="scorelabel"><p>Time Left:</p><span id="timer">5</span></div>
-    </div>
-    </div>
-    </div>
+  </div>
 </div>
 
 <!-- hiding this dude at the bottom bec its not pretty tbh -->
 <div class="keyboard">
-    <div class="row">
+  <div class="row">
     <div class="key" data-key="Q">Q</div>
     <div class="key" data-key="W">W</div>
     <div class="key" data-key="E">E</div>
@@ -43,8 +60,8 @@
     <div class="key" data-key="I">I</div>
     <div class="key" data-key="O">O</div>
     <div class="key" data-key="P">P</div>
-    </div>
-    <div class="row">
+  </div>
+  <div class="row">
     <div class="key" data-key="A">A</div>
     <div class="key" data-key="S">S</div>
     <div class="key" data-key="D">D</div>
@@ -54,8 +71,8 @@
     <div class="key" data-key="J">J</div>
     <div class="key" data-key="K">K</div>
     <div class="key" data-key="L">L</div>
-    </div>
-    <div class="row">
+  </div>
+  <div class="row">
     <div class="key" data-key="Z">Z</div>
     <div class="key" data-key="X">X</div>
     <div class="key" data-key="C">C</div>
@@ -63,48 +80,64 @@
     <div class="key" data-key="B">B</div>
     <div class="key" data-key="N">N</div>
     <div class="key" data-key="M">M</div>
-    </div>
+  </div>
 </div>
   <script>
-    const wordList = ["Cake", "Bird", "Desk", "Moon", "Fish", "Rain", "Tree", "Book", "Dog", "Rose", "Lamp", "Park", "Star", "Queen", "Chair"];
-// Getting the random word, no more showWord(words) anymore, that was confusing me lol
+    const wordList = [
+      "Cake",
+      "Bird",
+      "Desk",
+      "Moon",
+      "Fish",
+      "Rain",
+      "Tree",
+      "Book",
+      "Dog",
+      "Rose",
+      "Lamp",
+      "Park",
+      "Star",
+      "Queen",
+      "Chair",
+    ];
+    // Getting the random word, no more showWord(words) anymore, that was confusing me lol
     function getRandomWord() {
       return wordList[Math.floor(Math.random() * wordList.length)];
     }
-// establishing initial variables, change if wanted
+    // establishing initial variables, change if wanted
     let currentWord = getRandomWord();
     let nextWord = getRandomWord();
     let score = 0;
     let timeLeft = 5;
     let timer;
-// basically just grabbing the words from the list, could be named "get word" but in the context of CheckInput it makes sense to be UpdateWords
+    // basically just grabbing the words from the list, could be named "get word" but in the context of CheckInput it makes sense to be UpdateWords
     function updateWords() {
-      const currentWordElement = document.getElementById('currentWord');
+      const currentWordElement = document.getElementById("currentWord");
       currentWordElement.textContent = currentWord;
 
-      const nextWordElement = document.getElementById('nextWord');
+      const nextWordElement = document.getElementById("nextWord");
       nextWordElement.textContent = nextWord;
     }
-// Good old fasioned timer, pulled it from a stack overflow, only triggers after first word is correctly inputted
+    // Good old fasioned timer, pulled it from a stack overflow, only triggers after first word is correctly inputted
     function startTimer() {
       timer = setInterval(() => {
         if (timeLeft > 0) {
-          document.getElementById('timer').textContent = timeLeft;
+          document.getElementById("timer").textContent = timeLeft;
           timeLeft--;
         } else {
           clearInterval(timer);
-          document.getElementById('timer').textContent = '0';
-          document.getElementById('gameOver').style.display = 'block';
-          document.getElementById('retry').style.display = 'block';
-          document.getElementById('nextWord').style.display = 'none';
-          document.getElementById('currentWord').style.display = 'none';
+          document.getElementById("timer").textContent = "0";
+          document.getElementById("gameOver").style.display = "block";
+          document.getElementById("retry").style.display = "block";
+          document.getElementById("nextWord").style.display = "none";
+          document.getElementById("currentWord").style.display = "none";
         }
       }, 1000);
     }
-// if its correct, start timer, and move to the "nextword", and then replace the "nextword" with a newly generated word. Once finished, add +1 to the score and reset timer
+    // if its correct, start timer, and move to the "nextword", and then replace the "nextword" with a newly generated word. Once finished, add +1 to the score and reset timer
     function checkInput() {
-      const inputField = document.getElementById('inputField');
-      inputField.addEventListener('input', function(event) {
+      const inputField = document.getElementById("inputField");
+      inputField.addEventListener("input", function (event) {
         const typedWord = event.target.value.trim().toLowerCase();
 
         if (typedWord === currentWord.toLowerCase()) {
@@ -114,13 +147,13 @@
           currentWord = nextWord;
           nextWord = getRandomWord();
           score++;
-          document.getElementById('score').textContent = score;
+          document.getElementById("score").textContent = score;
           updateWords();
-          inputField.value = '';
+          inputField.value = "";
           clearInterval(timer);
           timeLeft = 5;
           startTimer();
-          document.getElementById('gameOver').style.display = 'none';
+          document.getElementById("gameOver").style.display = "none";
         }
       });
     }
@@ -129,25 +162,25 @@
     updateWords();
     checkInput();
 
-    document.addEventListener('keydown', function(event) {
+    document.addEventListener("keydown", function (event) {
       const keyPressed = event.key.toUpperCase();
       const keyElement = document.querySelector(`[data-key="${keyPressed}"]`);
       if (keyElement) {
-        keyElement.classList.add('lit');
+        keyElement.classList.add("lit");
       }
     });
 
-    document.addEventListener('keyup', function(event) {
+    document.addEventListener("keyup", function (event) {
       const keyPressed = event.key.toUpperCase();
       const keyElement = document.querySelector(`[data-key="${keyPressed}"]`);
       if (keyElement) {
-        keyElement.classList.remove('lit');
+        keyElement.classList.remove("lit");
       }
     });
   </script>
-{% endblock %}
+  {% endblock %}
 
-<!--<form>
+  <!--<form>
      
     <textarea name = "message" class="form-control m-2" rows="5" id="comment"></textarea>
       
@@ -158,8 +191,7 @@
     <button type="submit" class="btn btn-dark">Submit</button>
   </form>-->
 
-
-<!--  <div class="row">
+  <!--  <div class="row">
     <div class="col-md-6 mx auto">
         <p class="lead">type given word within
             <span class="text-success"
@@ -196,7 +228,7 @@
     </div>
 </div>-->
 
-<!--
+  <!--
   message -> words to type
   seconds -> number of seconds remaining
   current word -> current word in message

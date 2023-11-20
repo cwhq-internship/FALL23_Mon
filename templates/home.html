@@ -62,31 +62,11 @@
         </form>
       </div>
 
-<!--<div class="test">
-  <div class="toptest"> 
-    <h1 class="testlabel">Typing Test</h1>
-    <div class="progress">
-      <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-    </div> 
-  </div>
-  <div class="bottomtest">
-    <div class="typing">
-      <p class="font-weight-italic" style="font-size: 21px;"> This is a typing test, type the words as fast as you can and try to beat the other Wizards in a speedy typing competition! Start whenever you like, and feel free to try other difficulties! Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
-    </div>
-    <div class="bank">
-      <p class="font-weight-bold text-left"> Time left: </p>
-      <p class="font-weight-bold text-left"> Missed words: </p>
-      <p class="font-weight-bold text-left"> Skipped letters: </p>
-    </div>
-  </div>
-</div>-->
-
 <div class="test">
   <div class="container">
     <div class="explanation">
-      <h2><legend>Typing Test</legend></h2>
-    <h5></legen>Intruction</legend></h5>
-    <p>After selecting the test type and difficulty, click "Start" to begin the test.
+    <h5><legend class="biginstruc">Instructions</legend></h5>
+    <p class="instruction">After selecting the test type and difficulty, click "Start" to begin the test.
       Type the given word as quickly as possible, disregarding punctuation and spacing.
       You are given a 5 second window to type the displayed word, and once complete,
       another word will take its place for you to continue typing.
@@ -97,15 +77,15 @@
     </div>
     <div class="testlist d-flex flex-column">
       <div class="testrow p-2 flex-row">
-        <div class="h1"> Easy : 4-5 Characters </div>
+        <div class="testname"> Easy : 4-5 Characters </div>
         <a href = "test"><button id="start" type="button" class="btn btn-dark" onclick="gameOn()">Start</button></a>
       </div>
       <div class="testrow p-2">
-        <div class="h2"> Medium : 6-8 Characters </div>
+        <div class="testname"> Medium : 6-8 Characters </div>
         <a href = "testmedium"><button id="start" type="button" class="btn btn-dark" onclick="gameOn()">Start</button></a>
       </div>
       <div class="testrow p-2">
-        <div class="h1"> Hard : 9-12 Characters </div>
+        <div class="testname"> Hard : 9-12 Characters </div>
         <a href = "testhard"><button id="start" type="button" class="btn btn-dark" onclick="gameOn()">Start</button></a>
       </div>
     </div>
