@@ -1,17 +1,5 @@
 .widget404 {
-    width: 500%;
-    height: 500%;
-    object-fit: cover;
-}
-
-body {
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-}
-
-img {
-    width: 100%;
-    height: 100%;
+    width: 1000%;
+    height: 1000%;
     object-fit: cover;
 }
