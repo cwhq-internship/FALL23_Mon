@@ -1,12 +1,17 @@
-{% extends "layout.html" %}
+<!--{% extends "layout.html" %}
 {% block styles %}
-<!--<link href='{{url_for("static", filename="stylesheets/404.css")}}' rel='stylesheet'/>-->
-{% endblock %} <!-- dont forget to end your block :) -->
-{% set title="404" %}
+<link href='{{url_for("static", filename="stylesheets/404.css")}}' rel='stylesheet'/>
+{% endblock %} 
+{% set title="404" %}-->
 
-{% block content %}
-  <h1>error 404</h1> 
+<html>
+  <head>
+    <title>404</title>
+  </head>
+  <body>
+<h1>error 404</h1> 
 <p> page not found</p>
 
 <img src="/static/img/wizardrage.png" alt="angry wizard" class="center" width="900" height="550">
-{% endblock %}
+</body>
+</html>
