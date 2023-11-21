@@ -1,6 +1,12 @@
-.widget404 {
-    width: 5000%;
-    height: 5000%;
+h1, p {
     object-fit: cover;
     text-align: center;
+    border-width: 25px;
+    border-color: #4A8CA2;
+}
+
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
