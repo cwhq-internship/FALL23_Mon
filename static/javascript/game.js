@@ -129,3 +129,4 @@ function checkStatus() {
         score = -1;
     }
 }
+

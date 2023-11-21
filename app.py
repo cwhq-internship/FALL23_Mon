@@ -5,6 +5,8 @@ from db import create_app, db
 from blueprints.errors import errors_bp
 from blueprints.api import api_bp
 from seed import create_data
+from words import create_sentence
+import json
 
 ### IMPORTANT ###
 # Avoid Adding routes directly to this file. New routes should be added to a new or existing
@@ -45,7 +47,10 @@ def about():
 
 @app.route('/test')
 def test():
-    return render_template('test.html')
+    
+    sentence = create_sentence(5)
+    data = json.dumps(sentence)
+    return render_template('test.html',data=data)
 
 @app.route('/testmedium')
 def testmedium():

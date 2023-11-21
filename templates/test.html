@@ -8,7 +8,7 @@
   rel="stylesheet"
 />
 {% endblock %} {% block e %} active-bar {% endblock %} {% block content %}
-
+<p>{{data}}</p>
 <div class="outer">
   <div class="inner">
     <div id="gameOver" style="display: none">Game Over!</div>
@@ -16,9 +16,9 @@
     <div class="words text-center h1 current-word" id="currentWord">
       Loading...
     </div>
-    <div class="words text-center text-muted next-word" id="nextWord">
+    <!--<div class="words text-center text-muted next-word" id="nextWord">
       Loading...
-    </div>
+    </div>-->
   </div>
   <div class="inputs">
     <div class="row">
@@ -82,7 +82,19 @@
     <div class="key" data-key="M">M</div>
   </div>
 </div>
+<input type="hidden"  id="data" value="{{data}}">
   <script>
+    console.log(typeof(document.querySelector('#data').value))
+    wordList2 = document.querySelector('#data').value
+    newString = wordList2.replace("[", "");
+    n1 = newString.replace("]","")
+    n2 = n1.replace(/"/g, '');
+    n3 = n2.replace(/,/g, '');
+   
+    console.log(n3);
+
+    list1 = n3.split(".")
+    console.log(list1)
     const wordList = [
       "Cake",
       "Bird",
@@ -102,7 +114,8 @@
     ];
     // Getting the random word, no more showWord(words) anymore, that was confusing me lol
     function getRandomWord() {
-      return wordList[Math.floor(Math.random() * wordList.length)];
+      //return wordList[Math.floor(Math.random() * wordList.length)];
+      return n3
     }
     // establishing initial variables, change if wanted
     let currentWord = getRandomWord();
@@ -115,8 +128,8 @@
       const currentWordElement = document.getElementById("currentWord");
       currentWordElement.textContent = currentWord;
 
-      const nextWordElement = document.getElementById("nextWord");
-      nextWordElement.textContent = nextWord;
+      //const nextWordElement = document.getElementById("nextWord");
+      //nextWordElement.textContent = nextWord;
     }
     // Good old fasioned timer, pulled it from a stack overflow, only triggers after first word is correctly inputted
     function startTimer() {
@@ -177,6 +190,7 @@
         keyElement.classList.remove("lit");
       }
     });
+    
   </script>
   {% endblock %}
 
