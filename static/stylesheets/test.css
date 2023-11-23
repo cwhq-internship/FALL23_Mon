@@ -103,7 +103,7 @@ background-color: white;
 .rowboard {
   display: flex;
   justify-content: space-between;
-  width: 200px;
+  width: 300px;
 }
 .scoreboard {
   width: 100px;
@@ -132,6 +132,12 @@ background-color: white;
   margin-left: 40%;
 }
 
+#skipCount {
+  font-size: 24px;
+  font-weight: bold;
+  margin-left: 40%;
+}
+
 .timer {
   width: 100px;
   height: 100px;
@@ -144,11 +150,26 @@ background-color: white;
 }
 
 #gameOver {
-  font-size: 100px;
+  font-size: 50px;
   font-weight: bold;
 }
 
 #retry {
   font-size: 20px;
   font-weight: bold;
+}
+
+#inputField {
+  border: none;
+  border-bottom: 2px solid #375a7f; /* Dark blue color */
+  background-color: transparent;
+  outline: none;
+  color: #375a7f; /* Text color */
+  font-size: 16px;
+  padding: 5px; /* Adjust padding as needed */
+  width: 200px; /* Adjust width as needed */
+}
+
+#inputField::placeholder {
+  color: #a6c5e4; /* Placeholder text color */
 }

@@ -8,7 +8,7 @@
   rel="stylesheet"
 />
 {% endblock %} {% set title="Statistics" %} 
-{% block b %} active-bar {% endblock%} 
+
 {% block content %}
 <body>
   <h1>Typing Statistics</h1>
@@ -91,7 +91,13 @@
     <!-- Charts end -->
   </div>
 
-  <script>
+ 
+</body>
+{% endblock %}
+{% block b %} active-bar {% endblock%} 
+{% block scripts %}
+
+ <script>
     google.charts.load("current", { packages: ["corechart"] });
     google.charts.setOnLoadCallback(drawChart);
 
@@ -158,17 +164,17 @@
         document.getElementById("chart1")
       );
       chart1.draw(data1, options1);
-      addTitleAboveChart("Accuracy Chart", "chart1");
+      addTitleAboveChart("Accuracy", "chart1");
       var chart2 = new google.visualization.PieChart(
         document.getElementById("chart2")
       );
       chart2.draw(data2, options2);
-      addTitleAboveChart("Accuracy Chart", "chart2");
+      addTitleAboveChart("Tests Taken", "chart2");
       var chart3 = new google.visualization.LineChart(
         document.getElementById("chart3")
       );
       chart3.draw(data3, options3);
-      addTitleAboveChart("Accuracy Chart", "chart3");
+      addTitleAboveChart("WPM", "chart3");
     }
     function addTitleAboveChart(title, elementId) {
       var chartElement = document.getElementById(elementId);
@@ -179,9 +185,7 @@
       titleDiv.style.fontSize = "18px";
       chartElement.parentElement.insertBefore(titleDiv, chartElement);
     }
-  </script>
-</body>
-{% endblock %} {% block scripts %} {% endblock %}
+  </script>{% endblock %}
 
 <!--<div class="stats">
     <div class="tests_gen">387 tests generated</div>

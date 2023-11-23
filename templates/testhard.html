@@ -10,8 +10,8 @@
 <div class="outer">
 
     <div class="inner">
-      <div id="gameOver" style="display: none;">Game Over!</div>
-      <a href="test" id="retry" style="display: none;">Retry?</a>
+      <div id="gameOver" style="display: none;">Game over! You're a &nbsp;<span id="typingMessage"></span>&nbsp; typer with &nbsp;<span id="WPM"></span>&nbsp; WPM</div>
+      <a href="testhard" id="retry" style="display: none;">Retry?</a>
       <div class="words text-center h1 current-word" id="currentWord">Loading...</div>
       <div class="words text-center text-muted next-word" id="nextWord">Loading...</div>
     </div>
@@ -24,7 +24,12 @@
         <div class="scorelabel"><p>Score:</p> <span id="score" class="h3 text-center">0</span></div>
     </div>
         <div class="timer">
-        <div class="scorelabel"><p>Time Left:</p><span id="timer">5</span></div>
+        <div class="scorelabel"><p>Time Left:</p><span id="timer">30</span></div>
+    </div>
+    <div class="timer">
+      <div class="scorelabel"><p>Skips left:</p><span id="skipCount">3</span></div>
+    </div>
+        
     </div>
     </div>
     </div>
@@ -67,17 +72,28 @@
 </div>
   <script>
     const wordList = ["Television", "Adventure", "Strawberry", "Celebration", "Helicopter", "Landscape", "Pineapple", "Happiness", "Reflection", "Watermelon", "Experience", "Chocolate", "Harmonious", "Dreamcatcher"];
+    const inputField = document.getElementById('inputField');
 // Getting the random word, no more showWord(words) anymore, that was confusing me lol
-    function getRandomWord() {
-      return wordList[Math.floor(Math.random() * wordList.length)];
-    }
+
 // establishing initial variables, change if wanted
+    let previousWord = '';
     let currentWord = getRandomWord();
     let nextWord = getRandomWord();
     let score = 0;
-    let timeLeft = 5;
+    let timeLeft = 30;
     let timer;
+    let skipCount = 3;
+    let WPM = score * 2;
+
 // basically just grabbing the words from the list, could be named "get word" but in the context of CheckInput it makes sense to be UpdateWords
+function getRandomWord() {
+  let newWord = wordList[Math.floor(Math.random() * wordList.length)];
+  while (newWord === previousWord) {
+    newWord = wordList[Math.floor(Math.random() * wordList.length)];
+  }
+  previousWord = newWord;
+  return newWord;
+}
     function updateWords() {
       const currentWordElement = document.getElementById('currentWord');
       currentWordElement.textContent = currentWord;
@@ -93,11 +109,15 @@
           timeLeft--;
         } else {
           clearInterval(timer);
+          inputField.value = '';
           document.getElementById('timer').textContent = '0';
-          document.getElementById('gameOver').style.display = 'block';
+          document.getElementById('gameOver').style.display = 'flex';
+          document.getElementById("WPM").textContent = score * 2;
+          document.getElementById('typingMessage').style.display = 'block';
           document.getElementById('retry').style.display = 'block';
           document.getElementById('nextWord').style.display = 'none';
           document.getElementById('currentWord').style.display = 'none';
+          myInput.disabled = true;
         }
       }, 1000);
     }
@@ -117,17 +137,41 @@
           document.getElementById('score').textContent = score;
           updateWords();
           inputField.value = '';
-          clearInterval(timer);
-          timeLeft = 5;
-          startTimer();
           document.getElementById('gameOver').style.display = 'none';
+          checkScore();
         }
       });
     }
 
+function checkScore () {
+  if (score > 15) {
+    message = " fantastic ";
+  } else if (score > 10) {
+    message = " meh ";
+  } else {
+    message = " bad ";
+  }
+  document.getElementById("typingMessage").textContent = message;
+}
+
+function skipWord() {
+  if (skipCount > 0) {
+    currentWord = getRandomWord();
+    updateWords();
+    skipCount--;
+    inputField.value = '';
+    document.getElementById("skipCount").textContent = skipCount;
+  }
+}
+
+document.addEventListener("keydown", function(event) {
+  if (event.code === "Space") {
+    skipWord();
+  }});
     // this just runs the stuff beforehand so everything functions
     updateWords();
     checkInput();
+    checkScore();
 
     document.addEventListener('keydown', function(event) {
       const keyPressed = event.key.toUpperCase();

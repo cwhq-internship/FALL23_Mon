@@ -107,6 +107,7 @@ body {
   transition: background 0.3s;
   background-repeat: no-repeat;
   background-size: cover;
+  overflow: auto;
 }
 
 .image-container-center {
@@ -196,5 +197,11 @@ body {
   }
   .instruction {
     font-size: 1em;
+  }
+  .keyboard {
+    display: none;
+  }
+  .outer {
+    height: 91vh;
   }
 }

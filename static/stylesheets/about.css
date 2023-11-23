@@ -31,9 +31,15 @@ div{
     height: 89vh;
     margin-left: auto;
     margin-right: auto;
+    -ms-overflow-style: none;
+    overflow: auto;
 }
+
+.outer::-webkit-scrollbar {
+    display: none;
+}
+
 .inner {
-    height: 46vh;
     width: 90%;
     display: flex;
     justify-content: center;
@@ -45,13 +51,22 @@ div{
 .left {
     float: left;
     width: 124vh;
-    height: 45vh;
+    display: flex;
+    flex-direction: column;
     background-color: #4A8CA2;
     margin: 15px;
     padding: 5px;
     padding-top: 0px;
     opacity: 1;
     border-radius: 15px;
+}
+
+.cwhq {
+    -ms-overflow-style: none;
+}
+
+.cwhq::-webkit-scrollbar {
+    display: none;
 }
 
 .right {
@@ -74,7 +89,7 @@ div{
 
 .AltL {
     float: left;
-    width: 124vh;
+    width: 100%;
     height: 45vh;
     background-color: #4A8CA2;
     margin: 15px;
@@ -92,10 +107,26 @@ img {
     opacity: 1;
 }
 
+.descriptionbox {
+    background-color: #cae3ec;
+    border-radius: 15px;
+    margin: 15px;
+}
+
 .description {
     display: block;
-    width: 85vh;
-    margin-left: auto;
-    margin-right: auto;
-    font-size: 2.3vh;
+    margin: 20px;
+    font-size: 2.6vh;
+}
+
+@media only screen and (max-width: 1020px) {
+    .AltR {
+        display: none;
+    }
+    .inner {
+        flex-direction: column-reverse;
+    }
+    .left {
+        width: 100%;
+    }
 }

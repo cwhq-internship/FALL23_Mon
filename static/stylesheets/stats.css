@@ -209,6 +209,19 @@ h1 {
   justify-content: space-between;
 }
 
+  .stats-container {
+    width: 90%;
+    height: 83vh;
+    margin-left: auto;
+    margin-right: auto;
+    -ms-overflow-style: none;
+    overflow: auto;
+  }
+  
+  .stats-container::-webkit-scrollbar {
+    display: none;
+  }
+
 .chart {
   width: 30%;
   margin-right: 3%;
@@ -223,7 +236,7 @@ h1 {
 #chart2,
 #chart3 {
   width: 100%;
-  height: 250px;
+  height: 25vh;
   margin-top: 15px;
   border-radius: 12px;
   background-color: #f6f9fa;
@@ -242,4 +255,28 @@ h1 {
 }
 .try-again-btn:hover {
   background-color: #45a049;
+}
+
+@media only screen and (max-width: 1020px) {
+  .recent-tests {
+    width: 100%;
+  }
+  .stats-section {
+    width: 100%;
+  }
+  .charts-section {
+    flex-direction: column;
+    margin: 20px;
+  }
+  .chart {
+    width: 100%;
+    margin-right: 0px;
+    margin-top: 17px;
+    height: 325px;
+    padding: none;
+  }
+  #chart1, #chart2, #chart3 {
+    height: 250px;
+  }
+
 }

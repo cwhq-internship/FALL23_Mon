@@ -19,6 +19,7 @@
       <div class="inner">
         <div class="left">
           <h1 class="titles">Who are we?</h1>
+          <div class="descriptionbox">
           <p class="description">Welcome to our CodeWizardsHQ Internship project: WizardType. 
             WizardType is a typing game similar to another I will not name *cough cough* Typeracer. 
             Over the course of 12 weeks, we created every aspect of this website, from the background image
@@ -27,6 +28,7 @@
             Our team includes: Aberrash, Daniel, Joshua, Juliania, Kathleen, and Medhin. Our Boss, Peter,
             is a wonderful and malevolent being who deserves much praise and respect (Josh wrote this). 
             We hope you enjoy our site and have loads of fun with it :D</p>
+          </div>
         </div>
         <img class="right" src='/static/img/Logo1.png'>
       </div>
@@ -34,7 +36,7 @@
         <img class="AltR" src='/static/img/CWHQIcon.png'>
         <div class="AltL">
 
-          <iframe width="100%" height="100%" style="margin-top: 2px; border-radius: 10px; border-color: black; background-color: white;" src="https://www.codewizardshq.com/internship/"></iframe>
+          <iframe class="cwhq" width="100%" height="100%" style="margin-top: 2px; border-radius: 10px; border-color: black; background-color: white;" src="https://www.codewizardshq.com/internship/"></iframe>
         </div>
       </div>
     </div>
@@ -43,4 +45,61 @@
 
 {% endblock %}
 {% block scripts %}
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+  const darkModeToggle = document.getElementById("dark-mode-toggle");
+  const navbar = document.getElementById("navbar");
+
+  // Function to set dark mode styles
+  function enableDarkMode() {
+      document.body.style.backgroundImage = "url('/static/img/darkbackground.png')";
+      navbar.classList.remove("navbar-light");
+      navbar.classList.add("navbar-dark");
+      // Save dark mode preference to localStorage
+      localStorage.setItem("darkModeEnabled", "true");
+  }
+
+  // Function to set light mode styles
+  function disableDarkMode() {
+      document.body.style.backgroundImage = "url('/static/img/background.png')";
+      navbar.classList.remove("navbar-dark");
+      navbar.classList.add("navbar-light");
+      // Save light mode preference to localStorage
+      localStorage.setItem("darkModeEnabled", "false");
+  }
+
+  // Event listener for dark mode toggle change
+  darkModeToggle.addEventListener("change", () => {
+      if (darkModeToggle.checked) {
+          // Enable dark mode
+          enableDarkMode();
+      } else {
+          // Disable dark mode
+          disableDarkMode();
+      }
+  });
+
+  // Function to apply navbar styles based on dark mode preference
+  function applyNavbarStyles(isDarkMode) {
+      if (isDarkMode) {
+          navbar.classList.remove("navbar-light");
+          navbar.classList.add("navbar-dark");
+      } else {
+          navbar.classList.remove("navbar-dark");
+          navbar.classList.add("navbar-light");
+      }
+  }
+
+  // Check and apply dark mode setting from localStorage on page load
+  const isDarkModeEnabled = localStorage.getItem("darkModeEnabled") === "true";
+  if (isDarkModeEnabled) {
+      darkModeToggle.checked = true;
+      enableDarkMode(); // Apply dark mode styles if enabled in localStorage
+      applyNavbarStyles(true); // Apply navbar styles based on dark mode preference
+  } else {
+      disableDarkMode(); // Apply light mode styles by default
+      applyNavbarStyles(false); // Apply navbar styles based on light mode preference
+  }
+});
+</script>
 {% endblock %}
