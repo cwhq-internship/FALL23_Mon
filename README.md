@@ -352,3 +352,4 @@ Wizard-Type is an invaluable tool for teaching kids to type on the keyboard. Wit
 - View a list of all available [Material Icons](https://fonts.google.com/icons)
 - [Github CLI Commands](https://cli.github.com/manual/)
 
+# WizardType
