@@ -1,0 +1,17 @@
+{% extends 'layout.html' %}
+{% set title="paragraph" %}
+{% block styles %}
+    <link href='{{url_for("static", filename="stylesheets/paragraph.css")}}' rel='stylesheet'/>
+    <link href='{{url_for("static", filename="stylesheets/layout.css")}}' rel='stylesheet'/>
+{% endblock %}
+{% block e %} active-bar {% endblock %}
+{% block content %}
+<div id="race-container">
+    <p id="countdown"></p>
+    <p id="text-to-type"></p>
+    <textarea type="text" id="user-input" rows="4" cols="50" placeholder="Start typing..." disabled></textarea>
+    <p id="timer">Time: <span id="time">0</span>s</p>
+    <p id="wpm">WPM: 0</p>
+    <button id="retry-btn" style="display:none;">Retry</button>
+  </div>
+{% endblock %}

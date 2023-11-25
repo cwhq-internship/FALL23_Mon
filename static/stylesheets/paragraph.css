@@ -1,0 +1,23 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+  }
+
+  #race-container {
+    margin-top: 50px;
+  }
+
+  #text-to-type {
+    font-size: 18px;
+    margin-bottom: 20px;
+  }
+
+  #user-input {
+    font-size: 16px;
+    padding: 10px;
+  }
+
+  #timer {
+    font-size: 18px;
+    margin-top: 20px;
+  }
