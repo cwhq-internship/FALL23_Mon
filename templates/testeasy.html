@@ -10,7 +10,7 @@
 <div class="outer">
 <div class="inner">
   <div id="gameOver" style="display: none;">Game over! You're a&nbsp;<span id="typingMessage"></span>&nbsp;typer with&nbsp;<span id="WPM"></span>&nbsp;WPM!</div>
-  <button id="retry" style="display: none;"><a href="testmedium" id="aretry">Retry?</a></button>
+  <button id="retry" style="display: none;"><a href="testeasy" id="aretry">Retry?</a></button>
   <div class="words text-center h1 current-word" id="currentWord">Loading...</div>
   <div class="words text-center text-muted next-word" id="nextWord">Loading...</div>
 </div>
@@ -62,9 +62,11 @@
 <script>
 // Constants and definitions 
 const wordList = [
-  "apple", "lemon", "grape", "hello", "world", "green", "blue", "brown", "yellow", "black",
-  "train", "smile", "happy", "beach", "cloud", "house", "chair", "music", "peace", "light",
-  "sweet", "flower", "dream", "earth", "water", "heart", "smoke", "night", "money", "sleep"];
+  "cake", "rain", "book", "rose", "park", "queen", "chair", "ship", "love", "lake",
+  "fire", "foot", "hand", "milk", "hair", "dark", "light", "road", "cold", "heat",
+  "wine", "gold", "east", "west", "baby", "mood", "holy", "sand", "rock", "time",
+  "mint", "film", "deep", "loud", "dust", "leaf", "bell", "king", "soft", "wind",
+  "wise", "snow", "cool", "tall", "moon"];
 const inputField = document.getElementById('inputField');
 const inner = document.querySelector('.inner');
 let previousWord = '';
