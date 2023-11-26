@@ -8,5 +8,5 @@ h1, p {
 img {
     display: block;
     text-align: center;
-    margin-left: 25%; /* I removed the margin-right, and changed it from "auto" to "25%" */
+    margin-left: 15%; /* I removed the margin-right, and changed it from "auto" to "25%" */
 }
