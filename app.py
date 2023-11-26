@@ -60,6 +60,10 @@ def testmedium():
 def testhard():
     return render_template('testhard.html')
 
+@app.route('/paragraph')
+def paragraph():
+    return render_template('paragraph.html')
+
 # Custom CLI Commands
 # Do not update these commands without direction from your instructor
 # https://flask.palletsprojects.com/en/2.1.x/cli/#custom-commands
