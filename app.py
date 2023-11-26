@@ -45,12 +45,16 @@ def typing():
 def about():
     return render_template('about.html')
 
-@app.route('/test')
-def test():
+@app.route('/typegame')
+def typegame():
+    return render_template('typegame.html')
+
+@app.route('/testeasy')
+def testeasy():
     
     sentence = create_sentence(5)
     data = json.dumps(sentence)
-    return render_template('test.html',data=data)
+    return render_template('testeasy.html',data=data)
 
 @app.route('/testmedium')
 def testmedium():

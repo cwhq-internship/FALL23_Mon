@@ -37,6 +37,11 @@ textarea {
 
 .current-word {
   margin-right: 20px;
+  font-size: 4.5rem;
+}
+
+.next-word {
+  font-size: 2.5rem;
 }
 
 .outer {
@@ -155,8 +160,23 @@ background-color: white;
 }
 
 #retry {
-  font-size: 20px;
+  font-size: 30px;
   font-weight: bold;
+  background-color: #4A8CA2;
+  border: transparent;
+  border-radius: 5px;
+}
+
+#retry:hover {
+  box-shadow: #000;
+}
+#aretry {
+  color: white;
+}
+
+#aretry:hover {
+  text-decoration: none;
+  color: #a6c5e4;
 }
 
 #inputField {
@@ -168,8 +188,42 @@ background-color: white;
   font-size: 16px;
   padding: 5px; /* Adjust padding as needed */
   width: 200px; /* Adjust width as needed */
+  z-index: 1;
+  position: absolute;
+  opacity: 0;
 }
 
 #inputField::placeholder {
   color: #a6c5e4; /* Placeholder text color */
+}
+
+#typedWord {
+  display: inline-block;
+  font-family: monospace;
+  font-size: 4vh;
+  height: 1vh;
+}
+
+#typedWord span {
+  color: red;
+}
+
+#underline {
+  display: flex;
+  justify-content: center;
+  width: 30vh;
+  background-color: #000;
+  height: 4px;
+  margin-top: 2.48%;
+  position: absolute;
+}
+
+.wordTyped {
+  font-size: 4vh;
+}
+
+#typeHere {
+  display: flex;
+  margin-top: -10%;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }

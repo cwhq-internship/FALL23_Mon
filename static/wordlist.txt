@@ -1,0 +1,28 @@
+
+Hard wordlist
+
+const wordList = [
+  "account", "balance", "capture", "diamond", "element", "fashion", "general", "holiday", "journal",
+  "library", "mission", "network", "outside", "popular", "quality", "resolve", "station", "visible",
+  "whisper", "society", "science", "channel", "comfort", "awesome", "happening", "language", "machine",
+  "possible", "register", "resource", "solution", "stunning", "training", "victory", "wildfire", "zeppelin"
+  ];
+
+
+Medium wordlist
+
+const wordList = [
+  "apple", "lemon", "grape", "hello", "world", "green", "blue", "brown", "yellow", "black",
+  "train", "smile", "happy", "beach", "cloud", "house", "chair", "music", "peace", "light",
+  "sweet", "flower", "dream", "earth", "water", "heart", "smoke", "night", "money", "sleep"
+  ];
+
+
+Easy wordlist
+
+const wordList = [
+  "cake", "rain", "book", "rose", "park", "queen", "chair", "ship", "love", "lake",
+  "fire", "foot", "hand", "milk", "hair", "dark", "light", "road", "cold", "heat",
+  "wine", "gold", "east", "west", "baby", "mood", "holy", "sand", "rock", "time",
+  "mint", "film", "deep", "loud", "dust", "leaf", "bell", "king", "soft", "wind",
+  "wise", "snow", "cool", "tall", "moon"];
