@@ -45,6 +45,10 @@ def typing():
 def about():
     return render_template('about.html')
 
+@app.route('/typegame')
+def typegame():
+    return render_template('typegame.html')
+
 @app.route('/testeasy')
 def testeasy():
     
