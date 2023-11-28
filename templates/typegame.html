@@ -1,0 +1,131 @@
+{% extends "layout.html" %}
+{% set title="Typing game" %}
+{% block e %} active-bar {% endblock %}
+{% block styles %}
+    <link href='{{url_for("static", filename="stylesheets/layout.css")}}' rel='stylesheet'/>
+    <link href='{{url_for("static", filename="stylesheets/typegame.css")}}' rel='stylesheet'/>
+{% endblock %}
+
+{% block content %}
+<body>
+
+  <div id="game-container">
+    <div id="bubbles-box">
+      <div id="game-container"></div>
+    </div>
+  </div>
+  <input type="text" id="typing-bar" placeholder="Type here">
+  <div id="timer">30s</div>
+  <div id="game-over">
+    <p>Game Over!</p>
+    <p id="wpm">Words Per Minute: 0</p>
+    <p id="word-count">Words Typed: 0</p>
+    <button id="play-again" onclick="resetGame()">Play Again</button>
+  </div>
+  
+  <script>
+    const gameContainer = document.getElementById('bubbles-box');
+    const typingBar = document.getElementById('typing-bar');
+    const timerElement = document.getElementById('timer');
+    const gameOverElement = document.getElementById('game-over');
+    const wpmElement = document.getElementById('wpm');
+    const wordCountElement = document.getElementById('word-count');
+    const playAgainButton = document.getElementById('play-again');
+    const words = ['magic', 'spell', 'wizard', 'fantasy', 'enchant', 'dragon', 'castle', 'adventure', 'sorcerer', 'potions', 'mythical', 'alchemy', 'creatures', 'realm', 'mystical', 'cursed', 'quest', 'phoenix', 'mage', 'medieval', 'scroll', 'fairy', 'unicorn', 'mermaid', 'goblin', 'warlock'];
+  
+    let timerSeconds = 30;
+    let timerInterval;
+    let wordsTyped = 0;
+    let startTime;
+    let gameActive = true;
+  
+    function createBubble() {
+      if (!gameActive) return;
+  
+      const bubble = document.createElement('div');
+      bubble.classList.add('bubble');
+      const boxWidth = gameContainer.offsetWidth - 80;
+      const boxHeight = gameContainer.offsetHeight - 80;
+      bubble.style.top = `${Math.random() * boxHeight}px`;
+      bubble.style.left = `${Math.random() * boxWidth}px`;
+      const randomWord = words[Math.floor(Math.random() * words.length)];
+      bubble.innerText = randomWord;
+  
+      bubble.addEventListener('click', () => {
+        bubble.style.display = 'none';
+        wordsTyped++;
+        typingBar.value = '';
+      });
+  
+      gameContainer.appendChild(bubble);
+    }
+  
+    function updateGame() {
+      createBubble();
+      setTimeout(updateGame, 2000); 
+    }
+  
+    function updateTimer() {
+      const elapsedSeconds = Math.floor((Date.now() - startTime) / 1000);
+      const remainingSeconds = Math.max(timerSeconds - elapsedSeconds, 0);
+      timerElement.textContent = `${remainingSeconds}s`;
+  
+      if (remainingSeconds === 0) {
+        clearInterval(timerInterval);
+        endGame();
+      }
+    }
+  
+    function endGame() {
+      const wordsPerMinute = Math.round((wordsTyped / 30) * 60);
+      wpmElement.textContent = `Words Per Minute: ${wordsPerMinute}`;
+      wordCountElement.textContent = `Words Typed: ${wordsTyped}`;
+      gameOverElement.style.display = 'block';
+      gameActive = false;
+    }
+  
+    function resetGame() {
+      timerSeconds = 30;
+      wordsTyped = 0;
+      startTime = null;
+      timerElement.textContent = `${timerSeconds}s`;
+      clearInterval(timerInterval);
+      gameActive = true;
+  
+      
+      const bubbles = document.querySelectorAll('.bubble');
+      bubbles.forEach((bubble) => bubble.remove());
+  
+      
+      startGame();
+      gameOverElement.style.display = 'none';
+    }
+  
+    function startGame() {
+      startTime = Date.now();
+      timerInterval = setInterval(updateTimer, 1000);
+      updateGame();
+    }
+  
+
+    typingBar.addEventListener('input', (event) => {
+      const inputValue = event.target.value.toLowerCase();
+      const bubbles = document.querySelectorAll('.bubble');
+  
+      bubbles.forEach((bubble) => {
+        const bubbleText = bubble.innerText.toLowerCase();
+  
+        if (inputValue === bubbleText) {
+          bubble.style.display = 'none';
+          wordsTyped++;
+          typingBar.value = '';
+        }
+      });
+    });
+  
+    startGame();
+  </script>
+  
+  </body>
+  </html>
+{% endblock %}
