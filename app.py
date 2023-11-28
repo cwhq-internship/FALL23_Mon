@@ -5,7 +5,7 @@ from db import create_app, db
 from blueprints.errors import errors_bp
 from blueprints.api import api_bp
 from seed import create_data
-from words import create_sentence
+from words import create_sentence, easy_words, hard_words, medium_words
 import json
 
 ### IMPORTANT ###
@@ -52,17 +52,21 @@ def typegame():
 @app.route('/testeasy')
 def testeasy():
     
-    sentence = create_sentence(5)
-    data = json.dumps(sentence)
+    word_list = easy_words()
+    data = json.dumps(word_list)
     return render_template('testeasy.html',data=data)
 
 @app.route('/testmedium')
 def testmedium():
-    return render_template('testmedium.html')
+    word_list = medium_words()
+    data = json.dumps(word_list)
+    return render_template('testmedium.html',data=data)
 
 @app.route('/testhard')
 def testhard():
-    return render_template('testhard.html')
+    word_list = hard_words()
+    data = json.dumps(word_list)
+    return render_template('testhard.html', data=data)
 
 @app.route('/paragraph')
 def paragraph():

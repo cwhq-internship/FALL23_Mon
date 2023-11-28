@@ -9,8 +9,9 @@
 {% block content %}
 <div class="outer">
 <div class="inner">
+  <input type="hidden"  id="data_wl" value="{{data}}">
   <div id="gameOver" style="display: none;">Game over! You're a&nbsp;<span id="typingMessage"></span>&nbsp;typer with&nbsp;<span id="WPM"></span>&nbsp;WPM!</div>
-  <button id="retry" style="display: none;"><a href="testeasy" id="aretry">Retry?</a></button>
+  <button id="retry" style="display: none;"><a href="testmedium" id="aretry">Retry?</a></button>
   <div class="words text-center h1 current-word" id="currentWord">Loading...</div>
   <div class="words text-center text-muted next-word" id="nextWord">Loading...</div>
 </div>
@@ -60,13 +61,16 @@
 </div>
 
 <script>
+  // Get Word List from python
+  wordList2 = document.querySelector('#data_wl').value
+  newString = wordList2.replace("[", "");
+  n1 = newString.replace("]","")
+  n2 = n1.replace(/"/g, '');
+  n3 = n2.replace(/,/g, '');
+
+  const wordList = n3.split(" ")
 // Constants and definitions 
-const wordList = [
-  "cake", "rain", "book", "rose", "park", "queen", "chair", "ship", "love", "lake",
-  "fire", "foot", "hand", "milk", "hair", "dark", "light", "road", "cold", "heat",
-  "wine", "gold", "east", "west", "baby", "mood", "holy", "sand", "rock", "time",
-  "mint", "film", "deep", "loud", "dust", "leaf", "bell", "king", "soft", "wind",
-  "wise", "snow", "cool", "tall", "moon"];
+
 const inputField = document.getElementById('inputField');
 const inner = document.querySelector('.inner');
 let previousWord = '';
