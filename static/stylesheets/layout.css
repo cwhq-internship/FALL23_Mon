@@ -71,6 +71,7 @@ input:checked + .slider:before {
   border-radius: 10px;
 }
 
+
 h1 {
   font-family: "Suez One", serif;
   text-align: center;
@@ -171,8 +172,7 @@ body {
 }
 
 @media only screen and (max-width: 1020px) {
-  .image-container,
-  .widget {
+  .image-container {
     display: none;
   }
   .testlist,
@@ -180,17 +180,35 @@ body {
   .explanation {
     width: 100%;
   }
-  .test {
+  .bottom {
     display: inline-block;
     overflow: auto;
     padding: 3px;
     -ms-overflow-style: none;
   }
-  .test::-webkit-scrollbar {
+  .bottom::-webkit-scrollbar {
     display: none;
   }
   .bottom {
     justify-content: center;
+  }
+  .widget {
+    margin: unset;
+    height: unset;
+    width: unset;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  .test {
+    margin: unset;
+    flex-direction: column;
+    height: fit-content;
+    margin-top: 10px;
+  }
+  .explanation {
+    border-width: 10px;
+    margin: unset;
+    border-radius: 25px;
   }
   .testname {
     font-size: 2em;

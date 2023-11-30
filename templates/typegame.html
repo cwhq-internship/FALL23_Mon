@@ -8,27 +8,38 @@
 
 {% block content %}
 <body>
-
-  <div id="game-container">
+  <div class="outer">
     <div id="bubbles-box">
-      <div id="game-container"></div>
+      <div id="game-container"><button id="start" type="button" class="btn btn-dark" onclick="startGame();">Click to start game!</button></div>
+    </div>
+  
+  <div class="inputs">
+  <div class="rowboard">
+    <div class="scoreboard">
+      <div class="scorelabel"><p>Score:</p> <span id="word-count" class="h3 text-center">0</span></div>
+    </div>
+    <div class="scoreboard">
+      <div class="scorelabel"><p>Time Left:</p><span id="timer">30</span></div>
     </div>
   </div>
   <input type="text" id="typing-bar" placeholder="Type here">
-  <div id="timer">30s</div>
+</div>
+</div>
   <div id="game-over">
     <p>Game Over!</p>
     <p id="wpm">Words Per Minute: 0</p>
-    <p id="word-count">Words Typed: 0</p>
+    <p id="final-count">Words Typed: 0</p>
     <button id="play-again" onclick="resetGame()">Play Again</button>
   </div>
   
   <script>
-    const gameContainer = document.getElementById('bubbles-box');
+    const start = document.getElementById('start');
+    const gameContainer = document.getElementById('game-container');
     const typingBar = document.getElementById('typing-bar');
     const timerElement = document.getElementById('timer');
     const gameOverElement = document.getElementById('game-over');
     const wpmElement = document.getElementById('wpm');
+    const finalCount = document.getElementById('final-count');
     const wordCountElement = document.getElementById('word-count');
     const playAgainButton = document.getElementById('play-again');
     const words = ['magic', 'spell', 'wizard', 'fantasy', 'enchant', 'dragon', 'castle', 'adventure', 'sorcerer', 'potions', 'mythical', 'alchemy', 'creatures', 'realm', 'mystical', 'cursed', 'quest', 'phoenix', 'mage', 'medieval', 'scroll', 'fairy', 'unicorn', 'mermaid', 'goblin', 'warlock'];
@@ -54,6 +65,7 @@
       bubble.addEventListener('click', () => {
         bubble.style.display = 'none';
         wordsTyped++;
+        document.getElementById('word-count').textContent = wordsTyped;
         typingBar.value = '';
       });
   
@@ -79,7 +91,7 @@
     function endGame() {
       const wordsPerMinute = Math.round((wordsTyped / 30) * 60);
       wpmElement.textContent = `Words Per Minute: ${wordsPerMinute}`;
-      wordCountElement.textContent = `Words Typed: ${wordsTyped}`;
+      finalCount.textContent = `Words Typed: ${wordsTyped}`;
       gameOverElement.style.display = 'block';
       gameActive = false;
     }
@@ -99,10 +111,12 @@
       
       startGame();
       gameOverElement.style.display = 'none';
+      
     }
   
     function startGame() {
       startTime = Date.now();
+      start.style.display = 'none';
       timerInterval = setInterval(updateTimer, 1000);
       updateGame();
     }
@@ -118,12 +132,74 @@
         if (inputValue === bubbleText) {
           bubble.style.display = 'none';
           wordsTyped++;
+          document.getElementById('word-count').textContent = wordsTyped;
           typingBar.value = '';
         }
       });
     });
   
-    startGame();
+
+
+    
+// Darkmode Script!
+document.addEventListener("DOMContentLoaded", function() {
+    const darkModeToggle = document.getElementById("dark-mode-toggle");
+    const navbar = document.getElementById("navbar");
+    const darkmodetext = document.querySelector(".darkmodetext");
+  
+    // Function to set dark mode styles
+    function enableDarkMode() {
+        document.body.style.backgroundImage = "url('/static/img/darkbackground.png')";
+        navbar.classList.remove("navbar-light");
+        navbar.classList.add("navbar-dark");
+        darkmodetext.classList.add("darkmodetext2");
+        // Save dark mode preference to localStorage
+        localStorage.setItem("darkModeEnabled", "true");
+    }
+  
+    // Function to set light mode styles
+    function disableDarkMode() {
+        document.body.style.backgroundImage = "url('/static/img/background.png')";
+        navbar.classList.remove("navbar-dark");
+        navbar.classList.add("navbar-light");
+        darkmodetext.classList.remove("darkmodetext2");
+        // Save light mode preference to localStorage
+        localStorage.setItem("darkModeEnabled", "false");
+    }
+  
+    // Event listener for dark mode toggle change
+    darkModeToggle.addEventListener("change", () => {
+        if (darkModeToggle.checked) {
+            // Enable dark mode
+            enableDarkMode();
+        } else {
+            // Disable dark mode
+            disableDarkMode();
+        }
+    });
+  
+    // Function to apply navbar styles based on dark mode preference
+    function applyNavbarStyles(isDarkMode) {
+        if (isDarkMode) {
+            navbar.classList.remove("navbar-light");
+            navbar.classList.add("navbar-dark");
+        } else {
+            navbar.classList.remove("navbar-dark");
+            navbar.classList.add("navbar-light");
+        }
+    }
+  
+    // Check and apply dark mode setting from localStorage on page load
+    const isDarkModeEnabled = localStorage.getItem("darkModeEnabled") === "true";
+    if (isDarkModeEnabled) {
+        darkModeToggle.checked = true;
+        enableDarkMode(); // Apply dark mode styles if enabled in localStorage
+        applyNavbarStyles(true); // Apply navbar styles based on dark mode preference
+    } else {
+        disableDarkMode(); // Apply light mode styles by default
+        applyNavbarStyles(false); // Apply navbar styles based on light mode preference
+    }
+  });
   </script>
   
   </body>

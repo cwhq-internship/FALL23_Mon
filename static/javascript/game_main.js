@@ -110,3 +110,4 @@ export function hideElementOnClick(inputId, elementId) {
       elementToHide.style.display = 'none';
     });
   }
+  

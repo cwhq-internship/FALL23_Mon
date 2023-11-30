@@ -90,12 +90,14 @@
 document.addEventListener("DOMContentLoaded", function() {
     const darkModeToggle = document.getElementById("dark-mode-toggle");
     const navbar = document.getElementById("navbar");
-
+    const navlink = document.getElementById("navlink");
+    const activebar = document.querySelector(".active-bar");
     // Function to set dark mode styles
     function enableDarkMode() {
         document.body.style.backgroundImage = "url('/static/img/darkbackground.png')";
         navbar.classList.remove("navbar-light");
         navbar.classList.add("navbar-dark");
+        activebar.style.backgroundColor = '#172a55';
         // Save dark mode preference to localStorage
         localStorage.setItem("darkModeEnabled", "true");
     }
@@ -103,6 +105,7 @@ document.addEventListener("DOMContentLoaded", function() {
     // Function to set light mode styles
     function disableDarkMode() {
         document.body.style.backgroundImage = "url('/static/img/background.png')";
+        activebar.style.backgroundColor = '#b0d7e5';
         navbar.classList.remove("navbar-dark");
         navbar.classList.add("navbar-light");
         // Save light mode preference to localStorage
@@ -123,11 +126,15 @@ document.addEventListener("DOMContentLoaded", function() {
     // Function to apply navbar styles based on dark mode preference
     function applyNavbarStyles(isDarkMode) {
         if (isDarkMode) {
-            navbar.classList.remove("navbar-light");
-            navbar.classList.add("navbar-dark");
+          navlink.classList.remove("active-bar");
+          navlink.classList.add("active-bar-dark");
+          navbar.classList.remove("navbar-light");
+          navbar.classList.add("navbar-dark");
         } else {
-            navbar.classList.remove("navbar-dark");
-            navbar.classList.add("navbar-light");
+          navbar.classList.remove("navbar-dark");
+          navbar.classList.add("navbar-light");
+          navlink.classList.remove("active-bar-dark");
+          navlink.classList.add("active-bar");
         }
     }
 

@@ -9,17 +9,13 @@ def create_sentence(length):
     return text
 
 def easy_words():
-    text = []
-    for i in range(0,100):
-        s = RandomSentence()
-        w = RandomWord()
-        text.append(w.word(word_max_length=4))
-    
+    w = RandomWord()
+    text = [w.word(word_max_length=4) for _ in range(2)]
     return text
 
 def medium_words():
     text = []
-    for i in range(0,100):
+    for i in range(0,20):
         s = RandomSentence()
         w = RandomWord()
         text.append(w.word(word_min_length=7, word_max_length=11))

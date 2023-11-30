@@ -8,5 +8,31 @@ h1, p {
 img {
     display: block;
     text-align: center;
-    margin-left: 20%; /* I removed the margin-right, and changed it from "auto" to "25%" */
+    margin-left: auto;
+    margin-right: auto; /* I removed the margin-right, and changed it from "auto" to "25%" */
+}
+
+.img-container {
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+}
+.img-container img{
+    border-width: 25px;
+    border-color: #4A8CA2;
+    width: 1000px;
+    height: 600px;
+    border-style: inset;
+}
+
+.container {
+    margin-top: 3%;
+}
+
+p {
+    font-size: 30px;
+}
+
+h1 {
+    font-size: 3.5rem;
 }

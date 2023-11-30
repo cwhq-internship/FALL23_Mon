@@ -40,6 +40,7 @@
   height: 55vh;
   max-width: 98vw;
   margin: auto;
+  justify-content: center;
 }
 
 .description {
@@ -79,11 +80,12 @@
   background-color: #4a8ca2;
   margin: 15px;
   padding: 5px;
-  padding: 20px;
   padding-top: 1vh;
   width: 32%;
   min-width: 300px;
   border-radius: 15px;
+  display: flex;
+  flex-direction: column;
 }
 
 button {
@@ -170,7 +172,7 @@ button {
   float: left;
   border-style: solid;
   border-color: #4a8ca2;
-  height: 98%;
+  margin: 10px;
 }
 
 .testlist {
@@ -187,4 +189,42 @@ button {
   background-color: #cae3ec;
   border-radius: 15px;
   margin: 10px;
+}
+
+.bonuspara {
+  height: 40%;
+  background-color: #cae3ec;
+  margin: 10px;
+  border: 15px;
+}
+
+.bonuspop {
+  height: 40%;
+  background-color: #cae3ec;
+  margin: 10px;
+  border: 15px;
+  display: flex;
+  border-radius: 15px;
+}
+
+.bonusdesc{
+  font-size: 1.3rem;
+  margin: 10px;
+
+}
+
+.bonusl {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+.bonusr {
+  width: 50%;
+  text-align: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
 }
