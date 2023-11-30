@@ -1,3 +1,4 @@
+import wonderwords
 from wonderwords import RandomSentence, RandomWord
 
 def create_sentence(length):
