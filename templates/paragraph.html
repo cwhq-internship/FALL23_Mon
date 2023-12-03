@@ -19,7 +19,8 @@
     const quotes = [
         "Lorem ipsum dolor sit amet...",
         "The quick brown fox jumps over the lazy dog.",
-        "To be or not to be, that is the question."
+        "To be or not to be, that is the question.",
+        // Add more quotes as needed
     ];
 
     const textElement = document.getElementById("text-to-type");
@@ -56,7 +57,7 @@
         textElement.innerText = randomQuote;
         userInput.removeAttribute("disabled");
         userInput.value = "";
-        userInput.style.color = "black";
+        userInput.style.color = "black"; // Reset to default color
         userInput.focus();
 
         retryButton.style.display = "none";
@@ -92,6 +93,22 @@
         const userInputText = userInput.value.trim();
         const targetText = textElement.innerText.trim();
 
+        for (let i = 0; i < targetText.length; i++) {
+            if (i < userInputText.length) {
+                if (userInputText[i] === targetText[i]) {
+                    userInput.setRangeText(targetText[i], i, i + 1, "end");
+                    userInput.setSelectionRange(i + 1, i + 1);
+                    userInput.style.color = "black"; // Reset to default color
+                } else {
+                    userInput.setRangeText(targetText[i], i, i + 1, "end");
+                    userInput.style.color = "red";
+                    break; // Stop checking for incorrect characters
+                }
+            } else {
+                break; // Stop checking if userInputText is shorter than targetText
+            }
+        }
+
         const words = userInputText.split(/\s+/);
         const wordCount = words.length;
 
@@ -112,5 +129,5 @@
 
     startCountdown();
 });
-  </script>
+</script>
 {% endblock %}

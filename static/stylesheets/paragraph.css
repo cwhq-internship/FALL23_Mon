@@ -1,5 +1,6 @@
 body {
     font-family: Arial, sans-serif;
+    font-weight: bold;
     text-align: center;
   }
 
@@ -20,4 +21,10 @@ body {
   #timer {
     font-size: 18px;
     margin-top: 20px;
+  }
+
+  button {
+    text-align: center;
+    border: 4px;
+    background-color: #4a8ca2;
   }
