@@ -1,4 +1,5 @@
 import flask
+import wonderwords
 from os import environ, getenv, scandir
 from flask import render_template
 from db import create_app, db
@@ -40,6 +41,14 @@ def stats():
 @app.route('/typing')
 def typing():
     return render_template('typing.html')
+
+@app.route('/login')
+def login():
+    return render_template('login.html')
+
+@app.route('/register')
+def register():
+    return render_template('register.html')
 
 @app.route('/about')
 def about():

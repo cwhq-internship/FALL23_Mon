@@ -1,0 +1,33 @@
+{% extends 'layout.html' %}
+{% set title="login" %}
+{% block e %} active-bar {% endblock %}
+{% block styles %}
+    <link href='{{url_for("static", filename="stylesheets/login.css")}}' rel='stylesheet'/>
+    <link href='{{url_for("static", filename="stylesheets/layout.css")}}' rel='stylesheet'/>
+{% endblock %}
+{% block content %}
+<div class="log">
+    <h1> Login</h1>
+    <div class="login">
+    <form action="/login" method="post">
+        <div>
+          <label for="username">Username:</label>
+          <input type="text" id="username" name="username" required>
+        </div>
+        <div>
+          <label for="password">Password:</label>
+          <input type="password" id="password" name="password" required>
+        </div>
+        <div>
+          <input type="submit" value="Login">
+          <p><a href="login">Forgot Password?</a></p>
+          <p>Don't have an account? <a href="register">Register Here!</a></p>
+        </div>
+      </form>
+    </div>
+</div>
+{% endblock %}
+{% block scripts %}
+<script src="/static/javascript/darkmode.js">
+</script>
+{% endblock %}

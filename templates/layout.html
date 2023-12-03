@@ -59,16 +59,19 @@
             
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a class="nav-link {% block brand %}{% endblock %}" href="/">Home</a>
+              <span class="nav-link {% block brand %}{% endblock %}" onclick="transitionToPage('/')">Home</span>
             </li>
             <li class="nav-item">
-              <a class="nav-link {% block b %}{% endblock %}" href="stats">Statistics</a>
+              <span class="nav-link {% block b %}{% endblock %}" onclick="transitionToPage('stats')">Statistics</span>
             </li>
             <li class="nav-item">
-              <a class="nav-link {% block c %}{% endblock %}" href="typing">Intro to Typing</a>
+              <span class="nav-link {% block c %}{% endblock %}" onclick="transitionToPage('typing')">Intro To Typing</span>
             </li>
             <li class="nav-item">
-              <a class="nav-link {% block d %}{% endblock %}" href="about">About us</a>
+              <span class="nav-link {% block d %}{% endblock %}" onclick="transitionToPage('about')">About Us</span>
+            </li>
+            <li class="nav-item">
+              <span class="nav-link {% block e %}{% endblock %}" onclick="transitionToPage('login')">Account</span>
             </li>
               
             </li>
@@ -85,7 +88,16 @@
         
         {% endblock %}
         <script>
+window.transitionToPage = function(href) {
+    document.querySelector('body').style.opacity = 0
+    setTimeout(function() { 
+        window.location.href = href
+    }, 500)
+}
 
+document.addEventListener('DOMContentLoaded', function(event) {
+    document.querySelector('body').style.opacity = 1
+})
 
 document.addEventListener("DOMContentLoaded", function() {
     const darkModeToggle = document.getElementById("dark-mode-toggle");

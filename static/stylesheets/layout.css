@@ -75,6 +75,7 @@ input:checked + .slider:before {
 h1 {
   font-family: "Suez One", serif;
   text-align: center;
+  color: darkslategray;
 }
 
 p {
@@ -105,10 +106,15 @@ body {
   margin: 0;
   padding: 0;
   background-image: url("/static/img/background.png"); /* Initial background image for light mode */
-  transition: background 0.3s;
+  transition: background-image 0.5s, opacity 0.7s;
   background-repeat: no-repeat;
   background-size: cover;
   overflow: auto;
+  opacity: 0;
+}
+
+.navbar-nav {
+  cursor: pointer;
 }
 
 .image-container-center {
@@ -221,5 +227,14 @@ body {
   }
   .outer {
     height: 91vh;
+  }
+  #underline {
+    margin-top: 6.9%;
+  }
+  #gameOver {
+    font-size: 15px;
+  }
+  #retry {
+    font-size: 17px;
   }
 }

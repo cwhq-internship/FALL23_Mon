@@ -32,38 +32,40 @@
     <div class="testlist d-flex flex-column">
       <div class="testrow p-2 flex-row">
         <div class="testname"> Easy : 4-5 Characters </div>
-        <a href = "testeasy"><button id="start" type="button" class="btn btn-dark" onclick="gameOn()">Start</button></a>
+        <span onclick="transitionToPage('testeasy')"><button id="start" type="button" class="btn btn-dark" onclick="gameOn()">Start</button></span>
       </div>
       <div class="testrow p-2">
         <div class="testname"> Medium : 6-8 Characters </div>
-        <a href = "testmedium"><button id="start" type="button" class="btn btn-dark" onclick="gameOn()">Start</button></a>
+        <span onclick="transitionToPage('testmedium')"><button id="start" type="button" class="btn btn-dark" onclick="gameOn()">Start</button></span>
       </div>
       <div class="testrow p-2">
         <div class="testname"> Hard : 9-12 Characters </div>
-        <a href = "testhard"><button id="start" type="button" class="btn btn-dark" onclick="gameOn()">Start</button></a>
+        <span onclick="transitionToPage('testhard')"><button id="start" type="button" class="btn btn-dark" onclick="gameOn()">Start</button></span>
       </div>
     </div>
   </div>
   <div class="widget">
     <div class="bonustitle">
       <h1 class="bonustext">Bonus games!</h1>
-    </div> 
-      <div class="bonuspara">
-        <h1><legend>Paragraph Mode</legend></h1>
-        <h3>Instructions</h3>
-        <p>When the countdown is complete, type the sentence above as quickly as you can while making as little mistakes as possible.</p>
-        <a href="paragraph">
-          <button>Enter typing game</button>
-        </a>
-      </div>
+    </div>   
       <div class="bonuspop">
         <div class="bonusl">
         <h2>Wizard Attack!</h2>
         <a href = "typegame"><button id="start" type="button" class="btn btn-dark">Start</button></a>
         </div>
         <div class="bonusr">
-        <p class="bonusdesc">Stop the enemy wizards spells from reaching you! Type the word inside to block their spell, and last for as long as possible! </p>
+        <p class="bonusdesc">Stop the bubbles from taking over! Type the word inside to pop them, and last for as long as you possibly can! </p>
         </div>
+      </div>
+      <div class="bonuspop">
+        <div class="bonusl">
+        <h2>Sentence Type</h2>
+        <a href="paragraph"><button id="start" type="button" class="btn btn-dark">Start</button></a>
+      </div>
+        <div class="bonusr">
+        <p class="bonusdesc">When the countdown is complete, type the sentence above as quickly as you can while making as few mistakes as possible.</p>
+        </div>
+        
       </div>
   
   </div>
@@ -83,7 +85,7 @@
     const wizFont2 = document.querySelector(".wizfont2");
     const darkmodetext = document.querySelector(".darkmodetext");
     const navbar = document.getElementById("navbar");
-
+    
     // Function to set dark mode styles
     function enableDarkMode() {
         document.body.style.backgroundImage = "url('/static/img/darkbackground.png')";
