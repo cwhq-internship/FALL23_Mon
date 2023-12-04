@@ -24,12 +24,12 @@ body {
   }
 
   textarea {
-    background-color: #4a8ca2
+    background-color: #cae3ec;
   }
 
   #retry-btn {
-    border: 4px;
-    background-color: #cae3ec;
+    border-radius: 4px;
+    background-color: #24a8ca;
     justify-content: center;
     font-weight: bold;
   }
