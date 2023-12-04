@@ -49,6 +49,20 @@
     let wordsTyped = 0;
     let startTime;
     let gameActive = true;
+
+    function startCountdown() {
+      let countdown = 3;
+      start.style.display = 'none';
+      const countdownInterval = setInterval(() => {
+        if (countdown > 0) {
+          gameContainer.innerHTML = `<h1>${countdown}</h1>`;
+          countdown--;
+        } else {
+          clearInterval(countdownInterval);
+          startGame();
+        }
+      }, 1000);
+    }
   
     function createBubble() {
       if (!gameActive) return;
@@ -109,10 +123,10 @@
       bubbles.forEach((bubble) => bubble.remove());
   
       
-      startGame();
+      startCountdown();
       gameOverElement.style.display = 'none';
-      
     }
+
   
     function startGame() {
       startTime = Date.now();
