@@ -12,14 +12,16 @@
     <textarea type="text" id="user-input" rows="4" cols="50" placeholder="Start typing..." disabled></textarea>
     <p id="timer">Time: <span id="time">0</span>s</p>
     <p id="wpm">WPM: 0</p>
-    <button id="retry-btn" style="display:none;">Retry</button>
+    <p id="quote-source" style="font-style: italic;"></p>
+    <button id="retry-btn">Retry</button>
   </div>
   <script>
     document.addEventListener("DOMContentLoaded", function () {
     const quotes = [
-        "Lorem ipsum dolor sit amet...",
-        "The quick brown fox jumps over the lazy dog.",
-        "To be or not to be, that is the question.",
+        { text:"When I found out the patriarchy wasn't about horses, I lost interest anyway.", source: "Barbie (2023)" },
+        { text:"Humans only have one ending. Ideas live forever.", source: "Barbie (2023)" },
+        { text:"Why should Caesar get to stomp around like a giant while the rest of us try not to get smushed under his big feet? What's so great about Caesar, hm? Brutus is just as cute as Caesar. Brutus is just as smart as Caesar, people totally like Brutus as much as they like Caesar. WE SHOULD TOTALLY JUST STAB CAESAR!", source: "Mean Girls (2004)" },
+        { text:"What Do You Mean 'Broke'? Like, Martha Stewart 'Broke'? Or MC Hammer 'Broke?'", source: "White Chicks (2004)" },
         // Add more quotes as needed
     ];
 
@@ -29,6 +31,7 @@
     const wpmElement = document.getElementById("wpm");
     const countdownElement = document.getElementById("countdown");
     const retryButton = document.getElementById("retry-btn");
+    const quoteSourceElement = document.getElementById("quote-source");
 
     let timerInterval;
     let countdownInterval;
@@ -74,6 +77,19 @@
         retryButton.addEventListener("click", handleRetryButtonClick);
     }
 
+    function endGame() {
+        clearInterval(timerInterval);
+        clearInterval(countdownInterval);
+        userInput.setAttribute("disabled", "true");
+        retryButton.style.display = "block";
+
+        const currentQuote = getCurrentQuote();
+        quoteSourceElement.innerText = `Quote from: ${currentQuote.source}`;
+
+        retryButton.addEventListener("click", handleRetryButtonClick);
+    }
+
+
     function updateTimer() {
         const timerValue = parseInt(timerElement.innerText);
         timerElement.innerText = timerValue + 1 + "s";
@@ -93,22 +109,6 @@
         const userInputText = userInput.value.trim();
         const targetText = textElement.innerText.trim();
 
-        for (let i = 0; i < targetText.length; i++) {
-            if (i < userInputText.length) {
-                if (userInputText[i] === targetText[i]) {
-                    userInput.setRangeText(targetText[i], i, i + 1, "end");
-                    userInput.setSelectionRange(i + 1, i + 1);
-                    userInput.style.color = "black"; // Reset to default color
-                } else {
-                    userInput.setRangeText(targetText[i], i, i + 1, "end");
-                    userInput.style.color = "red";
-                    break; // Stop checking for incorrect characters
-                }
-            } else {
-                break; // Stop checking if userInputText is shorter than targetText
-            }
-        }
-
         const words = userInputText.split(/\s+/);
         const wordCount = words.length;
 
@@ -123,6 +123,11 @@
         const minutes = time / 60;
         const wpm = Math.round(words / minutes);
         return wpm;
+    }
+
+    function getCurrentQuote() {
+        const currentText = textElement.innerText.trim();
+        return quotes.find(quote => quote.text === currentText) || { source: "Unknown" };
     }
 
     retryButton.addEventListener("click", handleRetryButtonClick);
