@@ -30,6 +30,10 @@ class time(db.Model):
     ran_out=db.Column(db.String)
     on_time = db.Column(db.string)
 
+db.create_all()
+
+#I HAVE SETUP THE DATABASE I REPEAT THERE IS A DATABASE... i just need to figure out how to update the database with every typing test logged.
+
 
     
     
