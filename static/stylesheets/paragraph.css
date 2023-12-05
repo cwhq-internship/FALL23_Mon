@@ -10,11 +10,11 @@ body {
   #text-to-type {
     font-size: 18px;
     margin-bottom: 20px;
+    font-weight: bold;
   }
 
   #user-input {
     font-size: 16px;
-    font-weight: bold;
     padding: 10px;
   }
 
@@ -24,12 +24,23 @@ body {
   }
 
   textarea {
-    background-color: #cae3ec;
+    background-color: #24a9ca74;
   }
+
+  #quote-source {
+    font-style: italic;
+    margin-top: 10px;
+}
 
   #retry-btn {
     border-radius: 4px;
     background-color: #24a8ca;
-    justify-content: center;
-    font-weight: bold;
+    /*font-weight: bold;*/
+    display: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 20px;
+    margin-right: auto;
+    margin-left: auto;
   }
