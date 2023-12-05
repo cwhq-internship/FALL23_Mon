@@ -7,12 +7,14 @@
 {% block e %} active-bar {% endblock %}
 {% block content %}
 <div id="race-container">
-    <p id="countdown"></p>
     <p id="text-to-type"></p>
-    <textarea type="text" id="user-input" rows="4" cols="50" placeholder="Start typing..." disabled></textarea>
-    <p id="timer">Time: <span id="time">0</span>s</p>
-    <p id="wpm">WPM: 0</p>
-    <button id="retry-btn">Retry</button>
+    <textarea type="text" id="user-input" rows="6" cols="65" disabled></textarea>
+    <p id="time">0s</p>
+    <p id="wpm"></p>
+    <p id="countdown"></p>
+    <p id="quote-source"></p>
+
+    <button id="retry-btn" onclick="startCountdown()">Retry</button>
   </div>
   <script>
     document.addEventListener("DOMContentLoaded", function () {
@@ -21,11 +23,10 @@
         "Humans only have one ending. Ideas live forever.",// "Barbie (2023)"
         "Why should Caesar get to stomp around like a giant while the rest of us try not to get smushed under his big feet? What's so great about Caesar, hm? Brutus is just as cute as Caesar. Brutus is just as smart as Caesar, people totally like Brutus as much as they like Caesar. WE SHOULD TOTALLY JUST STAB CAESAR!",// "Mean Girls (2004)"
         "What Do You Mean 'Broke'? Like, Martha Stewart 'Broke'? Or MC Hammer 'Broke?'",// "White Chicks (2004)"
-        "So, OK, like right now, for example, the Haitians need to come to America. But some people are all, \"What about the strain on our resources?\" But it\'s like when I had this garden party for my father\'s birthday, right? I said RSVP because it was a sit-down dinner. But people came that, like, did not RSVP. So I was, like, totally buggin'. I had to haul ass to the kitchen, redistribute the food, squish in extra place settings. But, by the end of the day it was, like, the more the merrier!",
+        "So, OK, like right now, for example, the Haitians need to come to America. But some people are all, \"What about the strain on our resources?\" But it\'s like when I had this garden party for my father's birthday, right? I said RSVP because it was a sit-down dinner. But people came that, like, did not RSVP. So I was, like, totally buggin'. I had to haul ass to the kitchen, redistribute the food, squish in extra place settings. But, by the end of the day it was, like, the more the merrier!",
         "Everything is simply a shape, a form, an identifier to let others recognize me as me! But then, what am I? Is this me? My true self? My fake self? What is it that I am? Nobody understands me!",
-        "They do come back usually... But what happens if one day they leave and never come back again? Just like Daddy...",
         "Life is not a waste of time. And time is not a waste of life. So let's stop wasting time, get wasted, and have the time of our lives.",
-        "I don't want to live in a hole anymore. It makes me feel poor. We ARE poor... but we're happy. Comme ci, comme ca. Anyway, the views are better above ground. I'm seven non-fox-years old now. My father died at seven and a half. I don\'t want to live in a hole anymore, and I\'m going to do something about it."
+        "I don't want to live in a hole anymore. It makes me feel poor. We are poor, but we're happy. Comme-ci, comme-ga. Anyway, the views are better above ground. I'm seven non-fox-years old now. My father died at seven and a half. I don\'t want to live in a hole anymore, and I\'m going to do something about it."
         // Add more quotes as needed
     ];
 
@@ -35,6 +36,7 @@
     const wpmElement = document.getElementById("wpm");
     const countdownElement = document.getElementById("countdown");
     const retryButton = document.getElementById("retry-btn");
+    const quoteSourceElement = document.getElementById("quote-source");
 
     let timerInterval;
     let countdownInterval;
@@ -60,8 +62,8 @@
         const randomIndex = Math.floor(Math.random() * quotes.length);
         const randomQuote = quotes[randomIndex];
 
-        textElement.innerText = randomQuote;
-        userInput.removeAttribute("disabled");
+        textElement.innerText = randomQuote.text;
+        quoteSourceElement.innerText = "";
         userInput.value = "";
         userInput.style.color = "black";
         userInput.focus();
@@ -77,7 +79,10 @@
         clearInterval(countdownInterval);
         userInput.setAttribute("disabled", "true");
         retryButton.style.display = "block";
-        retryButton.addEventListener("click", handleRetryButtonClick);
+
+        quoteSourceElement.innerText = `Quote from: ${getCurrentQuote().source}`;
+
+        retryButton.addEventListener("click", startCountdown);
     }
 
     function updateTimer() {
@@ -85,27 +90,26 @@
         timerElement.innerText = timerValue + 1 + "s";
     }
 
-    function handleRetryButtonClick() {
-        retryButton.style.display = "none";
-
-        setTimeout(function () {
-            retryButton.style.display = "block";
-        }, 2000);
-
-        startCountdown();
+    function getCurrentQuote() {
+        const currentText = textElement.innerText.trim();
+        return quotes.find(quote => quote.text === currentText) || { source: "Unknown" };
     }
 
     userInput.addEventListener("input", function () {
         const userInputText = userInput.value.trim();
         const targetText = textElement.innerText.trim();
 
-        const words = userInputText.split(/\s+/);
-        const wordCount = words.length;
-
         if (userInputText === targetText) {
-            const wpm = calculateWPM(wordCount, parseInt(timerElement.innerText));
-            wpmElement.innerText = "WPM: " + wpm;
-            endGame();
+            userInput.style.color = "black";
+
+            const words = userInputText.split(/\s+/);
+            const wordCount = words.length;
+
+            if (userInputText === targetText) {
+                const wpm = calculateWPM(wordCount, parseInt(timerElement.innerText));
+                wpmElement.innerText = "WPM: " + wpm;
+                endGame();
+            }
         }
     });
 
@@ -115,7 +119,7 @@
         return wpm;
     }
 
-    retryButton.addEventListener("click", handleRetryButtonClick);
+    retryButton.addEventListener("click", startCountdown);
 
     startCountdown();
 });
