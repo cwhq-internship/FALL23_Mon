@@ -7,7 +7,6 @@
 {% block e %} active-bar {% endblock %}
 {% block content %}
 <div id="race-container">
-    <p id="countdown"></p>
     <p id="text-to-type"></p>
     <textarea type="text" id="user-input" rows="6" cols="65" disabled></textarea>
     <p id="time">0s</p>
@@ -60,10 +59,9 @@
         const randomQuote = quotes[randomIndex];
 
         textElement.innerText = randomQuote.text;
-        quoteSourceElement.innerText = ""; // Reset source
-        userInput.removeAttribute("disabled");
+        quoteSourceElement.innerText = "";
         userInput.value = "";
-        userInput.style.color = "black"; // Reset to default color
+        userInput.style.color = "black";
         userInput.focus();
 
         retryButton.style.display = "none";
@@ -78,7 +76,6 @@
         userInput.setAttribute("disabled", "true");
         retryButton.style.display = "block";
 
-        // Display the quote source when the game ends
         quoteSourceElement.innerText = `Quote from: ${getCurrentQuote().source}`;
 
         retryButton.addEventListener("click", startCountdown);
@@ -99,7 +96,7 @@
         const targetText = textElement.innerText.trim();
 
         if (userInputText === targetText) {
-            userInput.style.color = "black"; // Reset to default color
+            userInput.style.color = "black";
 
             const words = userInputText.split(/\s+/);
             const wordCount = words.length;
