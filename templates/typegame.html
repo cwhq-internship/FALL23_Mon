@@ -10,7 +10,7 @@
 <body>
   <div class="outer">
     <div id="bubbles-box">
-      <div id="game-container"><button id="start" type="button" onclick="startCountdown();">Click to start game!</button></div>
+      <div id="game-container"><button id="start" type="button" onclick="startCountdown()">Click to start game!</button></div>
     </div>
 
     <div class="inputs">
@@ -30,7 +30,7 @@
     <p>Game Over!</p>
     <p id="wpm">Words Per Minute: 0</p>
     <p id="final-count">Words Typed: 0</p>
-    <button id="play-again" onclick="resetGame()">Play Again</button>
+    <a href="typegame"></a><button id="play-again"><p>Play Again</p></button></a>
   </div>
 
   <script>
@@ -53,7 +53,6 @@
 
     function startCountdown() {
       let countdown = 3;
-      start.style.display = 'none';
 
       const countdownInterval = setInterval(() => {
         if (countdown > 0) {
@@ -61,38 +60,77 @@
           countdown--;
         } else {
           clearInterval(countdownInterval);
-          startGame();
+          startTime = Date.now();
+          timerInterval = setInterval(updateTimer, 1000);
+          gameActive = true;
+          updateGame();
+          gameContainer.innerHTML = ``;
         }
       }, 1000);
     }
 
-    function createBubble() {
-      if (!gameActive) return;
+const numRows = 3;
+const numCols = 8;
+const grid = Array.from({ length: numRows }, () => Array(numCols).fill(false));
 
+let availableSpots = numRows * numCols;
+
+function createBubble() {
+  if (!gameActive || availableSpots === 0) return;
+  
+  const cellSizeX = gameContainer.offsetWidth / numCols;
+  const cellSizeY = gameContainer.offsetHeight / numRows;
+
+  let bubbleCreated = false;
+
+  while (!bubbleCreated) {
+    const randomRow = Math.floor(Math.random() * numRows);
+    const randomCol = Math.floor(Math.random() * numCols);
+
+    if (!grid[randomRow][randomCol]) {
       const bubble = document.createElement('div');
       bubble.classList.add('bubble');
-      const boxWidth = gameContainer.offsetWidth - 80;
-      const boxHeight = gameContainer.offsetHeight - 80;
-      bubble.style.top = `${Math.random() * boxHeight}px`;
-      bubble.style.left = `${Math.random() * boxWidth}px`;
+
+      const top = randomRow * cellSizeY;
+      const left = randomCol * cellSizeX;
+      bubble.style.top = `${top}px`;
+      bubble.style.left = `${left}px`;
+
       const randomWord = words[Math.floor(Math.random() * words.length)];
       bubble.innerText = randomWord;
 
-      bubble.addEventListener('click', () => {
-        bubble.style.display = 'none';
-        wordsTyped++;
-        document.getElementById('word-count').textContent = wordsTyped;
-        typingBar.value = '';
+  typingBar.addEventListener('input', (event) => {
+      const inputValue = event.target.value.toLowerCase();
+      const bubbles = document.querySelectorAll('.bubble');
+
+      bubbles.forEach((bubble) => {
+        const bubbleText = bubble.innerText.toLowerCase();
+
+        if (inputValue === bubbleText) {
+          bubble.style.display = 'none';
+          wordsTyped++;
+          document.getElementById('word-count').textContent = wordsTyped;
+          typingBar.value = '';
+          grid[randomRow][randomCol] = false; // Free up the cell when bubble is popped
+          availableSpots++; // Increase available spots
+        }
       });
+    });
+
 
       gameContainer.appendChild(bubble);
+      grid[randomRow][randomCol] = true; // Mark the cell as occupied
+      availableSpots--; // Decrease available spots
+      bubbleCreated = true;
     }
+  }
+}
 
     function updateGame() {
       createBubble();
-      setTimeout(updateGame, 2000);
+      setTimeout(updateGame, 1500);
     }
-
+    
     function updateTimer() {
       const elapsedSeconds = Math.floor((Date.now() - startTime) / 1000);
       const remainingSeconds = Math.max(timerSeconds - elapsedSeconds, 0);
@@ -133,21 +171,7 @@
       updateGame();
     }
 
-    typingBar.addEventListener('input', (event) => {
-      const inputValue = event.target.value.toLowerCase();
-      const bubbles = document.querySelectorAll('.bubble');
 
-      bubbles.forEach((bubble) => {
-        const bubbleText = bubble.innerText.toLowerCase();
-
-        if (inputValue === bubbleText) {
-          bubble.style.display = 'none';
-          wordsTyped++;
-          document.getElementById('word-count').textContent = wordsTyped;
-          typingBar.value = '';
-        }
-      });
-    });
   
 
 

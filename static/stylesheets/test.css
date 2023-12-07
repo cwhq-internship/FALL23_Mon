@@ -61,7 +61,7 @@ textarea {
 }
 
 .inputs {
-  width: 16%;
+  width: fit-content;
   justify-content: center;
   margin-left: auto;
   margin-right: auto;
@@ -211,7 +211,7 @@ background-color: white;
 #underline {
   display: flex;
   justify-content: center;
-  width: 30vh;
+  width: 42vh;
   background-color: #000;
   height: 4px;
   margin-top: 2.44%;

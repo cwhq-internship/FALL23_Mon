@@ -60,7 +60,17 @@
   </div>
 </div>
 
-<script src="/static/javascript/testeasy.js">
- 
-</script>
+<script>
+  function loadScript(url)
+  {    
+      var head = document.getElementsByTagName('head')[0];
+      var script = document.createElement('script');
+      script.type = 'text/javascript';
+      script.src = url;
+      head.appendChild(script);
+  }
+  
+  loadScript("/static/javascript/testeasy.js");
+  loadScript("/static/javascript/maintest.js");
+  </script>
 {% endblock %}

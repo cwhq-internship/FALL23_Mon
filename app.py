@@ -6,7 +6,7 @@ from db import create_app, db
 from blueprints.errors import errors_bp
 from blueprints.api import api_bp
 from seed import create_data
-from words import create_sentence, easy_words, hard_words, medium_words
+from words import create_sentence, easy_words, hard_words, medium_words, wordswords
 import json
 
 ### IMPORTANT ###
@@ -73,7 +73,7 @@ def testmedium():
 
 @app.route('/testhard')
 def testhard():
-    word_list = hard_words()
+    word_list = wordswords()
     data = json.dumps(word_list)
     return render_template('testhard.html', data=data)
 
