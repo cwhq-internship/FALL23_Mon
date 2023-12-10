@@ -39,6 +39,10 @@
         {% block styles %}
         {% endblock %}
     </head>
+    <div class="background-container">
+      <div class="background-animation">
+      </div>
+    <div> 
       <!-- my crappy lil navbar, copy pasted from navbar website and modified -->
       <nav class="navbar navbar-expand-lg navbar-light" id="navbar" style="background-color: transparent;">
         <a class="navbar-brand"><button class="navbar-brand navbar-toggler order-2" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -78,6 +82,8 @@
           </ul>
         </div>
       </nav>
+      <div id="includedContent"></div>
+      
       <body id="content"></body>
         <!-- Displays the main content of a template -->
         {% block content %}
