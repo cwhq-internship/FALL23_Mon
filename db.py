@@ -7,6 +7,15 @@ API_SERVICE_NAME = 'sheets'
 API_VERSION = 'v4'
 SCOPES = ['https://www.googleapis.com/auth/spreadsheets']
 service = Create_Service(API_SERVICE_NAME, API_VERSION, SCOPES)
+sheets_file1 = service.spreadsheets().create().execute()
+
+sheet_body = {
+    'properties': {
+        'title' : 'Difficulty',
+        'locale': 'en_US',
+        'timeZone': 'America/Los_Angeles',
+        'autoRecalc': 'HOUR'
+    }
 
 db = SQLAlchemy()
 db_name = "database.db"
