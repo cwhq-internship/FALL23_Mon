@@ -1,8 +1,16 @@
 from flask_sqlalchemy import SQLAlchemy
 from flask import Flask
+from Google import Create_service
+# I'm so sorry for what is going to proceed this josh
+
+API_SERVICE_NAME = 'sheets'
+API_VERSION = 'v4'
+SCOPES = ['https://www.googleapis.com/auth/spreadsheets']
+service = Create_Service(API_SERVICE_NAME, API_VERSION, SCOPES)
 
 db = SQLAlchemy()
 db_name = "database.db"
+
 
 def create_app():
     app = Flask(__name__)
