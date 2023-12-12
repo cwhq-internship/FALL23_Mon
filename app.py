@@ -7,6 +7,7 @@ from blueprints.errors import errors_bp
 from blueprints.api import api_bp
 from seed import create_data
 from words import create_sentence, easy_words, hard_words, medium_words, wordswords
+from arrays import easywords, mediumwords, hardwords
 import json
 
 ### IMPORTANT ###
@@ -67,13 +68,13 @@ def testeasy():
 
 @app.route('/testmedium')
 def testmedium():
-    word_list = medium_words()
+    word_list = mediumwords()
     data = json.dumps(word_list)
     return render_template('testmedium.html',data=data)
 
 @app.route('/testhard')
 def testhard():
-    word_list = wordswords()
+    word_list = hard_words()
     data = json.dumps(word_list)
     return render_template('testhard.html', data=data)
 
