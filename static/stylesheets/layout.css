@@ -73,7 +73,6 @@ input:checked + .slider:before {
 
 
 h1 {
-  font-family: "Suez One", serif;
   text-align: center;
   color: darkslategray;
 }
@@ -237,6 +236,10 @@ body {
   #retry {
     font-size: 17px;
   }
+}
+
+.ml-auto {
+  margin-right: 3%;
 }
 
 .background-container {

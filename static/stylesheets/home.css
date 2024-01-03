@@ -11,14 +11,19 @@
 
 .instruction {
   font-size: 1.3vw;
-  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
-  margin: 10px;
+  margin: 12px;
 }
 
 .biginstruc {
   font-size: 2.5rem;
   margin-top: 15px;
 }
+
+.biginstruc2 {
+  font-size: 2.5rem;
+  text-align: center;
+}
+
 .top {
   background-color: transparent;
   height: 37vh;
@@ -177,7 +182,7 @@ button {
   border-style: solid;
   border-color: #4a8ca2;
   margin: 10px;
-  margin-top: 0px;
+  margin-top: -2px;
 }
 
 .testlist {
@@ -194,10 +199,17 @@ button {
   height: 30%;
   background-color: #cae3ec;
   border-radius: 15px;
-  margin: 5px;
+  margin-top: 10px;
   margin-right: 15px;
 }
 
+.testrowtop {
+  height: 30%;
+  background-color: #cae3ec;
+  border-radius: 15px;
+  margin-top: 0px;
+  margin-right: 15px;
+}
 .bonuspara {
   height: 40%;
   background-color: #cae3ec;
@@ -209,10 +221,23 @@ h2 {
   font-size: 1.8rem;
 }
 
+.bonuspoptop {
+  height: 38%;
+  background-color: #cae3ec;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 0px;
+  border: 15px;
+  display: flex;
+  border-radius: 15px;
+}
+
 .bonuspop {
   height: 38%;
   background-color: #cae3ec;
-  margin: 4px;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 10px;
   border: 15px;
   display: flex;
   border-radius: 15px;
@@ -220,7 +245,7 @@ h2 {
 
 .bonusdesc{
   margin: 10px;
-
+  font-size: 1vw;
 }
 
 .bonusl {
