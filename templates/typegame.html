@@ -55,19 +55,20 @@
       let countdown = 3;
 
       const countdownInterval = setInterval(() => {
-        if (countdown > 0) {
-          gameContainer.innerHTML = `<h1>${countdown}</h1>`;
-          countdown--;
-        } else {
-          clearInterval(countdownInterval);
-          startTime = Date.now();
-          timerInterval = setInterval(updateTimer, 1000);
-          gameActive = true;
-          updateGame();
-          gameContainer.innerHTML = ``;
-        }
-      }, 1000);
+    if (countdown > 0) {
+      gameContainer.innerHTML = `<h1>${countdown}</h1>`;
+      countdown--;
+    } else {
+      clearInterval(countdownInterval);
+      startTime = Date.now();
+      timerInterval = setInterval(updateTimer, 1000);
+      gameActive = true;
+      updateGame();
+      startGame();  
+      gameContainer.innerHTML = ``;
     }
+  }, 1000);
+}
 
 const numRows = 3;
 const numCols = 8;
