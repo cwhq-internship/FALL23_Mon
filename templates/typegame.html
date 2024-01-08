@@ -55,20 +55,19 @@
       let countdown = 3;
 
       const countdownInterval = setInterval(() => {
-    if (countdown > 0) {
-      gameContainer.innerHTML = `<h1>${countdown}</h1>`;
-      countdown--;
-    } else {
-      clearInterval(countdownInterval);
-      startTime = Date.now();
-      timerInterval = setInterval(updateTimer, 1000);
-      gameActive = true;
-      updateGame();
-      startGame();  
-      gameContainer.innerHTML = ``;
+        if (countdown > 0) {
+          gameContainer.innerHTML = `<h1>${countdown}</h1>`;
+          countdown--;
+        } else {
+          clearInterval(countdownInterval);
+          startTime = Date.now();
+          timerInterval = setInterval(updateTimer, 1000);
+          gameActive = true;
+          updateGame();
+          gameContainer.innerHTML = ``;
+        }
+      }, 1000);
     }
-  }, 1000);
-}
 
 const numRows = 3;
 const numCols = 8;
@@ -100,7 +99,7 @@ function createBubble() {
       const randomWord = words[Math.floor(Math.random() * words.length)];
       bubble.innerText = randomWord;
 
-  typingBar.addEventListener('input', handleInput); (event) => {
+  typingBar.addEventListener('input', (event) => {
       const inputValue = event.target.value.toLowerCase();
       const bubbles = document.querySelectorAll('.bubble');
 
@@ -112,50 +111,44 @@ function createBubble() {
           wordsTyped++;
           document.getElementById('word-count').textContent = wordsTyped;
           typingBar.value = '';
-          grid[randomRow][randomCol] = false; 
-          availableSpots++; 
+          grid[randomRow][randomCol] = false; // Free up the cell when bubble is popped
+          availableSpots++; // Increase available spots
         }
       });
-    };
+    });
+
 
       gameContainer.appendChild(bubble);
-      grid[randomRow][randomCol] = true; 
-      availableSpots--; 
+      grid[randomRow][randomCol] = true; // Mark the cell as occupied
+      availableSpots--; // Decrease available spots
       bubbleCreated = true;
     }
   }
 }
 
-function handleInput(event) {
-  if (!gameActive) return;
-
-  const inputValue = event.target.value.toLowerCase();
-  const bubbles = document.querySelectorAll('.bubble');
-
-  bubbles.forEach((bubble) => {
-    const bubbleText = bubble.innerText.toLowerCase();
-
-    if (inputValue === bubbleText) {
-      bubble.style.display = 'none';
-      wordsTyped++;
-      document.getElementById('word-count').textContent = wordsTyped;
-      typingBar.value = '';
-      grid[randomRow][randomCol] = false; 
-      availableSpots++; 
+    function updateGame() {
+      createBubble();
+      setTimeout(updateGame, 1500);
     }
-  });
-}
+    
+    function updateTimer() {
+      const elapsedSeconds = Math.floor((Date.now() - startTime) / 1000);
+      const remainingSeconds = Math.max(timerSeconds - elapsedSeconds, 0);
+      timerElement.textContent = `${remainingSeconds}s`;
 
-function endGame() {
-  const wordsPerMinute = Math.round((wordsTyped / 30) * 60);
-  wpmElement.textContent = `Words Per Minute: ${wordsPerMinute}`;
-  finalCount.textContent = `Words Typed: ${wordsTyped}`;
-  gameOverElement.style.display = 'block';
-  gameActive = false;
-  }
+      if (remainingSeconds === 0) {
+        clearInterval(timerInterval);
+        endGame();
+      }
+    }
 
-  typingBar.removeEventListener('input', handleInput);
-  clearInterval(timerInterval); 
+    function endGame() {
+      const wordsPerMinute = Math.round((wordsTyped / 30) * 60);
+      wpmElement.textContent = `Words Per Minute: ${wordsPerMinute}`;
+      finalCount.textContent = `Words Typed: ${wordsTyped}`;
+      gameOverElement.style.display = 'block';
+      gameActive = false;
+    }
 
     function resetGame() {
       timerSeconds = 30;
