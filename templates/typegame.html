@@ -111,8 +111,8 @@ function createBubble() {
           wordsTyped++;
           document.getElementById('word-count').textContent = wordsTyped;
           typingBar.value = '';
-          grid[randomRow][randomCol] = false; // Free up the cell when bubble is popped
-          availableSpots++; // Increase available spots
+          grid[randomRow][randomCol] = false; 
+          availableSpots++;
         }
       });
     });
