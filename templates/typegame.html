@@ -165,8 +165,8 @@ function updateGame() {
       typingBar.addEventListener('input', handleInput);
 
       function handleInput(event) {
-  const inputValue = event.target.value.toLowerCase();
-  const bubbles = document.querySelectorAll('.bubble');
+       const inputValue = event.target.value.toLowerCase();
+      const bubbles = document.querySelectorAll('.bubble');
 
   bubbles.forEach((bubble) => {
     const bubbleText = bubble.innerText.toLowerCase();
