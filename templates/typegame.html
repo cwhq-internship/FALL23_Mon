@@ -52,22 +52,24 @@
     let gameActive = false;
 
     function startCountdown() {
-      let countdown = 3;
+  let countdown = 3;
 
-      const countdownInterval = setInterval(() => {
-        if (countdown > 0) {
-          gameContainer.innerHTML = `<h1>${countdown}</h1>`;
-          countdown--;
-        } else {
-          clearInterval(countdownInterval);
-          startTime = Date.now();
-          timerInterval = setInterval(updateTimer, 1000);
-          gameActive = true;
-          updateGame();
-          gameContainer.innerHTML = ``;
-        }
-      }, 1000);
+  const countdownInterval = setInterval(() => {
+    if (countdown > 0 && gameActive) {
+      gameContainer.innerHTML = `<h1>${countdown}</h1>`;
+      countdown--;
+    } else {
+      clearInterval(countdownInterval);
+
+      if (gameActive) {
+        startTime = Date.now();
+        timerInterval = setInterval(updateTimer, 1000);
+        updateGame();
+        gameContainer.innerHTML = ``;
+      }
     }
+  }, 1000);
+}
 
 const numRows = 3;
 const numCols = 8;
@@ -129,10 +131,15 @@ function createBubble() {
   }
 }
 
-    function updateGame() {
-      createBubble();
-      setTimeout(updateGame, 1500);
-    }
+function updateGame() {
+  if (!gameActive) {
+    return;
+  }
+
+  createBubble();
+  setTimeout(updateGame, 1500);
+}
+
     
     function updateTimer() {
       const elapsedSeconds = Math.floor((Date.now() - startTime) / 1000);
