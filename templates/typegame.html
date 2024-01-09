@@ -143,16 +143,16 @@ function updateGame() {
 
 
     
-    function updateTimer() {
-      const elapsedSeconds = Math.floor((Date.now() - startTime) / 1000);
-      const remainingSeconds = Math.max(timerSeconds - elapsedSeconds, 0);
-      timerElement.textContent = `${remainingSeconds}s`;
+  function updateTimer() {
+   const elapsedSeconds = Math.floor((Date.now() - startTime) / 1000);
+    const remainingSeconds = Math.max(timerSeconds - elapsedSeconds, 0);
+   timerElement.textContent = `${remainingSeconds}s`;
 
-      if (remainingSeconds === 0) {
-        clearInterval(timerInterval);
-        endGame();
-      }
+   if (remainingSeconds === 0) {
+     clearInterval(timerInterval);
+      endGame();
     }
+  }
 
     function endGame() {
       const wordsPerMinute = Math.round((wordsTyped / 30) * 60);
