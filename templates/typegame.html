@@ -65,11 +65,12 @@
         startTime = Date.now();
         timerInterval = setInterval(updateTimer, 1000);
         updateGame();
-        gameContainer.innerHTML = ``;
+        gameContainer.innerHTML = '';
       }
     }
   }, 1000);
 }
+
 
 const numRows = 3;
 const numCols = 8;
@@ -139,6 +140,7 @@ function updateGame() {
   createBubble();
   setTimeout(updateGame, 1500);
 }
+
 
     
     function updateTimer() {
