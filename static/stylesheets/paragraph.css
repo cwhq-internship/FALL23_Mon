@@ -49,10 +49,40 @@
     margin-left: auto;
   }*/
 
-  body {
-    font-family: Arial, sans-serif;
+body {
+    font-family: 'Arial', sans-serif;
     text-align: center;
-    margin: 50px;
+    margin: 20px;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+#game-container {
+    display: flex;
+}
+
+#quote-container {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+#widget {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 20px;
+}
+
+input {
+    margin-top: 10px;
+    padding: 5px;
+    font-size: 16px;
+}
+
+p {
+    margin: 5px 0;
 }
 
 #quote-source {
