@@ -30,7 +30,7 @@
     <p>Game Over!</p>
     <p id="wpm">Words Per Minute: 0</p>
     <p id="final-count">Words Typed: 0</p>
-    <a href="typegame"></a><button id="play-again"><p>Play Again</p></button></a>
+    <a href="typegame"></a><button id="playagain"><p>Play Again</p></button></a>
   </div>
 
   <script>
@@ -42,32 +42,35 @@
     const wpmElement = document.getElementById('wpm');
     const finalCount = document.getElementById('final-count');
     const wordCountElement = document.getElementById('word-count');
-    const playAgainButton = document.getElementById('play-again');
+    const playAgain = document.getElementById('playagain');
     const words = ['magic', 'spell', 'wizard', 'fantasy', 'enchant', 'dragon', 'castle', 'adventure', 'sorcerer', 'potions', 'mythical', 'alchemy', 'creatures', 'realm', 'mystical', 'cursed', 'quest', 'phoenix', 'mage', 'medieval', 'scroll', 'fairy', 'unicorn', 'mermaid', 'goblin', 'warlock', 'amulet', 'arrow', 'ancient', 'awaken', 'battle', 'beast', 'bewitch', 'bishop', 'brave', 'cauldron', 'centaur', 'crown', 'heroic', 'lock', 'lore', 'mirror', 'skull', 'spear', 'storm', 'sword', 'throne', 'wand'];
 
-    let timerSeconds = 30;
+    let timerSeconds = 45;
     let timerInterval;
     let wordsTyped = 0;
     let startTime;
     let gameActive = false;
 
     function startCountdown() {
-      let countdown = 3;
+  let countdown = 3;
 
-      const countdownInterval = setInterval(() => {
-        if (countdown > 0) {
-          gameContainer.innerHTML = `<h1>${countdown}</h1>`;
-          countdown--;
-        } else {
-          clearInterval(countdownInterval);
-          startTime = Date.now();
-          timerInterval = setInterval(updateTimer, 1000);
-          gameActive = true;
-          updateGame();
-          gameContainer.innerHTML = ``;
-        }
-      }, 1000);
+  const countdownInterval = setInterval(() => {
+    if (countdown > 0 && gameActive) {
+      gameContainer.innerHTML = `<h1>${countdown}</h1>`;
+      countdown--;
+    } else {
+      clearInterval(countdownInterval);
+
+      if (gameActive) {
+        startTime = Date.now();
+        timerInterval = setInterval(updateTimer, 1000);
+        updateGame();
+        gameContainer.innerHTML = '';
+      }
     }
+  }, 1000);
+}
+
 
 const numRows = 3;
 const numCols = 8;
@@ -100,22 +103,25 @@ function createBubble() {
       bubble.innerText = randomWord;
 
   typingBar.addEventListener('input', (event) => {
-      const inputValue = event.target.value.toLowerCase();
-      const bubbles = document.querySelectorAll('.bubble');
+    if (!gameActive) {
+    return; 
+  }
+  const inputValue = event.target.value.toLowerCase();
+  const bubbles = document.querySelectorAll('.bubble');
 
-      bubbles.forEach((bubble) => {
-        const bubbleText = bubble.innerText.toLowerCase();
+  bubbles.forEach((bubble) => {
+    const bubbleText = bubble.innerText.toLowerCase();
 
-        if (inputValue === bubbleText) {
-          bubble.style.display = 'none';
-          wordsTyped++;
-          document.getElementById('word-count').textContent = wordsTyped;
-          typingBar.value = '';
-          grid[randomRow][randomCol] = false; // Free up the cell when bubble is popped
-          availableSpots++; // Increase available spots
-        }
-      });
-    });
+    if (inputValue === bubbleText) {
+      bubble.style.display = 'none';
+      wordsTyped++;
+      document.getElementById('word-count').textContent = wordsTyped;
+      typingBar.value = '';
+      grid[randomRow][randomCol] = false; 
+      availableSpots++;
+    }
+  });
+});
 
 
       gameContainer.appendChild(bubble);
@@ -126,21 +132,27 @@ function createBubble() {
   }
 }
 
-    function updateGame() {
-      createBubble();
-      setTimeout(updateGame, 1500);
-    }
-    
-    function updateTimer() {
-      const elapsedSeconds = Math.floor((Date.now() - startTime) / 1000);
-      const remainingSeconds = Math.max(timerSeconds - elapsedSeconds, 0);
-      timerElement.textContent = `${remainingSeconds}s`;
+function updateGame() {
+  if (!gameActive) {
+    return;
+  }
 
-      if (remainingSeconds === 0) {
-        clearInterval(timerInterval);
-        endGame();
-      }
+  createBubble();
+  setTimeout(updateGame, 1500);
+}
+
+
+    
+  function updateTimer() {
+   const elapsedSeconds = Math.floor((Date.now() - startTime) / 1000);
+    const remainingSeconds = Math.max(timerSeconds - elapsedSeconds, 0);
+   timerElement.textContent = `${remainingSeconds}s`;
+
+   if (remainingSeconds === 0) {
+     clearInterval(timerInterval);
+      endGame();
     }
+  }
 
     function endGame() {
       const wordsPerMinute = Math.round((wordsTyped / 30) * 60);
@@ -149,6 +161,27 @@ function createBubble() {
       gameOverElement.style.display = 'block';
       gameActive = false;
     }
+
+      typingBar.addEventListener('input', handleInput);
+
+      function handleInput(event) {
+       const inputValue = event.target.value.toLowerCase();
+      const bubbles = document.querySelectorAll('.bubble');
+
+  bubbles.forEach((bubble) => {
+    const bubbleText = bubble.innerText.toLowerCase();
+
+    if (inputValue === bubbleText) {
+      bubble.style.display = 'none';
+      wordsTyped++;
+      document.getElementById('word-count').textContent = wordsTyped;
+      typingBar.value = '';
+      grid[randomRow][randomCol] = false; 
+      availableSpots++;
+    }
+  });
+}
+
 
     function resetGame() {
       timerSeconds = 30;
@@ -169,6 +202,8 @@ function createBubble() {
       startTime = Date.now();
       timerInterval = setInterval(updateTimer, 1000);
       updateGame();
+
+      playAgain.addEventListener('click', startGame);
     }
 
 
