@@ -162,6 +162,27 @@ function updateGame() {
       gameActive = false;
     }
 
+      typingBar.addEventListener('input', handleInput);
+
+      function handleInput(event) {
+  const inputValue = event.target.value.toLowerCase();
+  const bubbles = document.querySelectorAll('.bubble');
+
+  bubbles.forEach((bubble) => {
+    const bubbleText = bubble.innerText.toLowerCase();
+
+    if (inputValue === bubbleText) {
+      bubble.style.display = 'none';
+      wordsTyped++;
+      document.getElementById('word-count').textContent = wordsTyped;
+      typingBar.value = '';
+      grid[randomRow][randomCol] = false; 
+      availableSpots++;
+    }
+  });
+}
+
+
     function resetGame() {
       timerSeconds = 30;
       wordsTyped = 0;
