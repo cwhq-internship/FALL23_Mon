@@ -169,23 +169,24 @@ function updateGame() {
 
   function createBubbleAfterInterval() {
     createBubble();
-    setTimeout(createBubbleAfterInterval, 1500);
-  }
+    bubbleCounter++;
 
-  createBubbleAfterInterval();
+    if (bubbleCounter < 45) {
+      setTimeout(createBubbleAfterInterval, 1500);
+    } else {
+      clearInterval(timerInterval);
+      setTimeout(() => {
+        endGame();
+      }, 1500);
+    }
+  }
 
   let bubbleCounter = 0;
   timerInterval = setInterval(() => {
     if (gameActive && bubbleCounter < 45) {
-      createBubble();
-      bubbleCounter++;
+      createBubbleAfterInterval();
     }
   }, 1000);
-
-  setTimeout(() => {
-    clearInterval(timerInterval);
-    endGame();
-  }, timerSeconds * 1000);
 }
 
 
