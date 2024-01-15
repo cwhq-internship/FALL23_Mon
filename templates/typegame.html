@@ -200,13 +200,34 @@ function updateGame() {
       gameOverElement.style.display = 'none';
     }
 
-    function startGame() {
-      startTime = Date.now();
-      timerInterval = setInterval(updateTimer, 1000);
-      updateGame();
+    function startCountdown() {
+  let countdown = 3;
 
-      playAgain.addEventListener('click', startGame);
+  const countdownInterval = setInterval(() => {
+    if (countdown > 0 && gameActive) {
+      gameContainer.innerHTML = `<h1>${countdown}</h1>`;
+      countdown--;
+    } else {
+      clearInterval(countdownInterval);
+
+      if (gameActive) {
+        startTime = Date.now();
+        timerInterval = setInterval(updateTimer, 1000);
+        updateGame();
+        gameContainer.innerHTML = '';
+      }
     }
+  }, 1000);
+}
+
+function startGame() {
+  if (!gameActive) {
+    gameActive = true;
+    startCountdown();
+  }
+}
+
+start.addEventListener('click', startGame);
 
 
   
