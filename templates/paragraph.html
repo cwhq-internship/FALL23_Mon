@@ -8,13 +8,13 @@
 {% block content %}
 <div id="race-container">
     <p id="text-to-type"></p>
-    <textarea type="text" id="user-input" rows="6" cols="45" disabled></textarea>
-    <p id="time">0s</p>
+    <textarea type="text" id="user-input" rows="6" cols="55" disabled></textarea>
     <p id="countdown"></p>
     <p id="quote-source"></p>
+    <p id="accuracy"></p>
     <p id="wpm"></p>
-    <p id="warning-message" style="color: red; display: none;">Warning: Please click the retry button only once to avoid breaking the game.</p>
-    <button id="retry-btn" onclick="startCountdown()">Retry</button>
+    <p id="warning-message" style="color: red; display: none;">Warning: Please click the button only once to avoid breaking the game.</p>
+    <button id="retry-btn" onclick="startCountdown()">Keep typing?</button>
     <audio id="error-sound" src="/static/computer_error_sound_effect.mp3"></audio>
   </div>
   <script>
@@ -34,40 +34,24 @@
 
     const textElement = document.getElementById("text-to-type");
     const userInput = document.getElementById("user-input");
-    const timerElement = document.getElementById("time");
-    const wpmElement = document.getElementById("wpm");
-    const countdownElement = document.getElementById("countdown");
     const retryButton = document.getElementById("retry-btn");
     const quoteSourceElement = document.getElementById("quote-source");
-    const typedWordElement = document.getElementById("typed-word");
     const warningMessage = document.getElementById("warning-message");
+    const wpmElement = document.getElementById("wpm");
+    const accuracyElement = document.getElementById("accuracy");
+    const errorSound = new Audio("error.mp3");
 
-    let timerInterval;
-    let countdownInterval;
+    let currentQuoteIndex = -1;
     let startTime;
-
-    function startCountdown() {
-        countdownElement.innerText = "3";
-        let countdown = 3;
-
-        countdownInterval = setInterval(function () {
-            countdown--;
-
-            if (countdown <= 0) {
-                clearInterval(countdownInterval);
-                countdownElement.style.display = "none";
-                startGame();
-            } else {
-                countdownElement.innerText = countdown;
-            }
-        }, 1000);
-    }
+    let wordCount;
+    let correctCharacters = 0;
+    let totalCharacters = 0;
 
     function startGame() {
-        const randomIndex = Math.floor(Math.random() * quotes.length);
-        const randomQuote = quotes[randomIndex];
+        currentQuoteIndex = (currentQuoteIndex + 1) % quotes.length;
+        const currentQuote = quotes[currentQuoteIndex];
 
-        textElement.innerText = randomQuote.text;
+        textElement.innerText = currentQuote.text;
         quoteSourceElement.innerText = "";
         userInput.removeAttribute("disabled");
         userInput.value = "";
@@ -76,15 +60,15 @@
 
         retryButton.style.display = "none";
         warningMessage.style.display = "none";
+        wpmElement.innerText = "";
+        accuracyElement.innerText = "";
         startTime = new Date().getTime();
-        timerInterval = setInterval(function () {
-            updateTimer();
-        }, 1000);
+        wordCount = 0;
+        correctCharacters = 0;
+        totalCharacters = currentQuote.text.replace(/\s+/g, "").length;
     }
 
     function endGame() {
-        clearInterval(timerInterval);
-        clearInterval(countdownInterval);
         userInput.setAttribute("disabled", "true");
         retryButton.style.display = "block";
         warningMessage.style.display = "block";
@@ -94,85 +78,65 @@
         const elapsedTime = (new Date().getTime() - startTime) / 1000;
         const minutes = Math.floor(elapsedTime / 60);
         const seconds = Math.round(elapsedTime % 60);
-        timerElement.innerText = `${minutes}m ${seconds}s`;
 
-        const words = userInput.value.trim().split(/\s+/);
-        const wordCount = words.length;
+        if (wordCount > 0) {
+            const wpm = calculateWPM(wordCount, elapsedTime);
+            wpmElement.innerText = `WPM: ${wpm}`;
+        }
 
-        const wpm = calculateWPM(wordCount, elapsedTime);
-        wpmElement.innerText = "WPM: " + wpm;
-
-        retryButton.removeEventListener("click", startCountdown);
-        retryButton.addEventListener("click", function () {
-            warningMessage.style.display = "none";
-            startCountdown();
-        });
-    }
-
-    function updateTimer() {
-        const elapsedTime = (new Date().getTime() - startTime) / 1000;
-        const minutes = Math.floor(elapsedTime / 60);
-        const seconds = Math.round(elapsedTime % 60);
-        timerElement.innerText = `${minutes}m ${seconds}s`;
+        if (totalCharacters > 0) {
+            const accuracy = calculateAccuracy(correctCharacters, totalCharacters);
+            accuracyElement.innerText = `Accuracy: ${accuracy.toFixed(2)}%`;
+        }
     }
 
     function getCurrentQuote() {
-        const currentText = textElement.innerText.trim();
-        return quotes.find(quote => quote.text === currentText) || { source: "Unknown" };
+        return quotes[currentQuoteIndex] || { source: "Unknown" };
     }
 
     userInput.addEventListener("input", function () {
-    const userInputText = userInput.value.trim();
-    const targetText = textElement.innerText.trim();
+        const userInputText = userInput.value;
+        const targetText = textElement.innerText;
 
-    let isMistake = false;
+        let isMistake = false;
 
-    for (let i = 0; i < userInputText.length; i++) {
-        if (userInputText[i] !== targetText[i]) {
-            isMistake = true;
-            break;
-        }
-    }
-
-    if (isMistake) {
-        userInput.classList.add("incorrect");
-
-        const errorSound = document.getElementById("error-sound");
-        if (errorSound) {
-            errorSound.play();
-        }
-    } else {
-        userInput.classList.remove("incorrect");
-    }
-
-    typedWordElement.innerHTML = compareText(userInputText, targetText);
-
-    if (userInputText === targetText) {
-        endGame();
-    }
-});
-
-    function compareText(typedWord, displayedWord) {
-        let comparedWord = '';
-        for (let i = 0; i < displayedWord.length; i++) {
-            if (typedWord[i] === displayedWord[i]) {
-                comparedWord += typedWord[i];
+        for (let i = 0; i < userInputText.length; i++) {
+            if (userInputText[i] !== targetText[i]) {
+                isMistake = true;
+                break;
             } else {
-                comparedWord += `<span style="color: red;">${typedWord[i] || '_'}</span>`;
+                correctCharacters++;
             }
         }
-        return comparedWord;
-    }
 
-    function calculateWPM(words, time) {
-        const minutes = time / 60;
-        const wpm = Math.round(words / minutes);
-        return wpm;
-    }
+        if (isMistake) {
+            userInput.classList.add("incorrect");
+            const errorSound = document.getElementById("error-sound");
+            if (errorSound) {
+                errorSound.play();
+            }
+        }
 
-    retryButton.addEventListener("click", startCountdown);
+        if (userInputText === targetText) {
+            const words = userInputText.split(/\s+/).filter(word => word !== "");
+            wordCount += words.length;
+            endGame();
+        }
+    });
 
-    startCountdown();
+    retryButton.addEventListener("click", startGame);
+
+    startGame();
 });
+
+function calculateWPM(words, time) {
+    const minutes = time / 60;
+    const wpm = Math.round(words / minutes);
+    return wpm;
+}
+
+function calculateAccuracy(correct, total) {
+    return ((correct / total) * 100);
+}
 </script>
 {% endblock %}
