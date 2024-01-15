@@ -167,6 +167,8 @@ function updateGame() {
     return;
   }
 
+  let bubbleCounter = 0;
+
   function createBubbleAfterInterval() {
     createBubble();
     bubbleCounter++;
@@ -181,13 +183,13 @@ function updateGame() {
     }
   }
 
-  let bubbleCounter = 0;
   timerInterval = setInterval(() => {
     if (gameActive && bubbleCounter < 45) {
       createBubbleAfterInterval();
     }
   }, 1000);
 }
+
 
 
 
