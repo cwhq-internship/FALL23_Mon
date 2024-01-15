@@ -54,20 +54,29 @@
 
 
     const startCountdownInterval = setInterval(() => {
-    if (countdown > 0 && gameActive) {
-      gameContainer.innerHTML = `<h1>${countdown}</h1>`;
-      countdown--;
-    } else {
-      clearInterval(countdownInterval);
+    let countdown = 3;
 
-      if (gameActive) {
-        startTime = Date.now();
-        timerInterval = setInterval(updateTimer, 1000);
-        updateGame();
-        gameContainer.innerHTML = '';
-      }
-    }
-  }, 1000);
+    const countdownInterval = setInterval(() => {
+        if (countdown > 0 && gameActive) {
+            gameContainer.innerHTML = `<h1>${countdown}</h1>`;
+            countdown--;
+        } else {
+            clearInterval(countdownInterval);
+
+            if (gameActive) {
+                startTime = Date.now();
+                timerInterval = setInterval(updateTimer, 1000);
+                updateGame();
+                gameContainer.innerHTML = '';
+            }
+        }
+    }, 1000);
+}, 1000);
+
+start.addEventListener('click', function() {
+    resetGame();
+    startGame();
+});
 
 
 
@@ -78,10 +87,6 @@ const grid = Array.from({ length: numRows }, () => Array(numCols).fill(false));
 
 let availableSpots = numRows * numCols;
 
-start.addEventListener('click', function() {
-  resetGame();
-  startGame();
-});
 
 playAgain.addEventListener('click', resetGame);
 
@@ -89,7 +94,7 @@ function startCountdown() {
   let countdown = 3;
 
   const countdownInterval = setInterval(() => {
-    let countdown = 3;  // Add this line
+    let countdown = 3;  
 
     if (countdown > 0 && gameActive) {
         gameContainer.innerHTML = `<h1>${countdown}</h1>`;
