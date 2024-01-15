@@ -253,6 +253,9 @@ function resetGame() {
   const bubbles = document.querySelectorAll('.bubble');
   bubbles.forEach((bubble) => bubble.remove());
 
+  grid.forEach((row) => row.fill(false));
+  availableSpots = numRows * numCols;
+
 
   startCountdown();  
   gameOverElement.style.display = 'none';
