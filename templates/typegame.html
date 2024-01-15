@@ -8,68 +8,76 @@
 
 {% block content %}
 <body>
-<div class="outer">
-    <div id="bubbles-box">
-      <div id="game-container"><button id="start" type="button" onclick="startCountdown()">Click to start game!</button></div>
-    </div>
-
-    <div class="inputs">
-      <div class="rowboard">
-        <div class="scoreboard">
-          <div class="scorelabel"><p>Score:</p> <span id="word-count" class="h3 text-center">0</span></div>
-        </div>
-        <div class="scoreboard">
-          <div class="scorelabel"><p>Time Left:</p><span id="timer">30</span></div>
+    <div class="outer">
+      <div id="bubbles-box">
+        <div id="game-container">
+          <button id="start" type="button" onclick="startCountdown()">Click to start game!</button>
         </div>
       </div>
-      <input type="text" id="typing-bar" placeholder="Type here">
+  
+      <div class="inputs">
+        <div class="rowboard">
+          <div class="scoreboard">
+            <div class="scorelabel">
+              <p>Score:</p>
+              <span id="word-count" class="h3 text-center">0</span>
+            </div>
+          </div>
+          <div class="scoreboard">
+            <div class="scorelabel">
+              <p>Time Left:</p>
+              <span id="timer">30</span>
+            </div>
+          </div>
+        </div>
+        <input type="text" id="typing-bar" placeholder="Type here">
+      </div>
     </div>
-  </div>
+  
+    <div id="game-over">
+      <p>Game Over!</p>
+      <p id="wpm">Words Per Minute: 0</p>
+      <p id="final-count">Words Typed: 0</p>
+      <a href="typegame">
+        <button id="playagain"><p>Play Again</p></button>
+      </a>
+    </div>
 
-  <div id="game-over">
-    <p>Game Over!</p>
-    <p id="wpm">Words Per Minute: 0</p>
-    <p id="final-count">Words Typed: 0</p>
-    <a href="typegame"></a><button id="playagain"><p>Play Again</p></button></a>
-  </div>
-
-  <script>
-    const start = document.getElementById('start');
-    const gameContainer = document.getElementById('game-container');
-    const typingBar = document.getElementById('typing-bar');
-    const timerElement = document.getElementById('timer');
-    const gameOverElement = document.getElementById('game-over');
-    const wpmElement = document.getElementById('wpm');
-    const finalCount = document.getElementById('final-count');
-    const wordCountElement = document.getElementById('word-count');
-    const playAgain = document.getElementById('playagain');
-    const words = ['magic', 'spell', 'wizard', 'fantasy', 'enchant', 'dragon', 'castle', 'adventure', 'sorcerer', 'potions', 'mythical', 'alchemy', 'creatures', 'realm', 'mystical', 'cursed', 'quest', 'phoenix', 'mage', 'medieval', 'scroll', 'fairy', 'unicorn', 'mermaid', 'goblin', 'warlock', 'amulet', 'arrow', 'ancient', 'awaken', 'battle', 'beast', 'bewitch', 'bishop', 'brave', 'cauldron', 'centaur', 'crown', 'heroic', 'lock', 'lore', 'mirror', 'skull', 'spear', 'storm', 'sword', 'throne', 'wand'];
-
-    let timerSeconds = 45;
-    let timerInterval;
-    let wordsTyped = 0;
-    let startTime;
-    let gameActive = false;
-
-
-
-    let countdown = 3; 
-const countdownInterval = setInterval(() => {
-  if (countdown > 0 && gameActive) {
-    gameContainer.innerHTML = `<h1>${countdown}</h1>`;
-    countdown--;
-  } else {
-    clearInterval(countdownInterval);
-
-    if (gameActive) {
-      startTime = Date.now();
-      timerInterval = setInterval(updateTimer, 1000);
-      updateGame();
-      gameContainer.innerHTML = '';
-      createBubbleAfterInterval(); 
-    }
-  }
-}, 1000);
+    <script>
+        const start = document.getElementById('start');
+        const gameContainer = document.getElementById('game-container');
+        const typingBar = document.getElementById('typing-bar');
+        const timerElement = document.getElementById('timer');
+        const gameOverElement = document.getElementById('game-over');
+        const wpmElement = document.getElementById('wpm');
+        const finalCount = document.getElementById('final-count');
+        const wordCountElement = document.getElementById('word-count');
+        const playAgain = document.getElementById('playagain');
+        const words = ['magic', 'spell', 'wizard', 'fantasy', 'enchant', 'dragon', 'castle', 'adventure', 'sorcerer', 'potions', 'mythical', 'alchemy', 'creatures', 'realm', 'mystical', 'cursed', 'quest', 'phoenix', 'mage', 'medieval', 'scroll', 'fairy', 'unicorn', 'mermaid', 'goblin', 'warlock', 'amulet', 'arrow', 'ancient', 'awaken', 'battle', 'beast', 'bewitch', 'bishop', 'brave', 'cauldron', 'centaur', 'crown', 'heroic', 'lock', 'lore', 'mirror', 'skull', 'spear', 'storm', 'sword', 'throne', 'wand'];
+    
+        let timerSeconds = 45;
+        let timerInterval;
+        let wordsTyped = 0;
+        let startTime;
+        let gameActive = false;
+    
+        let countdown = 3;
+        const countdownInterval = setInterval(() => {
+          if (countdown > 0 && gameActive) {
+            gameContainer.innerHTML = `<h1>${countdown}</h1>`;
+            countdown--;
+          } else {
+            clearInterval(countdownInterval);
+    
+            if (gameActive) {
+              startTime = Date.now();
+              timerInterval = setInterval(updateTimer, 1000);
+              updateGame();
+              gameContainer.innerHTML = '';
+              createBubbleAfterInterval();
+            }
+          }
+        }, 1000);
 
 
 
@@ -89,24 +97,27 @@ start.addEventListener('click', function() {
 playAgain.addEventListener('click', resetGame);
 
 function startCountdown() {
-  let countdown = 3;
+  countdown = 3;
 
   const countdownInterval = setInterval(() => {
-    if (countdown > 0 && gameActive) {
+    if (countdown >= 0 && gameActive) {
       gameContainer.innerHTML = `<h1>${countdown}</h1>`;
       countdown--;
     } else {
       clearInterval(countdownInterval);
 
       if (gameActive) {
-        startTime = Date.now();
-        timerInterval = setInterval(updateTimer, 1000);
-        updateGame();
+        
         gameContainer.innerHTML = '';
+        setTimeout(() => {
+          startGame();
+        }, 1000);
       }
     }
   }, 1000);
 }
+
+
 
 function startGame() {
   startTime = Date.now();
@@ -250,8 +261,13 @@ function resetGame() {
   const bubbles = document.querySelectorAll('.bubble');
   bubbles.forEach((bubble) => bubble.remove());
 
+  grid.forEach((row) => row.fill(false));
+  availableSpots = numRows * numCols;
+
+
   startCountdown();  
   gameOverElement.style.display = 'none';
+  wordCountElement.textContent = '0';
 }
 
 
