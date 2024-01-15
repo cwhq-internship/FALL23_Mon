@@ -185,20 +185,20 @@ function updateGame() {
 }
 
 
-    function resetGame() {
-      timerSeconds = 30;
-      wordsTyped = 0;
-      startTime = null;
-      timerElement.textContent = `${timerSeconds}s`;
-      clearInterval(timerInterval);
-      gameActive = true;
+function resetGame() {
+  timerSeconds = 45;  
+  wordsTyped = 0;
+  startTime = null;
+  timerElement.textContent = `${timerSeconds}s`;
+  clearInterval(timerInterval);
+  gameActive = true;
 
-      const bubbles = document.querySelectorAll('.bubble');
-      bubbles.forEach((bubble) => bubble.remove());
+  const bubbles = document.querySelectorAll('.bubble');
+  bubbles.forEach((bubble) => bubble.remove());
 
-      start.addEventListener('click', startGame);
-      gameOverElement.style.display = 'none';
-    }
+  startCountdown();  
+  gameOverElement.style.display = 'none';
+}
 
     function startCountdown() {
   let countdown = 3;
