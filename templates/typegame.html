@@ -173,12 +173,12 @@ function updateGame() {
   let bubbleCounter = 0;
 
   function createBubbleAfterInterval() {
-  createBubble();
-    
+    createBubble();
 
     if (bubbleCounter < 45) {
-        setTimeout(createBubbleAfterInterval, 1500);
-} else {
+      bubbleCounter++;
+      setTimeout(createBubbleAfterInterval, 1500);
+    } else {
       clearInterval(timerInterval);
       setTimeout(() => {
         endGame();
@@ -186,8 +186,9 @@ function updateGame() {
     }
   }
 
-  createBubbleAfterInterval(); 
+  createBubbleAfterInterval();
 }
+
 
 
 
