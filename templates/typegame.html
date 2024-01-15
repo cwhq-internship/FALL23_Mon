@@ -102,10 +102,11 @@ function createBubble() {
       const randomWord = words[Math.floor(Math.random() * words.length)];
       bubble.innerText = randomWord;
 
-  typingBar.addEventListener('input', (event) => {
-    if (!gameActive) {
-    return; 
+      typingBar.addEventListener('input', (event) => {
+  if (!gameActive) {
+    return;
   }
+
   const inputValue = event.target.value.toLowerCase();
   const bubbles = document.querySelectorAll('.bubble');
 
@@ -117,11 +118,12 @@ function createBubble() {
       wordsTyped++;
       document.getElementById('word-count').textContent = wordsTyped;
       typingBar.value = '';
-      grid[randomRow][randomCol] = false; 
+      grid[randomRow][randomCol] = false;
       availableSpots++;
     }
   });
 });
+
 
 
       gameContainer.appendChild(bubble);
@@ -194,7 +196,7 @@ function updateGame() {
       const bubbles = document.querySelectorAll('.bubble');
       bubbles.forEach((bubble) => bubble.remove());
 
-      startCountdown();  
+      start.addEventListener('click', startGame);
       gameOverElement.style.display = 'none';
     }
 
