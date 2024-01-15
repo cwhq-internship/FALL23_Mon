@@ -61,102 +61,183 @@
         let startTime;
         let gameActive = false;
     
-        let countdown = 3;
-        const countdownInterval = setInterval(() => {
-          if (countdown > 0 && gameActive) {
-            gameContainer.innerHTML = `<h1>${countdown}</h1>`;
-            countdown--;
-          } else {
-            clearInterval(countdownInterval);
     
-            if (gameActive) {
-              startTime = Date.now();
-              timerInterval = setInterval(updateTimer, 1000);
-              updateGame();
-              gameContainer.innerHTML = '';
-              createBubbleAfterInterval();
-            }
+    
+        let countdown = 3; 
+    const countdownInterval = setInterval(() => {
+      if (countdown > 0 && gameActive) {
+        gameContainer.innerHTML = `<h1>${countdown}</h1>`;
+        countdown--;
+      } else {
+        clearInterval(countdownInterval);
+    
+        if (gameActive) {
+          startTime = Date.now();
+          timerInterval = setInterval(updateTimer, 1000);
+          updateGame();
+          gameContainer.innerHTML = '';
+          createBubbleAfterInterval(); 
+        }
+      }
+    }, 1000);
+    
+    
+    
+    
+    
+    const numRows = 3;
+    const numCols = 8;
+    const grid = Array.from({ length: numRows }, () => Array(numCols).fill(false));
+    
+    let availableSpots = numRows * numCols;
+    
+    start.addEventListener('click', function() {
+      resetGame();
+      startGame();
+    });
+    
+    playAgain.addEventListener('click', resetGame);
+    
+    function startCountdown() {
+      countdown = 3;
+    
+      const countdownInterval = setInterval(() => {
+        if (countdown >= 0 && gameActive) {
+          gameContainer.innerHTML = `<h1>${countdown}</h1>`;
+          countdown--;
+        } else {
+          clearInterval(countdownInterval);
+    
+          if (gameActive) {
+            
+            gameContainer.innerHTML = '';
+            setTimeout(() => {
+              startGame();
+            }, 1000);
           }
-        }, 1000);
-
-
-
-
-
-const numRows = 3;
-const numCols = 8;
-const grid = Array.from({ length: numRows }, () => Array(numCols).fill(false));
-
-let availableSpots = numRows * numCols;
-
-start.addEventListener('click', function() {
-  resetGame();
-  startGame();
-});
-
-playAgain.addEventListener('click', resetGame);
-
-function startCountdown() {
-  countdown = 3;
-
-  const countdownInterval = setInterval(() => {
-    if (countdown >= 0 && gameActive) {
-      gameContainer.innerHTML = `<h1>${countdown}</h1>`;
-      countdown--;
-    } else {
-      clearInterval(countdownInterval);
-
-      if (gameActive) {
-        
-        gameContainer.innerHTML = '';
-        setTimeout(() => {
-          startGame();
-        }, 1000);
+        }
+      }, 1000);
+    }
+    
+    
+    
+    function startGame() {
+      startTime = Date.now();
+      timerInterval = setInterval(updateTimer, 1000);
+      updateGame();
+    }
+    
+    function createBubble() {
+      if (!gameActive || availableSpots === 0) return;
+    
+      const cellSizeX = gameContainer.offsetWidth / numCols;
+      const cellSizeY = gameContainer.offsetHeight / numRows;
+    
+      let bubbleCreated = false;
+    
+      while (!bubbleCreated) {
+        const randomRow = Math.floor(Math.random() * numRows);
+        const randomCol = Math.floor(Math.random() * numCols);
+    
+        if (!grid[randomRow][randomCol]) {
+          const bubble = document.createElement('div');
+          bubble.classList.add('bubble');
+    
+          const top = randomRow * cellSizeY;
+          const left = randomCol * cellSizeX;
+          bubble.style.top = `${top}px`;
+          bubble.style.left = `${left}px`;
+    
+          const randomWord = words[Math.floor(Math.random() * words.length)];
+          bubble.innerText = randomWord;
+    
+          typingBar.addEventListener('input', (event) => {
+            if (!gameActive) {
+              return;
+            }
+    
+            const inputValue = event.target.value.trim().toLowerCase();
+            const bubbleText = bubble.innerText.trim().toLowerCase();
+    
+            if (bubble.style.display !== 'none' && inputValue === bubbleText) {
+              bubble.style.display = 'none';
+              wordsTyped++;
+              document.getElementById('word-count').textContent = wordsTyped;
+              typingBar.value = '';
+              grid[randomRow][randomCol] = false;
+              availableSpots++;
+            }
+          });
+    
+          gameContainer.appendChild(bubble);
+          grid[randomRow][randomCol] = true;
+          availableSpots--;
+          bubbleCreated = true;
+        }
       }
     }
-  }, 1000);
-}
-
-
-
-function startGame() {
-  startTime = Date.now();
-  timerInterval = setInterval(updateTimer, 1000);
-  updateGame();
-}
-
-function createBubble() {
-  if (!gameActive || availableSpots === 0) return;
-
-  const cellSizeX = gameContainer.offsetWidth / numCols;
-  const cellSizeY = gameContainer.offsetHeight / numRows;
-
-  let bubbleCreated = false;
-
-  while (!bubbleCreated) {
-    const randomRow = Math.floor(Math.random() * numRows);
-    const randomCol = Math.floor(Math.random() * numCols);
-
-    if (!grid[randomRow][randomCol]) {
-      const bubble = document.createElement('div');
-      bubble.classList.add('bubble');
-
-      const top = randomRow * cellSizeY;
-      const left = randomCol * cellSizeX;
-      bubble.style.top = `${top}px`;
-      bubble.style.left = `${left}px`;
-
-      const randomWord = words[Math.floor(Math.random() * words.length)];
-      bubble.innerText = randomWord;
-
-      typingBar.addEventListener('input', (event) => {
-        if (!gameActive) {
-          return;
+    
+    
+    function updateGame() {
+      if (!gameActive) {
+        return;
+      }
+    
+      let bubbleCounter = 0;
+    
+      function createBubbleAfterInterval() {
+        createBubble();
+    
+        if (bubbleCounter < 45) {
+          bubbleCounter++;
+          setTimeout(createBubbleAfterInterval, 1500);
+        } else {
+          clearInterval(timerInterval);
+          setTimeout(() => {
+            endGame();
+          }, 1500);
         }
-
-        const inputValue = event.target.value.trim().toLowerCase();
+      }
+    
+      createBubbleAfterInterval();
+    }
+    
+    
+    
+    
+    
+    
+    
+      function updateTimer() {
+       const elapsedSeconds = Math.floor((Date.now() - startTime) / 1000);
+        const remainingSeconds = Math.max(timerSeconds - elapsedSeconds, 0);
+       timerElement.textContent = `${remainingSeconds}s`;
+    
+       if (remainingSeconds === 0) {
+         clearInterval(timerInterval);
+          endGame();
+        }
+      }
+    
+        function endGame() {
+          const wordsPerMinute = Math.round((wordsTyped / 30) * 60);
+          wpmElement.textContent = `Words Per Minute: ${wordsPerMinute}`;
+          finalCount.textContent = `Words Typed: ${wordsTyped}`;
+          gameOverElement.style.display = 'block';
+          gameActive = false;
+        }
+    
+        typingBar.addEventListener('input', (event) => {
+      if (!gameActive) {
+        return;
+      }
+    
+      const inputValue = event.target.value.trim().toLowerCase();
+      const bubbles = document.querySelectorAll('.bubble');
+    
+      bubbles.forEach((bubble) => {
         const bubbleText = bubble.innerText.trim().toLowerCase();
-
+    
         if (bubble.style.display !== 'none' && inputValue === bubbleText) {
           bubble.style.display = 'none';
           wordsTyped++;
@@ -166,109 +247,93 @@ function createBubble() {
           availableSpots++;
         }
       });
-
-      gameContainer.appendChild(bubble);
-      grid[randomRow][randomCol] = true;
-      availableSpots--;
-      bubbleCreated = true;
-    }
-  }
-}
-
-
-function updateGame() {
-  if (!gameActive) {
-    return;
-  }
-
-  let bubbleCounter = 0;
-
-  function createBubbleAfterInterval() {
-    createBubble();
-
-    if (bubbleCounter < 45) {
-      bubbleCounter++;
-      setTimeout(createBubbleAfterInterval, 1500);
-    } else {
+    });
+    
+    
+    
+    
+    function resetGame() {
+      timerSeconds = 45;
+      wordsTyped = 0;
+      startTime = null;
+      timerElement.textContent = `${timerSeconds}s`;
       clearInterval(timerInterval);
-      setTimeout(() => {
-        endGame();
-      }, 1500);
+      gameActive = true;
+    
+      const bubbles = document.querySelectorAll('.bubble');
+      bubbles.forEach((bubble) => bubble.remove());
+    
+      grid.forEach((row) => row.fill(false));
+      availableSpots = numRows * numCols;
+    
+    
+      startCountdown();  
+      gameOverElement.style.display = 'none';
+      wordCountElement.textContent = '0';
     }
-  }
-
-  createBubbleAfterInterval();
-}
-
-
-
-
-
-
-
-  function updateTimer() {
-   const elapsedSeconds = Math.floor((Date.now() - startTime) / 1000);
-    const remainingSeconds = Math.max(timerSeconds - elapsedSeconds, 0);
-   timerElement.textContent = `${remainingSeconds}s`;
-
-   if (remainingSeconds === 0) {
-     clearInterval(timerInterval);
-      endGame();
-    }
-  }
-
-    function endGame() {
-      const wordsPerMinute = Math.round((wordsTyped / 30) * 60);
-      wpmElement.textContent = `Words Per Minute: ${wordsPerMinute}`;
-      finalCount.textContent = `Words Typed: ${wordsTyped}`;
-      gameOverElement.style.display = 'block';
-      gameActive = false;
-    }
-
-    typingBar.addEventListener('input', (event) => {
-  if (!gameActive) {
-    return;
-  }
-
-  const inputValue = event.target.value.trim().toLowerCase();
-  const bubbles = document.querySelectorAll('.bubble');
-
-  bubbles.forEach((bubble) => {
-    const bubbleText = bubble.innerText.trim().toLowerCase();
-
-    if (bubble.style.display !== 'none' && inputValue === bubbleText) {
-      bubble.style.display = 'none';
-      wordsTyped++;
-      document.getElementById('word-count').textContent = wordsTyped;
-      typingBar.value = '';
-      grid[randomRow][randomCol] = false;
-      availableSpots++;
-    }
-  });
-});
-
-
-
-
-function resetGame() {
-  timerSeconds = 45;
-  wordsTyped = 0;
-  startTime = null;
-  timerElement.textContent = `${timerSeconds}s`;
-  clearInterval(timerInterval);
-  gameActive = true;
-
-  const bubbles = document.querySelectorAll('.bubble');
-  bubbles.forEach((bubble) => bubble.remove());
-
-  grid.forEach((row) => row.fill(false));
-  availableSpots = numRows * numCols;
-
-
-  startCountdown();  
-  gameOverElement.style.display = 'none';
-  wordCountElement.textContent = '0';
-}
+    
+    
+        
+    // Darkmode Script!
+    document.addEventListener("DOMContentLoaded", function() {
+        const darkModeToggle = document.getElementById("dark-mode-toggle");
+        const navbar = document.getElementById("navbar");
+        const darkmodetext = document.querySelector(".darkmodetext");
+      
+        // Function to set dark mode styles
+        function enableDarkMode() {
+            document.body.style.backgroundImage = "url('/static/img/darkbackground.png')";
+            navbar.classList.remove("navbar-light");
+            navbar.classList.add("navbar-dark");
+            darkmodetext.classList.add("darkmodetext2");
+            // Save dark mode preference to localStorage
+            localStorage.setItem("darkModeEnabled", "true");
+        }
+      
+        // Function to set light mode styles
+        function disableDarkMode() {
+            document.body.style.backgroundImage = "url('/static/img/background.png')";
+            navbar.classList.remove("navbar-dark");
+            navbar.classList.add("navbar-light");
+            darkmodetext.classList.remove("darkmodetext2");
+            // Save light mode preference to localStorage
+            localStorage.setItem("darkModeEnabled", "false");
+        }
+      
+        // Event listener for dark mode toggle change
+        darkModeToggle.addEventListener("change", () => {
+            if (darkModeToggle.checked) {
+                // Enable dark mode
+                enableDarkMode();
+            } else {
+                // Disable dark mode
+                disableDarkMode();
+            }
+        });
+      
+        // Function to apply navbar styles based on dark mode preference
+        function applyNavbarStyles(isDarkMode) {
+            if (isDarkMode) {
+                navbar.classList.remove("navbar-light");
+                navbar.classList.add("navbar-dark");
+            } else {
+                navbar.classList.remove("navbar-dark");
+                navbar.classList.add("navbar-light");
+            }
+        }
+      
+        // Check and apply dark mode setting from localStorage on page load
+        const isDarkModeEnabled = localStorage.getItem("darkModeEnabled") === "true";
+        if (isDarkModeEnabled) {
+            darkModeToggle.checked = true;
+            enableDarkMode(); // Apply dark mode styles if enabled in localStorage
+            applyNavbarStyles(true); // Apply navbar styles based on dark mode preference
+        } else {
+            disableDarkMode(); // Apply light mode styles by default
+            applyNavbarStyles(false); // Apply navbar styles based on light mode preference
+        }
+      });
+      </script>
 
 
     
