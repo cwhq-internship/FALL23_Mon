@@ -208,7 +208,7 @@ function updateGame() {
   bubbles.forEach((bubble) => {
     const bubbleText = bubble.innerText.trim().toLowerCase();
 
-    if (inputValue === bubbleText) {
+    if (bubble.style.display !== 'none' && inputValue === bubbleText) {
       bubble.style.display = 'none';
       wordsTyped++;
       document.getElementById('word-count').textContent = wordsTyped;
@@ -218,6 +218,7 @@ function updateGame() {
     }
   });
 });
+
 
 
 
