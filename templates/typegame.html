@@ -53,7 +53,7 @@
 
 
 
-    const countdownInterval = setInterval(() => {
+    const startCountdownInterval = setInterval(() => {
     if (countdown > 0 && gameActive) {
       gameContainer.innerHTML = `<h1>${countdown}</h1>`;
       countdown--;
@@ -251,15 +251,15 @@ function resetGame() {
   gameActive = true;
 
   grid.forEach(row => row.fill(false));
+  availableSpots = numRows * numCols;
 
   const bubbles = document.querySelectorAll('.bubble');
   bubbles.forEach((bubble) => bubble.remove());
 
-  availableSpots = numRows * numCols;
-
-  startCountdown();
+  startCountdownInterval();
   gameOverElement.style.display = 'none';
 }
+
 
 
 
