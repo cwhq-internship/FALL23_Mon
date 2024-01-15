@@ -24,11 +24,12 @@
         { text:"Humans only have one ending. Ideas live forever.", source: "Barbie (2023)" },// "Barbie (2023)"
         { text:"Why should Caesar get to stomp around like a giant while the rest of us try not to get smushed under his big feet? What's so great about Caesar, hm? Brutus is just as cute as Caesar. Brutus is just as smart as Caesar, people totally like Brutus as much as they like Caesar. WE SHOULD TOTALLY JUST STAB CAESAR!", source: "Mean Girls (2004)" },// "Mean Girls (2004)"
         { text:"What Do You Mean 'Broke'? Like, Martha Stewart 'Broke'? Or MC Hammer 'Broke?'", source: "White Chicks (2004)" },// "White Chicks (2004)"
-        { text:"So, OK, like right now, for example, the Haitians need to come to America. But some people are all, \"what about the strain on our resources?\" But it's like when I had this garden party for my father's birthday, right? I said RSVP because it was a sit-down dinner. But people came that, like, did not RSVP. So I was, like, totally buggin'. I had to haul ass to the kitchen, redistribute the food, squish in extra place settings. But, by the end of the day it was, like, the more the merrier!", source: "Cher Horowitz" },
-        { text:"Everything is simply a shape, a form, an identifier to let others recognize me as me! But then, what am I? Is this me? My true self? My fake self? What is it that I am? Nobody understands me!", source: "Shinji Ikari" },
-        { text:"Life is not a waste of time. And time is not a waste of life. So let's stop wasting time, get wasted, and have the time of our lives.", source: "Pitbull - Mr. Worldwide" },
-        { text:"I don't want to live in a hole anymore. It makes me feel poor. We are poor, but we're happy. Comme-ci, comme-ga. Anyway, the views are better above ground. I'm seven non-fox-years old now. My father died at seven and a half. I don't want to live in a hole anymore, and I'm going to do something about it.", source: "Fantastic Mr. Fox" },
-        { text:"I don't talks about feelings, Alfred. I don't have any, I've never seen one. I'm a night-stalking, crime-fighting vigilante, and a heavy metal rapping machine. I don't feel anything emotionally, except for rage.", source: "Lego Batman" }
+        { text:"So, OK, like right now, for example, the Haitians need to come to America. But some people are all, \"what about the strain on our resources?\" But it's like when I had this garden party for my father's birthday, right? I said RSVP because it was a sit-down dinner. But people came that, like, did not RSVP. So I was, like, totally buggin'. I had to haul ass to the kitchen, redistribute the food, squish in extra place settings. But, by the end of the day it was, like, the more the merrier!", source: "Clueless (1955)" },
+        { text:"Everything is simply a shape, a form, an identifier to let others recognize me as me! But then, what am I? Is this me? My true self? My fake self? What is it that I am? Nobody understands me!", source: "Neon Genesis Evangelion" },
+        { text:"Life is not a waste of time. And time is not a waste of life. So let's stop wasting time, get wasted, and have the time of our lives.", source: "Pitbull on X" },
+        { text:"I don't want to live in a hole anymore. It makes me feel poor. We are poor, but we're happy. Comme-ci, comme-ga. Anyway, the views are better above ground. I'm seven non-fox-years old now. My father died at seven and a half. I don't want to live in a hole anymore, and I'm going to do something about it.", source: "Fantastic Mr. Fox (2009)" },
+        { text:"I don't talks about feelings, Alfred. I don't have any, I've never seen one. I'm a night-stalking, crime-fighting vigilante, and a heavy metal rapping machine. I don't feel anything emotionally, except for rage.", source: "The LEGO Batman Movie (2017)" },
+        { text:"Ask for money and get advice, huh. Ask for advice, get money twice, huh.", source: "Pitbull - Feel This Moment"}
         // Add more quotes as needed
     ];
 
@@ -47,8 +48,17 @@
     let correctCharacters = 0;
     let totalCharacters = 0;
 
+    function shuffleQuotes() {
+        // Shuffle the quotes array using the Fisher-Yates algorithm
+        for (let i = quotes.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [quotes[i], quotes[j]] = [quotes[j], quotes[i]];
+        }
+    }
+
     function startGame() {
-        currentQuoteIndex = (currentQuoteIndex + 1) % quotes.length;
+        shuffleQuotes(); // Shuffle quotes before starting a new game
+        currentQuoteIndex = 0; // Start with the first quote
         const currentQuote = quotes[currentQuoteIndex];
 
         textElement.innerText = currentQuote.text;
@@ -60,8 +70,8 @@
 
         retryButton.style.display = "none";
         warningMessage.style.display = "none";
-        wpmElement.innerText = "";
-        accuracyElement.innerText = "";
+        wpmElement.innerText = ""; // Clear previous WPM
+        accuracyElement.innerText = ""; // Clear previous accuracy
         startTime = new Date().getTime();
         wordCount = 0;
         correctCharacters = 0;
@@ -86,7 +96,7 @@
 
         if (totalCharacters > 0) {
             const accuracy = calculateAccuracy(correctCharacters, totalCharacters);
-            accuracyElement.innerText = `Accuracy: ${accuracy.toFixed(2)}%`;
+            accuracyElement.innerText = `Accuracy: ${(accuracy / 100).toFixed(2)}%`; // Display accuracy with one decimal place
         }
     }
 
@@ -118,9 +128,11 @@
         }
 
         if (userInputText === targetText) {
+            // Count words typed correctly
             const words = userInputText.split(/\s+/).filter(word => word !== "");
             wordCount += words.length;
-            endGame();
+                endGame();
+            
         }
     });
 
@@ -128,6 +140,7 @@
 
     startGame();
 });
+
 
 function calculateWPM(words, time) {
     const minutes = time / 60;
