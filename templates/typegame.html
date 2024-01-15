@@ -89,7 +89,7 @@ start.addEventListener('click', function() {
 playAgain.addEventListener('click', resetGame);
 
 function startCountdown() {
-  let countdown = 3;
+  countdown = 3;
 
   const countdownInterval = setInterval(() => {
     if (countdown > 0 && gameActive) {
@@ -99,14 +99,16 @@ function startCountdown() {
       clearInterval(countdownInterval);
 
       if (gameActive) {
-        startTime = Date.now();
-        timerInterval = setInterval(updateTimer, 1000);
-        updateGame();
+        
         gameContainer.innerHTML = '';
+        setTimeout(() => {
+          startGame();
+        }, 1000);
       }
     }
   }, 1000);
 }
+
 
 function startGame() {
   startTime = Date.now();
