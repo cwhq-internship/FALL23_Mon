@@ -167,9 +167,12 @@ function updateGame() {
     return;
   }
 
-  setInterval(() => {
-    createBubble(); 
-  }, 1500);
+  function createBubbleAfterInterval() {
+    createBubble();  
+    setTimeout(createBubbleAfterInterval, 1500); 
+  }
+
+  createBubbleAfterInterval();  
 
   setTimeout(() => {
     clearInterval(timerInterval);
