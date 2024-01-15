@@ -156,15 +156,22 @@
           gameOverElement.style.display = 'block';
           gameActive = false;
       }
-  </script>
-</body>
 
 
+function resetGame() {
+timerSeconds = 45;
+wordsTyped = 0;
+startTime = null;
+timerElement.textContent = `${timerSeconds}s`;
+clearInterval(timerInterval);
+gameActive = true;
 
+const bubbles = document.querySelectorAll('.bubble');
+bubbles.forEach((bubble) => bubble.remove());
 
-
-
-  
+startCountdown();  
+gameOverElement.style.display = 'none';
+}
 
 
     
