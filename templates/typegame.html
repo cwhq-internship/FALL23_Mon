@@ -92,7 +92,7 @@ function startCountdown() {
   countdown = 3;
 
   const countdownInterval = setInterval(() => {
-    if (countdown > 0 && gameActive) {
+    if (countdown >= 0 && gameActive) {
       gameContainer.innerHTML = `<h1>${countdown}</h1>`;
       countdown--;
     } else {
@@ -108,6 +108,7 @@ function startCountdown() {
     }
   }, 1000);
 }
+
 
 
 function startGame() {
