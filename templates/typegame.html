@@ -225,9 +225,11 @@ function startGame() {
   timerInterval = setInterval(updateTimer, 1000);
   updateGame();
 
+  playAgain.addEventListener('click', resetGame);
 }
 
-playAgain.addEventListener('click', resetGame); 
+playAgain.addEventListener('click', resetGame);
+
 
 
   
