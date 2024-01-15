@@ -51,6 +51,14 @@
     let startTime;
     let gameActive = false;
 
+    start.addEventListener('click', function() {
+  resetGame();
+  startGame();
+});
+
+playAgain.addEventListener('click', resetGame);
+
+
     function startCountdown() {
   let countdown = 3;
 
@@ -70,6 +78,7 @@
     }
   }, 1000);
 }
+
 
 
 const numRows = 3;
@@ -170,7 +179,7 @@ function updateGame() {
 }
 
 
-    
+
   function updateTimer() {
    const elapsedSeconds = Math.floor((Date.now() - startTime) / 1000);
     const remainingSeconds = Math.max(timerSeconds - elapsedSeconds, 0);
