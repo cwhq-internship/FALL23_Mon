@@ -89,20 +89,23 @@ function startCountdown() {
   let countdown = 3;
 
   const countdownInterval = setInterval(() => {
-    if (countdown > 0 && gameActive) {
-      gameContainer.innerHTML = `<h1>${countdown}</h1>`;
-      countdown--;
-    } else {
-      clearInterval(countdownInterval);
+    let countdown = 3;  // Add this line
 
-      if (gameActive) {
-        startTime = Date.now();
-        timerInterval = setInterval(updateTimer, 1000);
-        updateGame();
-        gameContainer.innerHTML = '';
-      }
+    if (countdown > 0 && gameActive) {
+        gameContainer.innerHTML = `<h1>${countdown}</h1>`;
+        countdown--;
+    } else {
+        clearInterval(countdownInterval);
+
+        if (gameActive) {
+            startTime = Date.now();
+            timerInterval = setInterval(updateTimer, 1000);
+            updateGame();
+            gameContainer.innerHTML = '';
+        }
     }
-  }, 1000);
+}, 1000);
+
 }
 
 function startGame() {
@@ -247,12 +250,17 @@ function resetGame() {
   clearInterval(timerInterval);
   gameActive = true;
 
+  grid.forEach(row => row.fill(false));
+
   const bubbles = document.querySelectorAll('.bubble');
   bubbles.forEach((bubble) => bubble.remove());
 
-  startCountdown();  
+  availableSpots = numRows * numCols;
+
+  startCountdown();
   gameOverElement.style.display = 'none';
 }
+
 
 
 
