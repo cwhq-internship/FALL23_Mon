@@ -172,14 +172,20 @@ function updateGame() {
     setTimeout(createBubbleAfterInterval, 1500);
   }
 
-  
   createBubbleAfterInterval();
+
+  timerInterval = setInterval(() => {
+    if (gameActive) {
+      createBubble();
+    }
+  }, 1500);
 
   setTimeout(() => {
     clearInterval(timerInterval);
-    
+    endGame();
   }, timerSeconds * 1000);
 }
+
 
 
 
