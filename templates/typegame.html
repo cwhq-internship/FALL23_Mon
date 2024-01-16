@@ -80,13 +80,7 @@
     });
     
     playAgain.addEventListener('click', resetGame);
-  
-    
-    function startGame() {
-      startTime = Date.now();
-      timerInterval = setInterval(updateTimer, 1000);
-      updateGame();
-    }
+
     
     function createBubble() {
       if (!gameActive || availableSpots === 0) return;
@@ -164,11 +158,6 @@
     }
     
     
-    
-    
-    
-    
-    
       function updateTimer() {
        const elapsedSeconds = Math.floor((Date.now() - startTime) / 1000);
         const remainingSeconds = Math.max(timerSeconds - elapsedSeconds, 0);
@@ -187,6 +176,12 @@
           gameOverElement.style.display = 'block';
           gameActive = false;
         }
+
+        function startGame() {
+      startTime = Date.now();
+      timerInterval = setInterval(updateTimer, 1000);
+      updateGame();
+    }
     
         typingBar.addEventListener('input', (event) => {
       if (!gameActive) {
@@ -227,10 +222,8 @@
       grid.forEach((row) => row.fill(false));
       availableSpots = numRows * numCols;
     
-    
       startCountdown();  
       gameOverElement.style.display = 'none';
-      wordCountElement.textContent = '0';
     }
     
     
