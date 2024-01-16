@@ -52,8 +52,7 @@
         let startTime;
         let gameActive = false;
     
-    
-        function startCountdown() {
+    function startCountdown() {
       let countdown = 3;
       start.style.display = 'none';
 
@@ -68,19 +67,6 @@
       }, 1000);
     }
     
-    const numRows = 3;
-    const numCols = 8;
-    const grid = Array.from({ length: numRows }, () => Array(numCols).fill(false));
-    
-    let availableSpots = numRows * numCols;
-    
-    start.addEventListener('click', function() {
-      resetGame();
-      startGame();
-    });
-    
-    playAgain.addEventListener('click', resetGame);
-
     
     function createBubble() {
       if (!gameActive || availableSpots === 0) return;
@@ -176,7 +162,7 @@
           gameOverElement.style.display = 'block';
           gameActive = false;
         }
-        
+
         function resetGame() {
       timerSeconds = 30;
       wordsTyped = 0;
@@ -213,6 +199,20 @@
         }
       });
     });
+
+    const numRows = 3;
+    const numCols = 8;
+    const grid = Array.from({ length: numRows }, () => Array(numCols).fill(false));
+    
+    let availableSpots = numRows * numCols;
+    
+    start.addEventListener('click', function() {
+      resetGame();
+      startGame();
+    });
+    
+    playAgain.addEventListener('click', resetGame);
+
     
   
     
