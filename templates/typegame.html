@@ -176,24 +176,25 @@
           gameOverElement.style.display = 'block';
           gameActive = false;
         }
+  function resetGame() {
+    timerSeconds = 45;
+    wordsTyped = 0;
+    startTime = null;
+    timerElement.textContent = `${timerSeconds}s`;
+    clearInterval(timerInterval);
+    gameActive = true;
 
-        function resetGame() {
-      timerSeconds = 45;
-      wordsTyped = 0;
-      startTime = null;
-      timerElement.textContent = `${timerSeconds}s`;
-      clearInterval(timerInterval);
-      gameActive = true;
-    
-      const bubbles = document.querySelectorAll('.bubble');
-      bubbles.forEach((bubble) => bubble.remove());
-    
-      grid.forEach((row) => row.fill(false));
-      availableSpots = numRows * numCols;
-    
-      startCountdown();  
-      gameOverElement.style.display = 'none';
-    }
+    const bubbles = document.querySelectorAll('.bubble');
+    bubbles.forEach((bubble) => bubble.remove());
+
+    grid.forEach((row) => row.fill(false));
+    availableSpots = numRows * numCols;
+
+
+    startCountdown();
+    updateGame();
+}
+
 
         function startGame() {
       startTime = Date.now();
