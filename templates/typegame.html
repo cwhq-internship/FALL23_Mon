@@ -30,8 +30,8 @@
         <p>Game Over!</p>
         <p id="wpm">Words Per Minute: 0</p>
         <p id="final-count">Words Typed: 0</p>
-        <button id="playagain"><p>Play Again</p></button>
-    </div>
+        <button id="play-again" onclick="resetGame()">Play Again</button>
+      </div>
     </body>
     
       <script>
@@ -176,24 +176,26 @@
           gameOverElement.style.display = 'block';
           gameActive = false;
         }
-  function resetGame() {
-    timerSeconds = 45;
-    wordsTyped = 0;
-    startTime = null;
-    timerElement.textContent = `${timerSeconds}s`;
-    clearInterval(timerInterval);
-    gameActive = true;
+        function resetGame() {
+      timerSeconds = 30;
+      wordsTyped = 0;
+      startTime = null;
+      timerElement.textContent = `${timerSeconds}s`;
+      clearInterval(timerInterval);
+      gameActive = true;
 
-    const bubbles = document.querySelectorAll('.bubble');
-    bubbles.forEach((bubble) => bubble.remove());
+      const bubbles = document.querySelectorAll('.bubble');
+      bubbles.forEach((bubble) => bubble.remove());
 
-    grid.forEach((row) => row.fill(false));
-    availableSpots = numRows * numCols;
+      startCountdown();
+      gameOverElement.style.display = 'none';
+    }
 
-
-    startCountdown();
-    updateGame();
-}
+    function startGame() {
+      startTime = Date.now();
+      timerInterval = setInterval(updateTimer, 1000);
+      updateGame();
+    }
 
 
         function startGame() {
