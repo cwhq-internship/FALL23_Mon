@@ -53,19 +53,20 @@
         let gameActive = false;
     
         function startCountdown() {
-      let countdown = 3;
-      start.style.display = 'none';
+    let countdown = 3;
+    start.style.display = 'none';
 
-      const countdownInterval = setInterval(() => {
+    const countdownInterval = setInterval(() => {
         if (countdown > 0) {
-          gameContainer.innerHTML = `<h1>${countdown}</h1>`;
-          countdown--;
+            gameContainer.innerHTML = `<h1>${countdown}</h1>`;
+            countdown--;
         } else {
-          clearInterval(countdownInterval);
-          startGame();
+            clearInterval(countdownInterval);
+            startGame();
+            gameContainer.innerHTML = '';
         }
-      }, 1000);
-    }
+    }, 1000);
+}
 
     
     
