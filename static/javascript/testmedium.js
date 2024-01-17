@@ -1,10 +1,10 @@
 function checkScore () {
   if (score > 20) {
-    message = " fantastic ";
-  } else if (score > 15) {
-    message = " meh ";
+    message = " powerful wizard ";
+  } else if (score > 10) {
+    message = " rising sorcerer ";
   } else {
-    message = " bad ";
+    message = " novice magician  ";
   }
   document.getElementById("typingMessage").textContent = message;
 }

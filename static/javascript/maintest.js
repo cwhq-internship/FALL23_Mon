@@ -105,20 +105,26 @@ function checkInput() {
 // Hitting space, it switches current word with a new, random word. Doesn't affect next word at all.
 // -1 from the skipCount
 function skipWord() {
+  const typedWordElement = document.getElementById('typedWord');
   if (skipCount > 0) {
-    currentWord = getRandomWord();
-    updateWords();
     skipCount--;
-    inputField.value = '';
     document.getElementById("skipCount").textContent = skipCount;
+    currentWord = nextWord;
+    nextWord = getRandomWord();
+    updateWords();
+    inputField.value = '';
+    typedWordElement.innerHTML = '';
+    inputField.maxLength = currentWord.length;
   }
 }
 
-// Space = activate skipWord
+// Shift = activate skipWord
 document.addEventListener("keydown", function(event) {
-  if (event.code === "Space") {
+  if (event.code === "ShiftLeft" || event.code === "ShiftRight") {
     skipWord();
-  }});
+  }
+});
+
 
 // Esc = immediate gameOver
 document.addEventListener('keydown', function(event) {
