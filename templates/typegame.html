@@ -76,7 +76,6 @@ function createBubble() {
   const cellSizeX = gameContainer.offsetWidth / numCols;
   const cellSizeY = gameContainer.offsetHeight / numRows;
 
-  // Find the first available spot
   let randomRow, randomCol;
   do {
     randomRow = Math.floor(Math.random() * numRows);
@@ -110,7 +109,7 @@ function createBubble() {
       grid[randomRow][randomCol] = false;
       availableSpots++;
 
-      // Create the next bubble after the current one is popped
+      
       setTimeout(createBubble, 1000);
     }
   });
@@ -118,7 +117,11 @@ function createBubble() {
   gameContainer.appendChild(bubble);
   grid[randomRow][randomCol] = true;
   availableSpots--;
+
+
+  setTimeout(createBubble, 0);
 }
+
 
     
     
