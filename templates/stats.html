@@ -11,72 +11,33 @@
 
 {% block content %}
 <body>
-  <h1>Typing Statistics</h1>
+  <h1>Global Typing Statistics</h1>
   <div class="stats-container">
-    <!-- Stats section -->
     <div class="stats-section">
       <div class="stat">
-        <strong>Words per Minute (WPM):</strong> <span id="wpm">65</span>
+        <strong>Average Global Words per Minute (WPM):</strong> <span id="averageWPM">65</span>
       </div>
       <div class="stat">
-        <strong>Accuracy Rate:</strong> <span id="accuracy">92%</span>
+        <strong>Top WPM:</strong> <span id="topWPM">notpe</span>
       </div>
       <div class="stat">
-        <strong>Best WPM:</strong> <span id="bestWPM">75</span>
+        <strong>Total Easy Tests taken:</strong>
+        <span id="easyCount">No tests recorded!</span>
       </div>
       <div class="stat">
-        <strong>Session Duration:</strong>
-        <span id="sessionDuration">10 minutes</span>
+        <strong>Total Medium Tests taken:</strong> <span id="mediumCount">No tests recorded!</span>
       </div>
       <div class="stat">
-        <strong>Total Tests:</strong> <span id="totalTests">30 tests</span>
+        <strong>Total Hard Tests taken:</strong> <span id="hardCount">No tests recorded!</span>
       </div>
-      <!-- Add more stats if neeeeded -->
     </div>
 
-    <!-- Recent Tests section -->
     <div class="recent-tests">
+      
       <h2>Recent Tests</h2>
-      <div class="test">
-        <span class="difficulty">Difficulty: Easy</span>
-        <div class="score-date">
-          <div class="date">Date: 2023-11-15</div>
-          <div class="score">Score: 80 WPM</div>
-        </div>
-        <a href="test"><button class="try-again-btn">Try Again</button></a>
-      </div>
-      <div class="test">
-        <span class="difficulty">Difficulty: Medium</span>
-        <div class="score-date">
-          <div class="date">Date: 2023-11-12</div>
-          <div class="score">Score: 70 WPM</div>
-        </div>
-        <a href="testmedium"
-          ><button class="try-again-btn">Try Again</button></a
-        >
-      </div>
-      <div class="test">
-        <span class="difficulty">Difficulty: Medium</span>
-        <div class="score-date">
-          <div class="date">Date: 2023-12-9</div>
-          <div class="score">Score: 12 WPM</div>
-        </div>
-        <a href="testmedium"
-          ><button class="try-again-btn">Try Again</button></a
-        >
-      </div>
-      <div class="test">
-        <span class="difficulty">Difficulty: Hard</span>
-        <div class="score-date">
-          <div class="date">Date: 2023-11-10</div>
-          <div class="score">Score: 60 WPM</div>
-        </div>
-        <a href="testhard"><button class="try-again-btn">Try Again</button></a>
-      </div>
+      {% include 'recent_results.html' %}
     </div>
-    <!-- End Recent Tests -->
 
-    <!-- Google Charts section -->
     <div class="charts-section">
       <div class="chart">
         <div id="chart1">Words</div>
@@ -85,10 +46,10 @@
         <div id="chart2"></div>
       </div>
       <div class="chart">
-        <div id="chart3"></div>
+        <div style="text-align: center; margin-bottom: 10px; font-size: 18px;">Global WPM</div>
+        <div id="wpmChartContainer"></div>
       </div>
     </div>
-    <!-- Charts end -->
   </div>
 
  
@@ -97,44 +58,81 @@
 {% block b %} active-bar {% endblock%} 
 {% block scripts %}
 
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
 <script>
+  function updateTestCounts() {
+      $.get('/get_test_counts', function(data) {
+          $('#easyCount').text(data.easy_count);
+          $('#mediumCount').text(data.medium_count);
+          $('#hardCount').text(data.hard_count);
+      });
+  }
+  
+  updateTestCounts();
+  setInterval(updateTestCounts, 5000);
+  </script>
+<script>
+  function updateTopWPM() {
+      $.get('/get_top_wpm', function(data) {
+          $('#topWPM').text(data.top_wpm || 'No tests recorded yet');
+      });
+  }
+  
+  updateTopWPM();
+  setInterval(updateTopWPM, 5000);
+</script>
+  
+<script>
+  $(document).ready(function() {
+      function updateTestCount() {
+          $.get('/test_count_json', function(data) {
+              $('#total_tests').text('Total Tests: ' + data.total_tests);
+          });
+      }
+
+      updateTestCount();
+
+      setInterval(updateTestCount, 5000);  
+  });
+</script>
+<script>
+        function updateAverageWPM() {
+            $.get('/get_average_wpm', function(data) {
+                $('#averageWPM').text(data.average_wpm.toFixed(2));
+            });
+        }
+
+        updateAverageWPM();
 document.addEventListener("DOMContentLoaded", function() {
     const darkModeToggle = document.getElementById("dark-mode-toggle");
     const navbar = document.getElementById("navbar");
     const darkmodetext = document.querySelector(".darkmodetext");
   
-    // Function to set dark mode styles
     function enableDarkMode() {
         document.body.style.backgroundImage = "url('/static/img/darkbackground.png')";
         navbar.classList.remove("navbar-light");
         navbar.classList.add("navbar-dark");
         darkmodetext.classList.add("darkmodetext2");
-        // Save dark mode preference to localStorage
         localStorage.setItem("darkModeEnabled", "true");
     }
   
-    // Function to set light mode styles
     function disableDarkMode() {
         document.body.style.backgroundImage = "url('/static/img/background.png')";
         navbar.classList.remove("navbar-dark");
         navbar.classList.add("navbar-light");
         darkmodetext.classList.remove("darkmodetext2");
-        // Save light mode preference to localStorage
         localStorage.setItem("darkModeEnabled", "false");
     }
   
-    // Event listener for dark mode toggle change
     darkModeToggle.addEventListener("change", () => {
         if (darkModeToggle.checked) {
-            // Enable dark mode
             enableDarkMode();
         } else {
-            // Disable dark mode
             disableDarkMode();
         }
     });
   
-    // Function to apply navbar styles based on dark mode preference
     function applyNavbarStyles(isDarkMode) {
         if (isDarkMode) {
             navbar.classList.remove("navbar-light");
@@ -145,26 +143,33 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
   
-    // Check and apply dark mode setting from localStorage on page load
     const isDarkModeEnabled = localStorage.getItem("darkModeEnabled") === "true";
     if (isDarkModeEnabled) {
         darkModeToggle.checked = true;
-        enableDarkMode(); // Apply dark mode styles if enabled in localStorage
-        applyNavbarStyles(true); // Apply navbar styles based on dark mode preference
+        enableDarkMode(); 
+        applyNavbarStyles(true); 
     } else {
-        disableDarkMode(); // Apply light mode styles by default
-        applyNavbarStyles(false); // Apply navbar styles based on light mode preference
+        disableDarkMode(); 
+        applyNavbarStyles(false);
     }
   });
-    google.charts.load("current", { packages: ["corechart"] });
-    google.charts.setOnLoadCallback(drawChart);
+  google.charts.load("current", { packages: ["corechart"] });
+  google.charts.setOnLoadCallback(chartTime);
 
-    function drawChart() {
+  function chartTime() {
+
+    drawCharts();
+    drawWPMChart();
+  }
+
+  function drawCharts() {
+
+    $.get('/get_test_counts', function (data) {
       var data1 = google.visualization.arrayToDataTable([
         ["Accuracy Type", "Percentage"],
-        ["Correct", 70],
-        ["Typos", 20],
-        ["Incorrect Words", 10],
+        ["None", 70],
+        ["Nobody", 20],
+        ["Peter", 10],
       ]);
 
       var options1 = {
@@ -179,9 +184,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
       var data2 = google.visualization.arrayToDataTable([
         ["Difficulty", "Percentage"],
-        ["Easy", 40],
-        ["Medium", 30],
-        ["Hard", 30],
+        ["Easy", data.easy_count],
+        ["Medium", data.medium_count],
+        ["Hard", data.hard_count],
       ]);
 
       var options2 = {
@@ -222,7 +227,7 @@ document.addEventListener("DOMContentLoaded", function() {
         document.getElementById("chart1")
       );
       chart1.draw(data1, options1);
-      addTitleAboveChart("Accuracy", "chart1");
+      addTitleAboveChart("Bad Typers", "chart1");
       var chart2 = new google.visualization.PieChart(
         document.getElementById("chart2")
       );
@@ -233,25 +238,52 @@ document.addEventListener("DOMContentLoaded", function() {
       );
       chart3.draw(data3, options3);
       addTitleAboveChart("WPM", "chart3");
-    }
-    function addTitleAboveChart(title, elementId) {
-      var chartElement = document.getElementById(elementId);
-      var titleDiv = document.createElement("div");
-      titleDiv.innerText = title;
-      titleDiv.style.textAlign = "center";
-      titleDiv.style.marginBottom = "10px";
-      titleDiv.style.fontSize = "18px";
-      chartElement.parentElement.insertBefore(titleDiv, chartElement);
-    }
-  </script>{% endblock %}
+    });
+  }
 
-<!--<div class="stats">
-    <div class="tests_gen">387 tests generated</div>
-    <div class="words_typed">3690 words typed correctly</div>
-    <div class="wpm">34 words per minute</div>
-    <div class="nine">94% average completion</div>
+  function drawWPMChart() {
+    async function fetchRecentWPM() {
+      const response = await fetch('/get_recent_wpm');
+      const wpmData = await response.json();
 
-    <img class="dos" src='/static/img/pie2.png'>
-    <img class="one" src='/static/img/pie1.png'>
-    <img class="in_naming_we_pray" src='/static/img/pie3.png'>
-    </div>-->
+      const chartData = [['*', 'WPM']].concat(
+        Object.entries(wpmData).map(([test, wpm]) => [test, wpm])
+      );
+
+      const options = {
+        curveType: 'function',
+        legend: { position: 'bottom' },
+        colors: ['#87CEEB'],
+        backgroundColor: '#ffffff',
+        hAxis: {
+          textStyle: { color: '#19547b' },
+          gridlines: { color: 'transparent' },
+        },
+        vAxis: {
+          textStyle: { color: '#19547b' },
+          gridlines: { color: 'transparent' },
+        },
+      };
+
+      const chart = new google.visualization.LineChart(
+        document.getElementById('wpmChartContainer')
+      );
+      chart.draw(google.visualization.arrayToDataTable(chartData), options);
+    }
+
+    setInterval(fetchRecentWPM, 30000);
+
+    fetchRecentWPM();
+  }
+
+  function addTitleAboveChart(title, elementId) {
+    var chartElement = document.getElementById(elementId);
+    var titleDiv = document.createElement("div");
+    titleDiv.innerText = title;
+    titleDiv.style.textAlign = "center";
+    titleDiv.style.marginBottom = "10px";
+    titleDiv.style.fontSize = "18px";
+    chartElement.parentElement.insertBefore(titleDiv, chartElement);
+  }
+  </script>
+  {% endblock %}

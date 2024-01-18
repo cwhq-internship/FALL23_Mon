@@ -1,0 +1,60 @@
+<div id="wpmChartContainer"></div>
+
+<script>
+    async function fetchRecentWPM() {
+        const wpmResponse = await fetch('/get_recent_wpm');
+        const wpmData = await wpmResponse.json();
+
+        const wpmChartContainer = document.getElementById('wpmChartContainer');
+        wpmChartContainer.innerHTML = '<div id="wpmChart"></div>';
+
+        drawWPMChart(wpmData);
+    }
+
+    setInterval(fetchRecentWPM, 30000);
+    fetchRecentWPM();
+
+    function drawWPMChart(wpmData) {
+        var wpmDataTable = google.visualization.arrayToDataTable([
+            ['Test', 'WPM'],
+            ['Test 1', wpmData.test1],
+            ['Test 2', wpmData.test2],
+            ['Test 3', wpmData.test3],
+            ['Test 4', wpmData.test4],
+            ['Test 5', wpmData.test5],
+        ]);
+
+        var wpmOptions = {
+            curveType: 'function',
+            legend: { position: 'bottom' },
+            colors: ['#87CEEB'],
+            backgroundColor: '#ffffff',
+            hAxis: {
+                textStyle: { color: '#19547b' },
+                gridlines: { color: 'transparent' },
+            },
+            vAxis: {
+                textStyle: { color: '#19547b' },
+                gridlines: { color: 'transparent' },
+            },
+        };
+
+        var wpmChart = new google.visualization.LineChart(document.getElementById('wpmChart'));
+        wpmChart.draw(wpmDataTable, wpmOptions);
+
+        addTitleAboveChart('Recent WPM', 'wpmChart');
+    }
+
+    function addTitleAboveChart(title, elementId) {
+        var chartElement = document.getElementById(elementId);
+        var titleDiv = document.createElement('div');
+        titleDiv.innerText = title;
+        titleDiv.style.textAlign = 'center';
+        titleDiv.style.marginBottom = '10px';
+        titleDiv.style.fontSize = '18px';
+        chartElement.parentElement.insertBefore(titleDiv, chartElement);
+    }
+
+    google.charts.load("current", { packages: ["corechart"] });
+    google.charts.setOnLoadCallback(drawWPMChart);
+</script>

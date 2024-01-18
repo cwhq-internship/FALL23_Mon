@@ -119,11 +119,11 @@ body {
 }
 
 .navbar-light .navbar-nav .nav-link {
-  color: black; /* Set the desired darker text color */
+  color: black; 
 }
 
 .navbar-light .navbar-nav .nav-link:hover {
-  color: rgb(61, 58, 58); /* Set the desired darker hover text color */
+  color: rgb(61, 58, 58); 
 }
 .image-container-center {
   display: inline-block;
