@@ -51,10 +51,11 @@
         let wordsTyped = 0;
         let startTime;
         let gameActive = false;
-    
-        function startCountdown() {
-    let countdown = 3;
-    start.style.display = 'none';
+
+        let countdown = 3;
+
+function startCountdown() {
+  start.style.display = 'none';
 
     const countdownInterval = setInterval(() => {
         if (countdown > 0) {
@@ -122,21 +123,23 @@
     
     
     function updateGame() {
-      createBubble();
-      setTimeout(updateGame, 2000);
+  createBubble();
+  setTimeout(updateGame, 2000);
+}
+    
+    
+    function updateTimer() {
+  if (gameActive) { 
+    const elapsedSeconds = Math.floor((Date.now() - startTime) / 1000);
+    const remainingSeconds = Math.max(timerSeconds - elapsedSeconds, 0);
+    timerElement.textContent = `${remainingSeconds}s`;
+
+    if (remainingSeconds === 0) {
+      clearInterval(timerInterval);
+      endGame();
     }
-    
-    
-      function updateTimer() {
-       const elapsedSeconds = Math.floor((Date.now() - startTime) / 1000);
-        const remainingSeconds = Math.max(timerSeconds - elapsedSeconds, 0);
-       timerElement.textContent = `${remainingSeconds}s`;
-    
-       if (remainingSeconds === 0) {
-         clearInterval(timerInterval);
-          endGame();
-        }
-      }
+  }
+}
     
         function endGame() {
           const wordsPerMinute = Math.round((wordsTyped / 30) * 60);
