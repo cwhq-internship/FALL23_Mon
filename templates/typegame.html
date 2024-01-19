@@ -89,8 +89,8 @@ function startCountdown() {
     
           const top = randomRow * cellSizeY;
           const left = randomCol * cellSizeX;
-          bubble.style.top = `${top}px`;
-          bubble.style.left = `${left}px`;
+          bubble.style.top = `${Math.random() * boxHeight}px`;
+          bubble.style.left = `${Math.random() * boxWidth}px`;
     
           const randomWord = words[Math.floor(Math.random() * words.length)];
           bubble.innerText = randomWord;
