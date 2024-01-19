@@ -150,20 +150,19 @@ function startCountdown() {
         }
 
         function resetGame() {
-  timerSeconds = 45;
-  wordsTyped = 0;
-  startTime = null;
-  timerElement.textContent = `${timerSeconds}s`;
-  clearInterval(timerInterval);
-  gameActive = false;
+      timerSeconds = 45;
+      wordsTyped = 0;
+      startTime = null;
+      timerElement.textContent = `${timerSeconds}s`;
+      clearInterval(timerInterval);
+      gameActive = true;
 
-  const bubbles = document.querySelectorAll('.bubble');
-  bubbles.forEach((bubble) => bubble.remove());
+      const bubbles = document.querySelectorAll('.bubble');
+      bubbles.forEach((bubble) => bubble.remove());
 
-  countdown = 3; 
-  startCountdown(); 
-  gameOverElement.style.display = 'none';
-}
+      startCountdown();
+      gameOverElement.style.display = 'none';
+    }
     
     function startGame() {
       startTime = Date.now();
