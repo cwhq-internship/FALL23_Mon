@@ -1,5 +1,6 @@
 from flask_sqlalchemy import SQLAlchemy
 from flask import Flask
+from datetime import datetime
 
 def Create_Service(name, version, scopes):
     return None
@@ -19,13 +20,26 @@ sheet_body = {
 }
 
 db = SQLAlchemy()
-db_name = "database.db"
+db_name = "database"
+class TestResult(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    test_name = db.Column(db.String(255))
+    wpm = db.Column(db.Float)
+    date = db.Column(db.DateTime, default=db.func.current_timestamp())
 
+class TestCounter(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    count = db.Column(db.Integer, default=0)
+    timestamp = db.Column(db.DateTime, default=datetime.utcnow)
+
+    def increment_count(self):
+        self.count += 1
+        db.session.commit()
 
 def create_app():
     app = Flask(__name__)
     app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{db_name}'
-    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False  # Suppresses SQLAlchemy modification tracking
+    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
     db.init_app(app)
 
@@ -43,10 +57,8 @@ def create_app():
             ran_out = db.Column(db.String(50))
             on_time = db.Column(db.String(50))
 
-        # Create the tables
         db.create_all()
 
-        # Function to log typing test data into the database
         def log_typing_test_data(data):
             new_word_difficulty = WordDifficulty(
                 hard=data.get('hard'),
@@ -56,7 +68,6 @@ def create_app():
             db.session.add(new_word_difficulty)
             db.session.commit()
 
-        # Example usage of log_typing_test_data function
         test_data = {
             'hard': 'Difficult word',
             'medium': 'Medium word',
@@ -66,7 +77,6 @@ def create_app():
 
     return app
 
-# Run the application
 if __name__ == '__main__':
     app = create_app()
     app.run(debug=True)

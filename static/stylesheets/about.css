@@ -58,7 +58,9 @@ div{
     padding: 5px;
     padding-top: 0px;
     opacity: 1;
-    border-radius: 15px;
+    border-style: inset;
+    border-width: 15px;
+    border-color: #cae3ec;
 }
 
 .cwhq {
@@ -96,7 +98,9 @@ div{
     padding: 5px;
     padding-top: 0px;
     opacity: 1;
-    border-radius: 15px;
+    border-style: inset;
+    border-width: 15px;
+    border-color: #cae3ec;
 }
 
 .titles {

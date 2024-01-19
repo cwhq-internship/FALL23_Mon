@@ -55,7 +55,7 @@
           <ul class="navbar-nav mr-auto">
             <li class="nav-item">
               <span class="nav-link {% block brand %}{% endblock %}" onclick="transitionToPage('/')">Home</span>
-            </li>
+            </l>
             <li class="nav-item">
               <span class="nav-link {% block b %}{% endblock %}" onclick="transitionToPage('stats')">Statistics</span>
             </li>
@@ -67,8 +67,6 @@
             </li>
             <li class="nav-item">
               <span class="nav-link {% block e %}{% endblock %}" onclick="transitionToPage('login')">Account</span>
-            </li>
-              
             </li>
           </ul>
           <ul class = "nav navbar-nav ml-auto mt-2 mt-lg-0">
@@ -86,11 +84,9 @@
       <div id="includedContent"></div>
       
       <body id="content"></body>
-        <!-- Displays the main content of a template -->
         {% block content %}
         {% endblock %}
 
-        <!-- For adding additional scripts for a template -->
         {% block scripts %}
         
         {% endblock %}
@@ -111,38 +107,30 @@ document.addEventListener("DOMContentLoaded", function() {
     const navbar = document.getElementById("navbar");
     const navlink = document.getElementById("navlink");
     const activebar = document.querySelector(".active-bar");
-    // Function to set dark mode styles
-    function enableDarkMode() {
+   function enableDarkMode() {
         document.body.style.backgroundImage = "url('/static/img/darkbackground.png')";
         navbar.classList.remove("navbar-light");
         navbar.classList.add("navbar-dark");
         activebar.style.backgroundColor = '#172a55';
-        // Save dark mode preference to localStorage
         localStorage.setItem("darkModeEnabled", "true");
     }
 
-    // Function to set light mode styles
     function disableDarkMode() {
         document.body.style.backgroundImage = "url('/static/img/background.png')";
         activebar.style.backgroundColor = '#b0d7e5';
         navbar.classList.remove("navbar-dark");
         navbar.classList.add("navbar-light");
-        // Save light mode preference to localStorage
         localStorage.setItem("darkModeEnabled", "false");
     }
 
-    // Event listener for dark mode toggle change
     darkModeToggle.addEventListener("change", () => {
         if (darkModeToggle.checked) {
-            // Enable dark mode
             enableDarkMode();
         } else {
-            // Disable dark mode
             disableDarkMode();
         }
     });
 
-    // Function to apply navbar styles based on dark mode preference
     function applyNavbarStyles(isDarkMode) {
         if (isDarkMode) {
           navlink.classList.remove("active-bar");
@@ -157,15 +145,14 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
 
-    // Check and apply dark mode setting from localStorage on page load
     const isDarkModeEnabled = localStorage.getItem("darkModeEnabled") === "true";
     if (isDarkModeEnabled) {
         darkModeToggle.checked = true;
-        enableDarkMode(); // Apply dark mode styles if enabled in localStorage
-        applyNavbarStyles(true); // Apply navbar styles based on dark mode preference
+        enableDarkMode(); 
+        applyNavbarStyles(true); 
     } else {
-        disableDarkMode(); // Apply light mode styles by default
-        applyNavbarStyles(false); // Apply navbar styles based on light mode preference
+        disableDarkMode(); 
+        applyNavbarStyles(false); 
     }
 });
         </script>

@@ -1,0 +1,30 @@
+<div id="recentResultsContainer"></div>
+
+<script>
+    async function fetchRecentResults() {
+        const response = await fetch('/recent_results');
+        const results = await response.json();
+
+        const resultsContainer = document.getElementById('recentResultsContainer');
+        resultsContainer.innerHTML = '';
+
+        results.slice(0, 4).forEach(result => {
+            const resultDiv = document.createElement('div');
+            resultDiv.classList.add('test');
+
+            resultDiv.innerHTML = `
+                <span class="difficulty">Difficulty: ${result.test_name}</span>
+                <div class="score-date">
+                    <div class="date">Date: ${result.date}</div>
+                    <div class="score">Score: ${result.wpm} WPM</div>
+                </div>
+                <a href="/test${result.test_name.toLowerCase()}"><button class="try-again-btn">Try Again</button></a>`
+            ;
+            resultsContainer.appendChild(resultDiv);
+        });
+    }
+
+    setInterval(fetchRecentResults, 30000);
+
+    fetchRecentResults();
+</script>

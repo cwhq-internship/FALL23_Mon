@@ -54,6 +54,7 @@ function startTimer() {
       document.getElementById('retry').style.display = 'block';
       document.getElementById('nextWord').style.display = 'none';
       document.getElementById('currentWord').style.display = 'none';
+      onTestComplete();
       inner.style.flexDirection = 'column';
       myInput.disabled = true;
     }
@@ -79,8 +80,6 @@ function checkInput() {
     }
     typedWordElement.innerHTML = comparedWord;
 // Checking if word matches, then it displays another, adds score, etc etc.
-
-
     if (typedWord === displayedWord) {
       if (!timer) {
         startTimer();
@@ -92,33 +91,39 @@ function checkInput() {
       updateWords();
       inputField.value = '';
       typedWordElement.innerHTML = '';
-      document.getElementById('gameOver').style.display = 'none';
+      if (timer > 0) {
+        document.getElementById('gameOver').style.display = 'none';
+      }    
       inputField.maxLength = currentWord.length;
       checkScore();
     }
   });
 }
 
-// This judges you based on your score ofc :)
-
-
-// Hitting space, it switches current word with a new, random word. Doesn't affect next word at all.
+// Hitting space, it switches current word with a new, random word. and next word too ofc.
 // -1 from the skipCount
 function skipWord() {
+  const typedWordElement = document.getElementById('typedWord');
   if (skipCount > 0) {
-    currentWord = getRandomWord();
-    updateWords();
     skipCount--;
-    inputField.value = '';
     document.getElementById("skipCount").textContent = skipCount;
+    currentWord = nextWord;
+    nextWord = getRandomWord();
+    updateWords();
+    inputField.value = '';
+    typedWordElement.innerHTML = '';
+    inputField.maxLength = currentWord.length;
   }
 }
 
-// Space = activate skipWord
+// Shift = activate skipWord
 document.addEventListener("keydown", function(event) {
-  if (event.code === "Space") {
+  if (event.code === "ShiftLeft" || event.code === "ShiftRight") {
     skipWord();
-  }});
+  }
+});
+
+
 
 // Esc = immediate gameOver
 document.addEventListener('keydown', function(event) {

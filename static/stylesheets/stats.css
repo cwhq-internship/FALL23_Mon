@@ -125,7 +125,7 @@ h1 {
   padding-right: 20px;
   box-sizing: border-box;
   height: auto;
-  min-height: 400px; /* Set a minimum height */
+  min-height: 400px; 
 }
 
 .stats-section .stat {
@@ -157,7 +157,7 @@ h1 {
   flex-direction: column;
   justify-content: space-between;
   height: auto;
-  min-height: 300px; /* Set a minimum height */
+  min-height: 300px;
 }
 
 .difficulty {
@@ -200,7 +200,6 @@ h1 {
   color: #19547b;
 }
 
-/* Styling for the Google charts */
 .charts-section {
   width: 100%;
   margin-top: 20px;
@@ -226,14 +225,14 @@ h1 {
   margin-right: 3%;
   padding: 20px;
   border-radius: 20px;
-  background-color: #f0f8ff; /* Icy blue background color */
+  background-color: #f0f8ff;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
   box-sizing: border-box;
 }
 
 #chart1,
 #chart2,
-#chart3 {
+#wpmChartContainer {
   width: 100%;
   height: 25vh;
   margin-top: 15px;
@@ -278,4 +277,65 @@ h1 {
     height: 250px;
   }
 
+}
+
+/* styles.css */
+
+/* Custom hover and glowing effects for the try-again button */
+.try-again-btn {
+  border: none;
+  outline: none;
+  color: #fff;
+  background: #4a8ca2;
+  cursor: pointer;
+  position: relative;
+  z-index: 0;
+  border-radius: 0.25rem;
+}
+
+.try-again-btn:before {
+  content: '';
+  background: linear-gradient(45deg, #cae3ec, #4a8ca2, #cae3ec, #cae3ec, #4a8ca2, #cae3ec, #cae3ec, #4a8ca2, #cae3ec);
+  position: absolute;
+  top: -2px;
+  left:-2px;
+  background-size: 400%;
+  z-index: -1;
+  filter: blur(5px);
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  animation: glowing 20s linear infinite;
+  opacity: 0;
+  transition: opacity .3s ease-in-out;
+  border-radius: inherit; /* Inherit border-radius from the parent */
+}
+
+.try-again-btn:active {
+  color: #4a8ca2;
+}
+
+.try-again-btn:active:after {
+  background: transparent;
+}
+
+.try-again-btn:hover:before {
+  opacity: 1;
+}
+
+.try-again-btn:after {
+  z-index: -1;
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #4a8ca2;
+  left: 0;
+  top: 0;
+  border-radius: inherit; /* Inherit border-radius from the parent */
+}
+
+@keyframes glowing {
+  0% { background-position: 0 0; }
+  50% { background-position: 400% 0; }
+  100% { background-position: 0 0; }
 }
