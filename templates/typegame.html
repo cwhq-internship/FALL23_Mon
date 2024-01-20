@@ -189,11 +189,11 @@ function startGame() {
         }
       });
     });
-    //const numRows = 3;
-    //const numCols = 8;
-    //const grid = Array.from({ length: numRows }, () => Array(numCols).fill(false));
+    const numRows = 3;
+    const numCols = 8;
+    const grid = Array.from({ length: numRows }, () => Array(numCols).fill(false));
     
-    //let availableSpots = numRows * numCols;
+    let availableSpots = numRows * numCols;
     
     start.addEventListener('click', function() {
       resetGame();
