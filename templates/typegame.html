@@ -51,11 +51,10 @@
         let wordsTyped = 0;
         let startTime;
         let gameActive = false;
-
         let countdown = 3;
-
-function startCountdown() {
-  start.style.display = 'none';
+    
+        function startCountdown() {
+    start.style.display = 'none';
 
     const countdownInterval = setInterval(() => {
         if (countdown > 0) {
@@ -89,8 +88,8 @@ function startCountdown() {
     
           const top = randomRow * cellSizeY;
           const left = randomCol * cellSizeX;
-          bubble.style.top = `${Math.random() * boxHeight}px`;
-          bubble.style.left = `${Math.random() * boxWidth}px`;
+          bubble.style.top = `${top}px`;
+          bubble.style.left = `${left}px`;
     
           const randomWord = words[Math.floor(Math.random() * words.length)];
           bubble.innerText = randomWord;
@@ -123,23 +122,21 @@ function startCountdown() {
     
     
     function updateGame() {
-  createBubble();
-  setTimeout(updateGame, 2000);
-}
-    
-    
-    function updateTimer() {
-  if (gameActive) { 
-    const elapsedSeconds = Math.floor((Date.now() - startTime) / 1000);
-    const remainingSeconds = Math.max(timerSeconds - elapsedSeconds, 0);
-    timerElement.textContent = `${remainingSeconds}s`;
-
-    if (remainingSeconds === 0) {
-      clearInterval(timerInterval);
-      endGame();
+      createBubble();
+      setTimeout(updateGame, 2000);
     }
-  }
-}
+    
+    
+      function updateTimer() {
+       const elapsedSeconds = Math.floor((Date.now() - startTime) / 1000);
+        const remainingSeconds = Math.max(timerSeconds - elapsedSeconds, 0);
+       timerElement.textContent = `${remainingSeconds}s`;
+    
+       if (remainingSeconds === 0) {
+         clearInterval(timerInterval);
+          endGame();
+        }
+      }
     
         function endGame() {
           const wordsPerMinute = Math.round((wordsTyped / 30) * 60);
