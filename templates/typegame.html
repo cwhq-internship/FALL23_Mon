@@ -132,40 +132,47 @@
     }
     
     
-      function updateTimer() {
-       const elapsedSeconds = Math.floor((Date.now() - startTime) / 1000);
-        const remainingSeconds = Math.max(timerSeconds - elapsedSeconds, 0);
-       timerElement.textContent = `${remainingSeconds}s`;
-    
-       if (remainingSeconds === 0) {
-         clearInterval(timerInterval);
-          endGame();
-        }
-      }
-    
-        function endGame() {
-          const wordsPerMinute = Math.round((wordsTyped / 30) * 60);
-          wpmElement.textContent = `Words Per Minute: ${wordsPerMinute}`;
-          finalCount.textContent = `Words Typed: ${wordsTyped}`;
-          gameOverElement.style.display = 'block';
-          gameActive = false;
-        }
+    function updateTimer() {
+  if (gameActive) { 
+    const elapsedSeconds = Math.floor((Date.now() - startTime) / 1000);
+    const remainingSeconds = Math.max(timerSeconds - elapsedSeconds, 0);
+    timerElement.textContent = `${remainingSeconds}s`;
 
-        function resetGame() {
-      timerSeconds = 45;
-      wordsTyped = 0;
-      startTime = null;
-      timerElement.textContent = `${timerSeconds}s`;
+    if (remainingSeconds === 0) {
       clearInterval(timerInterval);
-      gameActive = true;
-
-      const bubbles = document.querySelectorAll('.bubble');
-      bubbles.forEach((bubble) => bubble.remove());
-
-      startCountdown();
-      gameOverElement.style.display = 'none';
+      endGame();
     }
+  }
+}
     
+function endGame() {
+      const wordsPerMinute = Math.round((wordsTyped / 30) * 60);
+      wpmElement.textContent = `Words Per Minute: ${wordsPerMinute}`;
+      finalCount.textContent = `Words Typed: ${wordsTyped}`;
+      gameOverElement.style.display = 'block';
+      gameActive = false;
+    }
+
+    function resetGame() {
+  timerSeconds = 45;
+  wordsTyped = 0;
+  startTime = null;
+  timerElement.textContent = `${timerSeconds}s`;
+  clearInterval(timerInterval);
+  gameActive = false;
+
+  const bubbles = document.querySelectorAll('.bubble');
+  bubbles.forEach((bubble) => bubble.remove());
+
+  countdown = 3; 
+  startCountdown();  
+  gameOverElement.style.display = 'none';
+}
+    function startGame() {
+      startTime = Date.now();
+      timerInterval = setInterval(updateTimer, 1000);
+      updateGame();
+    }
     function startGame() {
       startTime = Date.now();
       timerInterval = setInterval(updateTimer, 1000);
