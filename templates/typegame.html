@@ -13,30 +13,25 @@
           <div id="game-container"><button id="start" type="button" onclick="startCountdown()">Click to start game!</button></div>
         </div>
     
-        <div class="outer">
-          <div id="bubbles-box">
-            <div id="game-container"><button id="start" type="button" onclick="startCountdown()">Click to start game!</button></div>
-          </div>
-      
-          <div class="inputs">
-            <div class="rowboard">
-              <div class="scoreboard">
-                <div class="scorelabel"><p>Score:</p> <span id="word-count" class="h3 text-center">0</span></div>
-              </div>
-              <div class="scoreboard">
-                <div class="scorelabel"><p>Time Left:</p><span id="timer">45</span></div>
-              </div>
+        <div class="inputs">
+          <div class="rowboard">
+            <div class="scoreboard">
+              <div class="scorelabel"><p>Score:</p> <span id="word-count" class="h3 text-center">0</span></div>
             </div>
-            <input type="text" id="typing-bar" placeholder="Type here">
+            <div class="scoreboard">
+              <div class="scorelabel"><p>Time Left:</p><span id="timer">45</span></div>
+            </div>
           </div>
+          <input type="text" id="typing-bar" placeholder="Type here">
         </div>
+      </div>
     
-        <div id="game-over">
-          <p>Game Over!</p>
-          <p id="wpm">Words Per Minute: 0</p>
-          <p id="final-count">Words Typed: 0</p>
-          <button id="play-again" onclick="resetGame()">Play Again</button>
-        </div>
+      <div id="game-over">
+        <p>Game Over!</p>
+        <p id="wpm">Words Per Minute: 0</p>
+        <p id="final-count">Words Typed: 0</p>
+        <button id="play-again" onclick="resetGame()">Play Again</button>
+      </div>
     </body>
     
     <script>
@@ -60,24 +55,24 @@
       let countdown = 3; 
   
       function startCountdown() {
-      start.style.display = 'none';
-      
-      updateCountdown();
-    
-      const countdownInterval = setInterval(updateCountdown, 1000);
-    
-      function updateCountdown() {
-        if (countdown > 0) {
-          gameContainer.innerHTML = `<h1>${countdown}</h1>`;
-          countdown--;
-        } else {
-          clearInterval(countdownInterval);
-          gameActive = true;
-          gameContainer.classList.remove('hidden');
-          startGame();
-        }
+    start.style.display = 'none';
+  
+
+    updateCountdown();
+  
+    const countdownInterval = setInterval(updateCountdown, 1000);
+  
+    function updateCountdown() {
+      if (countdown > 0) {
+        gameContainer.innerHTML = `<h1>${countdown}</h1>`;
+        countdown--;
+      } else {
+        clearInterval(countdownInterval);
+        gameActive = true;
+        startGame();
       }
     }
+  }
   
   
   function createBubble() {
@@ -130,21 +125,20 @@
       }
   
       function resetGame() {
-      timerSeconds = 45;
-      wordsTyped = 0;
-      startTime = null;
-      timerElement.textContent = `${timerSeconds}s`;
-      clearInterval(timerInterval);
-      gameActive = false;
-
-      const bubbles = document.querySelectorAll('.bubble');
-      bubbles.forEach((bubble) => bubble.remove());
-
-      countdown = 3;
-      startCountdown();
-      gameOverElement.style.display = 'none';
-      wordCountElement.textContent = wordsTyped;
-    }
+    timerSeconds = 45;
+    wordsTyped = 0;
+    startTime = null;
+    timerElement.textContent = `${timerSeconds}s`;
+    clearInterval(timerInterval);
+    gameActive = false;
+  
+    const bubbles = document.querySelectorAll('.bubble');
+    bubbles.forEach((bubble) => bubble.remove());
+  
+    countdown = 3; 
+    startCountdown(); 
+    gameOverElement.style.display = 'none';
+  }
   
   
   
