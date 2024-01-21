@@ -89,11 +89,12 @@ const start = document.getElementById('start');
         if (!grid[randomRow][randomCol]) {
           const bubble = document.createElement('div');
           bubble.classList.add('bubble');
-    
+          const boxWidth = gameContainer.offsetWidth - 80;
+          const boxHeight = gameContainer.offsetHeight - 80;
           const top = randomRow * cellSizeY;
           const left = randomCol * cellSizeX;
-          bubble.style.top = `${top}px`;
-          bubble.style.left = `${left}px`;
+          bubble.style.top = `${Math.random() * boxHeight}px`;
+          bubble.style.left = `${Math.random() * boxWidth}px`;
     
           const randomWord = words[Math.floor(Math.random() * words.length)];
           bubble.innerText = randomWord;
