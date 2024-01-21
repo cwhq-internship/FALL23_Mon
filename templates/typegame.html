@@ -140,9 +140,8 @@
       startCountdown();
       gameOverElement.style.display = 'none';
       wordCountElement.textContent = wordsTyped;
-      typingBar.removeAttribute('disabled');
+      typingBar.value = '';
     }
-
 
     typingBar.addEventListener('input', (event) => {
       if (gameActive) {
@@ -160,7 +159,7 @@
           }
         });
       } else {
-        typingBar.setAttribute('disabled', 'true');
+        typingBar.value = '';
       }
     });
   
