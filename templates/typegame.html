@@ -78,24 +78,24 @@
 
   
   
-  function createBubble() {
-    if (!gameActive) return;
+    function createBubble() {
+      if (!gameActive) return;
+
+      const bubble = document.createElement('div');
+      bubble.classList.add('bubble');
+      const boxWidth = gameContainer.offsetWidth - 80;
+      const boxHeight = gameContainer.offsetHeight - 80;
+      bubble.style.top = `${Math.random() * boxHeight}px`;
+      bubble.style.left = `${Math.random() * boxWidth}px`;
+      const randomWord = words[Math.floor(Math.random() * words.length)];
+      bubble.innerText = randomWord;
   
-    const bubble = document.createElement('div');
-    bubble.classList.add('bubble');
-    const boxWidth = gameContainer.offsetWidth - 80;
-    const boxHeight = gameContainer.offsetHeight - 80;
-    bubble.style.top = `${Math.random() * boxHeight}px`;
-    bubble.style.left = `${Math.random() * boxWidth}px`;
-    const randomWord = words[Math.floor(Math.random() * words.length)];
-    bubble.innerText = randomWord;
-  
-    bubble.addEventListener('click', () => {
-      bubble.style.display = 'none';
-      wordsTyped++;
-      document.getElementById('word-count').textContent = wordsTyped;
-      typingBar.value = '';
-    });
+      //bubble.addEventListener('click', () => {
+      //bubble.style.display = 'none';
+      //wordsTyped++;
+      //document.getElementById('word-count').textContent = wordsTyped;
+      //typingBar.value = '';
+    //});
   
     gameContainer.appendChild(bubble);
   }
