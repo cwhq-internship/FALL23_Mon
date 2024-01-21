@@ -125,20 +125,21 @@
       }
   
       function resetGame() {
-    timerSeconds = 45;
-    wordsTyped = 0;
-    startTime = null;
-    timerElement.textContent = `${timerSeconds}s`;
-    clearInterval(timerInterval);
-    gameActive = false;
-  
-    const bubbles = document.querySelectorAll('.bubble');
-    bubbles.forEach((bubble) => bubble.remove());
-  
-    countdown = 3; 
-    startCountdown(); 
-    gameOverElement.style.display = 'none';
-  }
+      timerSeconds = 45;
+      wordsTyped = 0;
+      startTime = null;
+      timerElement.textContent = `${timerSeconds}s`;
+      clearInterval(timerInterval);
+      gameActive = false;
+
+      const bubbles = document.querySelectorAll('.bubble');
+      bubbles.forEach((bubble) => bubble.remove());
+
+      countdown = 3;
+      startCountdown();
+      gameOverElement.style.display = 'none';
+      wordCountElement.textContent = wordsTyped;
+    }
   
   
   
