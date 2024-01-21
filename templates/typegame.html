@@ -55,25 +55,25 @@
       let countdown = 3; 
   
       function startCountdown() {
-    start.style.display = 'none';
-  
-
-    updateCountdown();
-  
-    const countdownInterval = setInterval(updateCountdown, 1000);
-  
-    function updateCountdown() {
-  if (countdown > 0) {
-    gameContainer.innerHTML = `<h1>${countdown}</h1>`;
-    countdown--;
-  } else {
-    clearInterval(countdownInterval);
-    gameActive = true;
-    startGame();
-    gameContainer.innerHTML = '';
+      start.style.display = 'none';
+      
+      updateCountdown();
+    
+      const countdownInterval = setInterval(updateCountdown, 1000);
+    
+      function updateCountdown() {
+        if (countdown > 0) {
+          gameContainer.innerHTML = `<h1>${countdown}</h1>`;
+          countdown--;
+        } else {
+          clearInterval(countdownInterval);
+          gameActive = true;
+          gameContainer.classList.remove('hidden');
+          typingBar.removeAttribute('disabled');
+          startGame();
+        }
       }
     }
-  }
   
   
   function createBubble() {
