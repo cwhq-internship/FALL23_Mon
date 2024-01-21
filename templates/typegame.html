@@ -46,7 +46,7 @@
       const playAgainButton = document.getElementById('play-again');
       const words = ['magic', 'spell', 'wizard', 'fantasy', 'enchant', 'dragon', 'castle', 'adventure', 'sorcerer', 'potions', 'mythical', 'alchemy', 'creatures', 'realm', 'mystical', 'cursed', 'quest', 'phoenix', 'mage', 'medieval', 'scroll', 'fairy', 'unicorn', 'mermaid', 'goblin', 'warlock'];
   
-      let timerSeconds = 30;
+      let timerSeconds = 45;
       let timerInterval;
       let wordsTyped = 0;
       let startTime;
@@ -125,7 +125,7 @@
       }
   
       function resetGame() {
-    timerSeconds = 30;
+    timerSeconds = 45;
     wordsTyped = 0;
     startTime = null;
     timerElement.textContent = `${timerSeconds}s`;
