@@ -63,13 +63,14 @@
     const countdownInterval = setInterval(updateCountdown, 1000);
   
     function updateCountdown() {
-      if (countdown > 0) {
-        gameContainer.innerHTML = `<h1>${countdown}</h1>`;
-        countdown--;
-      } else {
-        clearInterval(countdownInterval);
-        gameActive = true;
-        startGame();
+  if (countdown > 0) {
+    gameContainer.innerHTML = `<h1>${countdown}</h1>`;
+    countdown--;
+  } else {
+    clearInterval(countdownInterval);
+    gameActive = true;
+    startGame();
+    gameContainer.innerHTML = '';
       }
     }
   }
@@ -163,7 +164,7 @@
             typingBar.value = '';
           }
         });
-      });
+      }); 
     
         
     // Darkmode Script!
