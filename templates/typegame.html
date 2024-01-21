@@ -70,10 +70,12 @@
           gameActive = true;
           gameContainer.classList.remove('hidden');
           typingBar.removeAttribute('disabled');
+          gameContainer.innerHTML = '';
           startGame();
         }
       }
     }
+
   
   
   function createBubble() {
