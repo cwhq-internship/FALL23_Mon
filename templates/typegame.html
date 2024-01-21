@@ -140,7 +140,29 @@
       startCountdown();
       gameOverElement.style.display = 'none';
       wordCountElement.textContent = wordsTyped;
+      typingBar.removeAttribute('disabled');
     }
+
+
+    typingBar.addEventListener('input', (event) => {
+      if (gameActive) {
+        const inputValue = event.target.value.toLowerCase();
+        const bubbles = document.querySelectorAll('.bubble');
+
+        bubbles.forEach((bubble) => {
+          const bubbleText = bubble.innerText.toLowerCase();
+
+          if (inputValue === bubbleText) {
+            bubble.style.display = 'none';
+            wordsTyped++;
+            document.getElementById('word-count').textContent = wordsTyped;
+            typingBar.value = '';
+          }
+        });
+      } else {
+        typingBar.setAttribute('disabled', 'true');
+      }
+    });
   
   
   
