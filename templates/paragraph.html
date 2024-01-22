@@ -120,6 +120,10 @@
             const accuracy = calculateAccuracy(correctCharacters, totalCharacters);
             accuracyElement.innerText = `Accuracy: ${(accuracy / 100).toFixed(2)}%`;
         }
+
+        if (getCurrentQuote().text.toLowerCase() === "Hey, just wondering if you got those photos printed? bogos binted? what".toLowerCase()) {
+            window.location.href = "alien.html";
+        }
     }
 
     function getCurrentQuote() {
