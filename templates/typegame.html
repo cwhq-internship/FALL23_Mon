@@ -158,8 +158,8 @@
         }
       });
 
-      if (!wordMatched) {
-        typingBar.value = inputValue;
+      if (!wordMatched && inputValue.trim() !== '') {
+        typingBar.value = '';
       }
     } else {
       typingBar.value = '';
