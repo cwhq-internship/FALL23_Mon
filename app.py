@@ -156,6 +156,10 @@ def testhard():
 def paragraph():
     return render_template('paragraph.html')
 
+@app.route('/alien')
+def alien():
+    return render_template('alien.html')
+
 @app.route('/stats')
 def stats():
     test_results = TestResult.query.all()
