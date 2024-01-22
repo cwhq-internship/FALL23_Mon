@@ -11,24 +11,24 @@
 
 {% block content %}
 <body>
-  <h1>Global Typing Statistics</h1>
+  <h1>Typing Statistics</h1>
   <div class="stats-container">
     <div class="stats-section">
       <div class="stat">
-        <strong>Average Global Words per Minute (WPM):</strong> <span id="averageWPM">65</span>
+        <strong>Average Words per Minute (WPM):</strong> <span id="averageWPM">No WPM recorded!</span>
       </div>
       <div class="stat">
-        <strong>Top WPM:</strong> <span id="topWPM">notpe</span>
+        <strong>Top WPM:</strong> <span id="topWPM">No WPM recorded!</span>
       </div>
       <div class="stat">
-        <strong>Total Easy Tests taken:</strong>
+        <strong>Easy Tests taken:</strong>
         <span id="easyCount">No tests recorded!</span>
       </div>
       <div class="stat">
-        <strong>Total Medium Tests taken:</strong> <span id="mediumCount">No tests recorded!</span>
+        <strong>Medium Tests taken:</strong> <span id="mediumCount">No tests recorded!</span>
       </div>
       <div class="stat">
-        <strong>Total Hard Tests taken:</strong> <span id="hardCount">No tests recorded!</span>
+        <strong>Hard Tests taken:</strong> <span id="hardCount">No tests recorded!</span>
       </div>
     </div>
 
@@ -46,7 +46,7 @@
         <div id="chart2"></div>
       </div>
       <div class="chart">
-        <div style="text-align: center; margin-bottom: 10px; font-size: 18px;">Global WPM</div>
+        <div style="text-align: center; margin-bottom: 10px; font-size: 18px;">WPM</div>
         <div id="wpmChartContainer"></div>
       </div>
     </div>
@@ -169,7 +169,7 @@ document.addEventListener("DOMContentLoaded", function() {
         ["Accuracy Type", "Percentage"],
         ["None", 70],
         ["Nobody", 20],
-        ["Peter", 10],
+        ["N/A", 10],
       ]);
 
       var options1 = {
