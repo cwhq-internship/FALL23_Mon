@@ -148,28 +148,25 @@ function updateTimer() {
       });
     }
 
-    typingBar.addEventListener('input', (event) => {
-      if (gameActive) {
-        const inputValue = event.target.value.toLowerCase();
-        const bubbles = document.querySelectorAll('.bubble');
+    function resetGame() {
+      timerSeconds = 45;
+      wordsTyped = 0;
+      startTime = null;
+      gameActive = false;
+      countdown = 3;
 
-        bubbles.forEach((bubble) => {
-          if (bubble.style.display !== 'none') {
-            const bubbleText = bubble.innerText.toLowerCase();
+      const bubbles = document.querySelectorAll('.bubble');
+      bubbles.forEach((bubble) => bubble.remove());
 
-            if (inputValue === bubbleText) {
-              bubble.style.display = 'none';
-              wordsTyped++;
-              document.getElementById('word-count').textContent = wordsTyped;
-              typingBar.value = ''; 
-              resetSpecificBubble(bubbleText);
-            }
-          }
-        });
-      } else {
-        typingBar.value = '';
-      }
-    });
+      start.style.display = 'block';
+      gameContainer.innerHTML = '<button id="start" type="button" onclick="startCountdown()">Click to start game!</button>';
+      gameOverElement.style.display = 'none';
+      wordCountElement.textContent = '0';
+      typingBar.value = '';
+      timerElement.textContent = `${timerSeconds}s`;
+
+      clearInterval(timerInterval);
+    }
 
 
 
