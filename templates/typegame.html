@@ -78,19 +78,19 @@
 
 
   function createBubble() {
-    if (!gameActive) return;
+      if (!gameActive || document.querySelectorAll('.bubble').length >= 10) return;
 
-    const bubble = document.createElement('div');
-    bubble.classList.add('bubble');
-    const boxWidth = gameContainer.offsetWidth - 80;
-    const boxHeight = gameContainer.offsetHeight - 80;
-    bubble.style.top = `${Math.random() * boxHeight}px`;
-    bubble.style.left = `${Math.random() * boxWidth}px`;
-    const randomWord = words[Math.floor(Math.random() * words.length)];
-    bubble.innerText = randomWord;
+      const bubble = document.createElement('div');
+      bubble.classList.add('bubble');
+      const boxWidth = gameContainer.offsetWidth - 80;
+      const boxHeight = gameContainer.offsetHeight - 80;
+      bubble.style.top = `${Math.random() * boxHeight}px`;
+      bubble.style.left = `${Math.random() * boxWidth}px`;
+      const randomWord = words[Math.floor(Math.random() * words.length)];
+      bubble.innerText = randomWord;
 
-  gameContainer.appendChild(bubble);
-}
+      gameContainer.appendChild(bubble);
+    }
 
 function updateGame() {
       createBubble();
