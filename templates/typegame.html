@@ -137,7 +137,18 @@ function updateTimer() {
     typingBar.value = '';
   }
 
-  typingBar.addEventListener('input', (event) => {
+  function resetSpecificBubble(word) {
+      const bubbles = document.querySelectorAll('.bubble');
+      bubbles.forEach((bubble) => {
+        const bubbleText = bubble.innerText.toLowerCase();
+        if (bubbleText === word) {
+          bubble.remove();
+          createBubble();
+        }
+      });
+    }
+
+    typingBar.addEventListener('input', (event) => {
       if (gameActive) {
         const inputValue = event.target.value.toLowerCase();
         const bubbles = document.querySelectorAll('.bubble');
@@ -151,7 +162,7 @@ function updateTimer() {
               wordsTyped++;
               document.getElementById('word-count').textContent = wordsTyped;
               typingBar.value = ''; 
-              resetBubbles(); 
+              resetSpecificBubble(bubbleText);
             }
           }
         });
