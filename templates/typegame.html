@@ -1,11 +1,10 @@
-{% extends "layout.html" %}
+{% extends 'layout.html' %}
 {% set title="Typing game" %}
-{% block e %} active-bar {% endblock %}
 {% block styles %}
-    <link href='{{url_for("static", filename="stylesheets/layout.css")}}' rel='stylesheet'/>
     <link href='{{url_for("static", filename="stylesheets/typegame.css")}}' rel='stylesheet'/>
+    <link href='{{url_for("static", filename="stylesheets/layout.css")}}' rel='stylesheet'/>
 {% endblock %}
-
+{% block e %} active-bar {% endblock %}
 {% block content %}
 <body>
   <div class="outer">
