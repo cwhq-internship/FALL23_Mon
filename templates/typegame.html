@@ -158,15 +158,13 @@
         }
       });
 
-      if (!wordMatched && inputValue.trim() !== '') {
-        typingBar.value = '';
+      if (!wordMatched) {
+        typingBar.value = inputValue;
       }
     } else {
       typingBar.value = '';
     }
   });
-
-  
   
   
       function startGame() {
