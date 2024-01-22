@@ -139,25 +139,32 @@
     }
 
     typingBar.addEventListener('input', (event) => {
-      if (gameActive) {
-        const inputValue = event.target.value.toLowerCase();
-        const activeBubbles = document.querySelectorAll('.bubble:not([data-typed="true"])');
+    if (gameActive) {
+      const inputValue = event.target.value.toLowerCase();
+      const activeBubbles = document.querySelectorAll('.bubble:not([data-typed="true"])');
 
-        activeBubbles.forEach((bubble) => {
-          const bubbleText = bubble.innerText.toLowerCase();
+      let wordMatched = false;
 
-          if (inputValue === bubbleText) {
-            bubble.style.display = 'none';
-            bubble.setAttribute('data-typed', 'true');
-            wordsTyped++;
-            document.getElementById('word-count').textContent = wordsTyped;
-            typingBar.value = '';
-          }
-        });
-      } else {
+      activeBubbles.forEach((bubble) => {
+        const bubbleText = bubble.innerText.toLowerCase();
+
+        if (inputValue === bubbleText) {
+          bubble.style.display = 'none';
+          bubble.setAttribute('data-typed', 'true');
+          wordsTyped++;
+          document.getElementById('word-count').textContent = wordsTyped;
+          typingBar.value = '';
+          wordMatched = true;
+        }
+      });
+
+      if (!wordMatched) {
         typingBar.value = '';
       }
-    });
+    } else {
+      typingBar.value = '';
+    }
+  });
 
   
   
