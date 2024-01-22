@@ -151,6 +151,7 @@ function updateTimer() {
               wordsTyped++;
               document.getElementById('word-count').textContent = wordsTyped;
               typingBar.value = ''; 
+              resetBubbles(); 
             }
           }
         });
@@ -161,9 +162,16 @@ function updateTimer() {
 
 
 
+
     function startGame() {
       startTime = Date.now();
       timerInterval = setInterval(updateTimer, 1000);
+      updateGame();
+    }
+
+    function resetBubbles() {
+      const bubbles = document.querySelectorAll('.bubble');
+      bubbles.forEach((bubble) => bubble.remove());
       updateGame();
     }
 
