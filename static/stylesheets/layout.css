@@ -119,6 +119,7 @@ body {
 }
 
 .navbar-light .navbar-nav .nav-link {
+  text-align: center;
   color: black; 
 }
 
@@ -224,8 +225,27 @@ body {
     margin: unset;
     border-radius: 25px;
   }
+  .titles {
+    margin-top: 4%;
+  }
+  .log {
+    height: 87vh;
+    width: unset;
+  }
+  .inner {
+    width: 100%;
+  }
+  .outer {
+    width: 100%;
+  }
   .testname {
     font-size: 2em;
+  }
+  .darkbtn {
+    margin: auto;
+  }
+  .score-date {
+    flex-direction: none;
   }
   .instruction {
     font-size: 1em;
@@ -236,8 +256,25 @@ body {
   .outer {
     height: 91vh;
   }
+  .bonusdesc {
+    font-size: 3vw;
+  }
+  .bonus1 {
+    margin: 1.5%;
+  }
+  .testrowtop {
+    margin-right: 10px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+  }
+  .testrow {
+    margin-right: 10px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    margin-top: unset;
+  }
   #underline {
-    margin-top: 6.9%;
+    margin-top: 7.5%;
   }
   #gameOver {
     font-size: 15px;
