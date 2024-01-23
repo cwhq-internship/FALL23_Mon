@@ -14,7 +14,7 @@
     <p id="accuracy"></p>
     <p id="wpm"></p>
     <p id="warning-message" style="color: red; display: none;">Warning: Please click the button only once to avoid breaking the game.</p>
-    <button id="retry-btn" onclick="startCountdown()">Keep typing?</button>
+    <button id="retry-btn">Keep typing?</button>
     <audio id="error-sound" src="/static/computer_error_sound_effect.mp3"></audio>
   </div>
   <script>
@@ -52,8 +52,8 @@
         { text:"WHAT?! THIS IS A MOMENT IN HISTORY. TAKE A PICTURE!", source: "Caseoh" },
         { text:"Neil Gaiman? What are you doing in my falafel?", source: "Arthur" },
         { text:"Knuckles, you were great up there. You're actually a lot smarter than we give you credit for. Me am?! Forget I said anything.", source: "Sonic Boom" },
-        { text:"I'm light as a feather. I'm the Bake-O-Lite Girl.", source: "Wallace & Gromit: A Matter of Loaf and Death (2008)" }
-
+        { text:"I'm light as a feather. I'm the Bake-O-Lite Girl.", source: "Wallace & Gromit: A Matter of Loaf and Death (2008)" },
+        { text:"But I know a place we can escape", source: "Moonlight - Kali Uchis" }
 
 
         // Add more quotes as needed
@@ -124,8 +124,8 @@
             accuracyElement.innerText = `Accuracy: ${(accuracy / 100).toFixed(2)}%`;
         }
 
-        if (getCurrentQuote().text.toLowerCase() === "Hey, just wondering if you got those photos printed? bogos binted? what".toLowerCase()) {
-            window.location.href = "alien.html";
+        if (getCurrentQuote().text.toLowerCase() === "But I know a place we can escape".toLowerCase()) {
+            window.location.href = "alien";
         }
     }
 
