@@ -14,7 +14,7 @@
     <p id="accuracy"></p>
     <p id="wpm"></p>
     <p id="warning-message" style="color: red; display: none;">Warning: Please click the button only once to avoid breaking the game.</p>
-    <button id="retry-btn">Keep typing?</button>
+    <button id="retry-btn" onclick="startCountdown()">Keep typing?</button>
     <audio id="error-sound" src="/static/computer_error_sound_effect.mp3"></audio>
   </div>
   <script>
@@ -57,8 +57,10 @@
         { text:"Grandfather please stand on the shoulders of my father while he's deep-sea fishing - Did you know that there's a tunnel under Ocean Blvd", source: "Lana Del Ray" },
         { text:"Well, who cuts people's hair in the middle of the night? I do! They call me the Midnight Barber. Yeah, well that's an infringement of people's liberties. So don't ever be doing that to me. I DO do it to you....what? Who d'you think cuts your hair, Einstein? My hair just doesn't grow very fast. What, you think it stays that length naturally? I'm in there in the night, styling away. How dare you do that to me in the night, when I'm oblivious. I do my best work when you're oblivious.", source: "The Mighty Boosh" },
         { text:"But you know, whatever. Hug hug, kiss kiss, hug hug, big kiss, little hug, kiss kiss, little kiss.", source: "Nacho Libre (2006)" },
-        { text:"Regina, wait! I didn't mean for that to happen! To find out that everyone hates me? I don't care! Regina, please! Regina, stop! No! Do you know what everyone says about you? They say that you're a home-schooled jungle freak, who's a less hot version of me! Yeah! So don't try to act so innocent! You can take that fake apology and shove it right up your hairy—", source: "Mean Girls (2004)" },
-
+        { text:"Regina, wait! I didn't mean for that to happen! To find out that everyone hates me? I don't care! Regina, please! Regina, stop! No! Do you know what everyone says about you? They say that you're a home-schooled jungle freak, who's a less hot version of me! Yeah! So don't try to act so innocent! You can take that fake apology and shove it right up your hairy-", source: "Mean Girls (2004)" },
+        { text:"I don't understand why everybody have to be so judgmental. I understand why mom's judgmental. I think it's 'cause she cares, 'partially'. Think it's also partially 'cause, everyone else is lookin' at her like, \"Hey, Cody's just a bum.\" \"Cody's this,\" \"Cody's that,\" \"Cody's this.\"Cody's me, bro. Let me be me. When is that going to start?", source: "Surf's Up (2007)" },
+        { text:"HELP, HE'S ESCAPING! THE KILLER IS ESCAPING, HELP ME!!!", source: "American Horror Story" }
+        //{ text:"Neil Gaiman? What are you doing in my falafel?", source: "Arthur" },
         // Add more quotes as needed
     ];
 
@@ -127,8 +129,8 @@
             accuracyElement.innerText = `Accuracy: ${(accuracy / 100).toFixed(2)}%`;
         }
 
-        if (getCurrentQuote().text.toLowerCase() === "But I know a place we can escape".toLowerCase()) {
-            window.location.href = "alien";
+        if (getCurrentQuote().text.toLowerCase() === "Hey, just wondering if you got those photos printed? bogos binted? what".toLowerCase()) {
+            window.location.href = "alien.html";
         }
     }
 
