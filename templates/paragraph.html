@@ -180,7 +180,7 @@ function calculateWPM(words, time) {
 }
 
 function calculateAccuracy(correct, total) {
-    return ((correct / total) * 100);
+    return ((correct / total) * 100).toFixed(2);
 }
 </script>
 {% endblock %}
