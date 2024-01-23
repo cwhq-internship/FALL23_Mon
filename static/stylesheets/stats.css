@@ -184,7 +184,7 @@ h1 {
   margin-bottom: 15px;
 }
 
-.test {
+.teststats {
   margin-bottom: 10px;
   padding: 10px;
   border-radius: 8px;
@@ -275,6 +275,12 @@ h1 {
   }
   #chart1, #chart2, #chart3 {
     height: 250px;
+  }
+  .score-date {
+    width: 50%;
+  }
+  .difficulty {
+    margin: unset;
   }
 
 }
